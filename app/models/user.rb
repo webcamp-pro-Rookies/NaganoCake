@@ -15,10 +15,10 @@ class User < ApplicationRecord
   validates :address_city, presence: true
   validates :address_street, presence: true
   validates :phone_number, presence: true
-  validates :passoword, presence: true, length: {maximum: 16}
+  validates :password, presence: true, length: {maximum: 16}
 
   def update_without_current_password(params, *options)
-    if params[:password].blank? && params[:pasword_confirmation].blank?
+    if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
     end

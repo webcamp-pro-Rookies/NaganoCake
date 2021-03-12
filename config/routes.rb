@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  
-  devise_for :users
+  devise_for :users,
+    controllers: { registrations: 'registrations' }
+  resources :users, only: [:show, :destroy, :quit]
 #----------Products--------------
   root to: "products#top" 
   get 'about' => 'products#about'
-resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show]
 #--------------------------------
   
 end

@@ -3,11 +3,26 @@ Rails.application.routes.draw do
     controllers: { registrations: 'registrations' }
   resources :users, only: [:show, :destroy, :quit]
 #----------Products--------------
-  root to: "products#top" 
+  root to: "products#top"
   get 'about' => 'products#about'
   resources :products, only: [:index, :show]
+
+#----------Carts-----------------
+  resources :carts, only: [:index, :update, :create, :destroy]
+  get 'destroy_all' => 'carts#destroy_all'
 #--------------------------------
-#----------Cartlls-----------------
-  resources :carts, only: [:index, :update, :create, :destroy, :destroy_all]
-  
+<<<<<<< HEAD
+
+#----------Orders-----------------
+  get 'orders/thanks' => 'orders#thanks'
+  resources :orders, only: [:index, :show, :new,]
+  get 'orders/log' => 'orders#log'
+#--------------------------------
+
+
+=======
+#----------Shipping_address--------------
+  resources :shipping_addresses, only: [:index, :create, :edit, :destroy]
+#--------------------------------
+>>>>>>> shipping_address
 end

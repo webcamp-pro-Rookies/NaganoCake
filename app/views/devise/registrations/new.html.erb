@@ -24,6 +24,37 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+
+  <!--ここ以下自動入力-->
+
+　<div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_name %><br /> <!--/ 47都道府県をプルダウンメニューで表示-->
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, class: 'form-control' %>
+  </div><!--質問 JpPrefecture::Prefecture この記述は何？クラス変数みたいなもの？-->
+
+  <div class="field">
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_street %><br />
+    <%= f.text_field :address_stree, autocomplete: 'address_street', class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_building %><br />
+    <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %>
+  </div>
+
+  <!--ここ以上自動入力-->
+
+
 <% end %>
 
 <%= render "devise/shared/links" %>

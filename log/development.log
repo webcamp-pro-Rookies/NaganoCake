@@ -174,3 +174,113 @@ ActionController::RoutingError (undefined local variable or method `devise_param
   
 app/controllers/application_controller.rb:3:in `<class:ApplicationController>'
 app/controllers/application_controller.rb:1:in `<main>'
+Started GET "/users/sign_up" for 27.82.17.29 at 2021-03-12 05:27:39 +0000
+Cannot render console from 27.82.17.29! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (45.2ms)
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `address_stree' for #<User:0x000000000568dd50>
+Did you mean?  address_street
+               address_street?
+               address_street=):
+    44: 
+    45:   <div class="field">
+    46:     <%= f.label :address_street %><br />
+    47:     <%= f.text_field :address_stree, autocomplete: 'address_street', class: 'form-control' %>
+    48:   </div>
+    49: 
+    50:   <div class="field">
+  
+app/views/devise/registrations/new.html.erb:47:in `block in _app_views_devise_registrations_new_html_erb__3197014419757142051_70024912110840'
+app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb__3197014419757142051_70024912110840'
+Started GET "/users/sign_up" for 27.82.17.29 at 2021-03-12 05:27:44 +0000
+Cannot render console from 27.82.17.29! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (33.7ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `address_stree' for #<User:0x00007f5fdc69a788>
+Did you mean?  address_street
+               address_street?
+               address_street=):
+    44: 
+    45:   <div class="field">
+    46:     <%= f.label :address_street %><br />
+    47:     <%= f.text_field :address_stree, autocomplete: 'address_street', class: 'form-control' %>
+    48:   </div>
+    49: 
+    50:   <div class="field">
+  
+app/views/devise/registrations/new.html.erb:47:in `block in _app_views_devise_registrations_new_html_erb__3197014419757142051_70024848261960'
+app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb__3197014419757142051_70024848261960'
+Started GET "/users/sign_up" for 27.82.17.29 at 2021-03-12 05:32:57 +0000
+Cannot render console from 27.82.17.29! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (25.1ms)
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `address_stree' for #<User:0x0000000004ab9128>
+Did you mean?  address_street
+               address_street?
+               address_street=):
+    44: 
+    45:         <div class="field">
+    46:           <%= f.label :address_street %><br />
+    47:           <%= f.text_field :address_stree, autocomplete: 'address_street', class: 'form-control' %>
+    48:         </div>
+    49: 
+    50:         <div class="field">
+  
+app/views/devise/registrations/new.html.erb:47:in `block in _app_views_devise_registrations_new_html_erb___3487766058176860723_69836503990060'
+app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb___3487766058176860723_69836503990060'
+Started GET "/users/sign_up" for 27.82.17.29 at 2021-03-12 05:32:58 +0000
+Cannot render console from 27.82.17.29! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (19.2ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `address_stree' for #<User:0x00007f0820695918>
+Did you mean?  address_street
+               address_street?
+               address_street=):
+    44: 
+    45:         <div class="field">
+    46:           <%= f.label :address_street %><br />
+    47:           <%= f.text_field :address_stree, autocomplete: 'address_street', class: 'form-control' %>
+    48:         </div>
+    49: 
+    50:         <div class="field">
+  
+app/views/devise/registrations/new.html.erb:47:in `block in _app_views_devise_registrations_new_html_erb___3487766058176860723_69836440148940'
+app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb___3487766058176860723_69836440148940'
+Started GET "/users/sign_up" for 27.82.17.29 at 2021-03-12 05:35:14 +0000
+Cannot render console from 27.82.17.29! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 1124ms (Views: 1106.0ms | ActiveRecord: 0.6ms)
+
+

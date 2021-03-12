@@ -85,17 +85,17 @@ ActiveRecord::Schema.define(version: 2021_03_11_131853) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "ruby_last_name", null: false
-    t.string "ruby_first_name", null: false
-    t.integer "postcode", null: false
-    t.integer "prefecture_code", null: false
-    t.string "address_city", null: false
-    t.string "address_street", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "ruby_last_name"
+    t.string "ruby_first_name"
+    t.integer "postcode"
+    t.integer "prefecture_code"
+    t.string "address_city"
+    t.string "address_street"
     t.string "address_building"
-    t.integer "phone_number", null: false
-    t.string "password", null: false
+    t.integer "phone_number"
+    t.string "password"
     t.boolean "user_status"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false

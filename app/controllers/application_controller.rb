@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
-    devise_parameter_sanitizer.permit(:sign_up, keys: [
+def configure_permitted_parameters
+  devise_parameter_sanitizer.permit(:sign_up, keys: [
     :email,
     :name,
     :postcode,
@@ -9,5 +10,6 @@ class ApplicationController < ActionController::Base
     :address_street,
     :address_building
   ])
+end
 
 end

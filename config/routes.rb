@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'orders/log' => 'orders#log'
 #--------------------------------
 
+#----------categories--------------
+resources :categories, only: [:index, :create, :show, :edit, :update, :destroy]
+#--------------------------------
 
 #----------Shipping_address--------------
   resources :shipping_addresses, only: [:index, :create, :edit, :destroy]

@@ -4,9 +4,9 @@ cartsindex
 <div calss="row">
   <div class="col-xs-11" id="no_cart">
 
-    <%# if @cart_items.present? %>
+    <%# if @carts.present? %>
     <div class="pull-right margin-bottom">
-      <%#= link_to " カートを空にする", customers_cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+      <%= link_to " カートを空にする", destroy_all_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
     </div>
     <table class="table table-hover table-bordered">
       <thead>
@@ -20,16 +20,16 @@ cartsindex
       </thead>
 
       <tbody>
-        <%# @cart_items.each do |cart_item| %>
+        <% @carts.each do |cart| %>
   			  <tr id="cart-<%#= cart_item.id %>">
-            <%#= render "quantity_form", cart_item: cart_item %>
+            <%= render "quantity_form", cart: cart %>
           </tr>
-        <%# end %>
+        <% end %>
       </tbody>
     </table>
     <div class="col-xs-9 margin-bottom">
       <div class ="action">
-        <%#= link_to " 買い物を続ける", products_path, class: "glyphicon glyphicon-shopping-cart btn btn-info" %>
+        <%= link_to " 買い物を続ける", products_path, class: "glyphicon glyphicon-shopping-cart btn btn-info" %>
       </div>
     </div>
 

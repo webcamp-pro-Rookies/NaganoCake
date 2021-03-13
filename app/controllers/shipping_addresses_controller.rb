@@ -22,7 +22,7 @@ class ShippingAddressesController < ApplicationController
       :prefecture_name,
       :address_city,
       :address_street,
-      :address_building
+      :address_build
     )
   end
 

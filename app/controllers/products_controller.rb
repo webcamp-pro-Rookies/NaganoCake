@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to product_path(@product)
+      redirect_to product_path(@product.id)
     else
       render "new"
     end
@@ -16,12 +16,17 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
   end
 
   def log
-  end
-
-  def show
   end
 
   def thanks

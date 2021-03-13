@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 
   def new
-    products
+  end
+
+  def create
   end
 
   def log

@@ -1,77 +1,77 @@
-<div class="container">
+<div class="mx-auto w-50">
     
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2 class="text-center mt-3">登録情報編集</h2>
   
   <%= form_with scope: resource, url: registration_path(resource_name), method: :patch,local: true do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="form-inline mb-3">
+      <label class="mr-4">お名前　</label>
       <div class="form-group">
-        <%= f.label :ruby_last_name, "苗字 読み仮名" %><br />
-        <%= f.text_field :ruby_last_name, class: "form-control" %>
+        <%= f.text_field :last_name, autofocus: true, placeholder: "名", class: "form-control mr-3" %>
       </div>
-
-      <div class="field">
-        <%= f.label :last_name, "苗字" %><br />
-        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+      <div class="form-group">
+        <%= f.text_field :first_name, autofocus: true, placeholder: "姓", class: "form-control" %>
       </div>
-
-      <div class="field">
-        <%= f.label :ruby_first_name, "名前 読み仮名" %><br />
-        <%= f.text_field :ruby_first_name, class: "form-control" %>
+    </div>
+    <div class="form-inline mb-3">
+      <label class="mr-4">フリガナ</label>
+      <div class="form-group mr-3">
+        <%= f.text_field :ruby_last_name, placeholder: "セイ", class: "form-control" %>
       </div>
-
-      <div class="field">
-        <%= f.label :first_name, "名前" %><br />
-        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+      <div class="form-group">
+        <%= f.text_field :ruby_first_name, placeholder: "メイ", class: "form-control" %>
       </div>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, class: "form-control" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :phone_number %><br />
-        <%= f.text_field :phone_number, class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :postcode %><br />
-        <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :prefecture_name %><br /> <!--/ 47都道府県をプルダウンメニューで表示-->
-        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, class: 'form-control' %>
-      </div><!--質問 JpPrefecture::Prefecture この記述は何？クラス変数みたいなもの？-->
-
-      <div class="field">
-        <%= f.label :address_city %><br />
-        <%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :address_street %><br />
-        <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :address_building %><br />
-        <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %>
-      </div>
-      <div>
-        <%= f.submit "更新", class: "btn btn-success" %>
-      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label "メールアドレス" %><br />
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label "電話番号" %><br />
+      <%= f.text_field :phone_number, class: 'form-control' %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label "パスワード" %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+  
+    <div class="form-group mb-2">
+      <%= f.label "パスワードの確認" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+    
+      <hr>
+  
+    <div class="form-group">
+      <%= f.label "郵便番号" %><br />
+      <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control' %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label "都道府県" %><br /> <!--/ 47都道府県をプルダウンメニューで表示-->
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, class: 'form-control' %>
+    </div><!--質問 JpPrefecture::Prefecture この記述は何？クラス変数みたいなもの？-->
+  
+    <div class="form-group">
+      <%= f.label "市区町村" %><br />
+      <%= f.text_field :address_city, autocomplete: 'address_city', class: 'form-control' %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label "番地" %><br />
+      <%= f.text_field :address_street, autocomplete: 'address_street', class: 'form-control' %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label "ビル" %><br />
+      <%= f.text_field :address_building, autocomplete: 'address_building', class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "登録", class: "btn btn-block btn-success" %>
+    </div>
   <% end  %>
   
-  <%= link_to "Back", :back %>
+  <%= link_to "戻る", :back %>
 </div>

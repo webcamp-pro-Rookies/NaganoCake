@@ -31,25 +31,25 @@
         </tr>
       <% end %>
       </table>
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>郵便番号</th>
             <th>住所</th>
             <th>宛名</th>
+            <th colspan=1 >
           </tr>
         </thead>
-        <tbody>
         <% @shipping_addresses.each do |shipping_address| %>
+        <tbody>
           <tr>
             <td><%= shipping_address.postcode %></td>
             <td><%= shipping_address.prefecture_name %><%= shipping_address.address_city %><%= shipping_address.address_street %><%= shipping_address.address_building %></td>
             <td><%= shipping_address.destination_name %></td>
-            <td><%= link_to "編集する", edit_shipping_address_path(shipping_address) %></td>
-            <td><%= link_to "削除する", shipping_address_path(shipping_address), method: :delete %></td>
+            <td><%= link_to "編集する", edit_shipping_address_path(shipping_address), class: "btn btn-success" %><%= link_to " 削除する", shipping_address_path(shipping_address), method: :delete, class: "btn btn-danger ml-3" %></td>
           </tr>
-        <% end %>
         </tbody>
+        <% end %>
       </table>
     </div>
   </div>

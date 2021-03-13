@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col">
       <h3>配送先登録/一覧</h3>
+      <%= form_with model: @shipping_address, local:true do |f| %>
       <table class="table table-borderless">
-      <%= form_with model: @shipping_address, local:true, method: :patch do |f| %>
         <tr>
           <th><%= f.label :postcode, '郵便番号' %></th>
           <td><%= f.text_field :postcode, autocomplete: 'postcode' %></td>
@@ -15,23 +15,23 @@
         </tr>
         <tr>
           <th><%= f.label :address_city, '市区町村' %></th>
-          <td><%= f.text_field :address_city, autocomplete: 'address_city' %></td>
+          <td><%= f.text_field :address_city %></td>
         </tr>
         <tr>
           <th><%= f.label :address_street, '番地' %></th>
-          <td><%= f.text_field :address_street, autocomplete: 'address_street' %></td>
+          <td><%= f.text_field :address_street %></td>
         </tr>
         <tr>
           <th><%= f.label :address_building, '建物' %></th>
-          <td><%= f.text_field :address_building, autocomplete: 'address_building' %></td>
+          <td><%= f.text_field :address_building %></td>
         </tr>
         <tr>
           <th><%= f.label :destination_name, '宛名' %></th>
           <td><%= f.text_field :destination_name %></td>
           <td><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
         </tr>
-      <% end %>
       </table>
+      <% end %>
     </div>
   </div>
 </div>

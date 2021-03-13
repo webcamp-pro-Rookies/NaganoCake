@@ -20,11 +20,14 @@ delete '/delete_item' => 'carts#delete_item'
   get 'orders/log' => 'orders#log'
 #--------------------------------
 
+
+
 #----------categories--------------
 resources :categories, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
 
+
 #----------Shipping_address--------------
-  resources :shipping_addresses, only: [:index, :create, :edit, :destroy]
+  resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
 #--------------------------------
 end

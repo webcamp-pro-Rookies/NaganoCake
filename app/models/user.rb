@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :carts
   has_many :orders
-  # has_many :shipping_addresses
+  has_many :shipping_addresses
 
   validates :last_name, presence: true
   validates :first_name, presence: true

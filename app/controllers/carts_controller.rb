@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   def index
+    @carts = Cart.all
   end
   
   def update
@@ -11,7 +12,5 @@ class CartsController < ApplicationController
   def destroy
   end
   
-  def destroy
-  end
   
 end

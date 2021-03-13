@@ -1,0 +1,47 @@
+categoryindex
+<% provide(:title, "ジャンル一覧・追加") %>
+<div class="container">
+<div class="row">
+  <div class="col-7 text-left">
+    <h2 class="bg-light">ジャンル一覧・追加</h2>
+      <%= form_with model: @category_new, local:true do |f| %>
+        <%#= render "layouts/error_messages", resource: @category %>
+          <i class="fas fa-candy-cane"></i>ジャンル
+          <%= f.text_field :category_name  %>
+            <%#= f.radio_button :is_valid, true %>
+            <%#= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
+            <%#= f.radio_button :is_valid, false %>
+            <%#= f.label :is_valid, "無効", {value: :false, style: "display: inline-block;"} %>
+          <%= f.submit "追加", class: "btn btn-info" %>
+      <% end %>
+
+      <table class="table table-hover table-inverse table-bordered">
+            <div><%= paginate(@categories) %></div>
+        <thead >
+          <tr class="info">
+            <th class="bg-light">ジャンル</th>
+            <!--<th>状態</th>-->
+            
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td class="text-left"><%= category.category_name%></td>
+
+              <%# if category.is_valid == true %>
+                <!--<td class="category-td"><i class="fas fa-bullseye red"></i>有効</td>-->
+              <%# elsif category.is_valid == false %>
+                <!--<td class="category-td"><i class="fas fa-bullseye blue"></i>無効</td>-->
+              <%# end %>
+              <td class="category-td"><%= link_to "編集する", edit_category_path(category.id), class: "glyphicon glyphicon-pencil btn btn-success" %></td>
+              <td class="category-td"><%= link_to "消去する", category_path(category.id), class: "glyphicon glyphicon-pencil btn btn-danger" ,method: :delete%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <div class= "text-center"><%= paginate(@categories) %></div>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ class CreateShippingAddresses < ActiveRecord::Migration[5.2]
       t.integer :prefecture_code
       t.string :address_city
       t.string :address_street
-      t.string :address_build
+      t.string :address_building
 
       t.timestamps
     end

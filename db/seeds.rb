@@ -86,6 +86,6 @@ Category.all.each do |category|
               non_taxed_price: "400",
               sales_status: 0,
               )
-              
-              
+
+
 end

@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_131853) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "category_id"
     t.string "image_id"
     t.string "name"
     t.text "description"

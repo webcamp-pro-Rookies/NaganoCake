@@ -11,10 +11,11 @@
 				<% @products.each do |product| %>
 				<div class="col-3">
 					<div class="card" style="width: 18rem;">
-						<div><%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></div>
+						<div><%= attachment_image_tag(@product, :image, size: "180x130", fallback: "no-image-icon.jpg") %></div>
+						
 							<div class="card-body">
-								<h5 class="card-title">product.name</h5>
-							<p class="card-text">product.description</p>
+								<h5 class="card-title"><%= product.name %></h5>
+							<p class="card-text"><%= product.description %></p>
       			</div>
     			</div>
     		</div>	

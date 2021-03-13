@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  def top
+    @products = Product.all.page(params[:page]).per(4)
+  end
   def index
     @products = Product.all
   end

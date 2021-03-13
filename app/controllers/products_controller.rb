@@ -1,14 +1,25 @@
 class ProductsController < ApplicationController
-  def top
+
+  def new
+    products
   end
-  
-  def about
+
+  def log
   end
-  
-  def index
+
+  def new
   end
-  
+
   def show
   end
-  
+
+  def thanks
+  end
+
+  private
+
+    def product_params
+      params.require(:product).permit(:image, :name, :description, :non_taxed_price, :sales_status)
+    end
+
 end

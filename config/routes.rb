@@ -5,13 +5,12 @@ Rails.application.routes.draw do
 #----------Products--------------
   root to: "products#top"
   get 'about' => 'products#about'
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show, :new, :create, :update, :destroy]
 
 #----------Carts-----------------
   resources :carts, only: [:index, :update, :create, :destroy]
   get 'destroy_all' => 'carts#destroy_all'
 #--------------------------------
-<<<<<<< HEAD
 
 #----------Orders-----------------
   get 'orders/thanks' => 'orders#thanks'
@@ -20,9 +19,7 @@ Rails.application.routes.draw do
 #--------------------------------
 
 
-=======
 #----------Shipping_address--------------
   resources :shipping_addresses, only: [:index, :create, :edit, :destroy]
 #--------------------------------
->>>>>>> shipping_address
 end

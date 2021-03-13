@@ -16,9 +16,6 @@ class ProductsController < ApplicationController
   def log
   end
 
-  def new
-  end
-
   def show
   end
 

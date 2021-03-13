@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 #----------Products--------------
   root to: "products#top"
   get 'about' => 'products#about'
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show, :new, :create, :update, :destroy]
 
 #----------Carts-----------------
   resources :carts, only: [:index, :update, :create, :destroy]

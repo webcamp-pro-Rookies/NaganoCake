@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_131853) do
+ActiveRecord::Schema.define(version: 2021_03_13_064136) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "product_num"
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 2021_03_11_131853) do
     t.string "address_street"
     t.string "address_building"
     t.integer "phone_number"
-    t.string "password"
     t.boolean "user_status"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false

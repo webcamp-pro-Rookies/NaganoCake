@@ -1,7 +1,9 @@
+
 <link href='#'>
     <div class="container">
 	    <div class="row" >
-			    <div class= "col text-center" style="background:url(https://picsum.photos/400/200); background-size: 50%, 25%, 25%;" >
+		   <div class="top" >
+			     <div class="top-text">
 				      <p>
 				      <h1>Welcome to NaganoCake</h1>
 				        <p>
@@ -9,8 +11,18 @@
         				  会員でない方も商品の閲覧はできますが、<br>
         				  購入には会員登録が必要になります。<br>
 				        </p>
-          </div>
-        </div>  
+			     </div>
+			   </div>
+      </div>
+      <div class="row ">
+				<% @products.each do |product| %>
+				  <div class="col-3">
+						<div><%= attachment_image_tag(@product, :image, size: "180x130", fallback: "https://picsum.photos/130/180/?random") %></div>
+              <div><%= product.name %></div>
+							<div><%= product.description %></div>
+    			</div>
+				<% end %>
+  		</div>
       <div class="row">
         <div class="col text-center">
           <h2 class="toppage-head">新着商品</h2>

@@ -37,7 +37,7 @@ Category.create!(category_name: "チーズケーキ")
 Category.create!(category_name: "モンブラン")
 Category.create!(category_name: "ミルクレープ")
 
-Category.all.each do |category|
+
   Product.create!(
               category_id: 1,
               image_id: open("./app/assets/images/ショートケーキ画像.jpg"),
@@ -48,7 +48,7 @@ Category.all.each do |category|
               )
   Product.create!(
               category_id: 1,
-              image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
+              image: open("./app/assets/images/ショートケーキイラスト.jpg"),
               name: "絵のケーキ",
               description: "絵に書いたようなイチゴのケーキ",
               non_taxed_price: "400",
@@ -88,4 +88,4 @@ Category.all.each do |category|
               )
 
 
-end
+

@@ -1,7 +1,5 @@
 class ShippingAddress < ApplicationRecord
-<<<<<<< HEAD
-    belongs_to :user
-=======
+  belongs_to :user
 
   include JpPrefecture
   jp_prefecture :prefecture_code
@@ -14,5 +12,4 @@ class ShippingAddress < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
->>>>>>> shipping_address
 end

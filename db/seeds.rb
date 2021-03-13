@@ -53,7 +53,7 @@ Category.all.each do |category|
               description: "絵に書いたようなイチゴのケーキ",
               non_taxed_price: "400",
               sales_status: 0,
-              )              
+              )
   Product.create!(
               category_id: 2,
               image_id: open("./app/assets/images/パンダ.jpg"),
@@ -86,4 +86,6 @@ Category.all.each do |category|
               non_taxed_price: "400",
               sales_status: 0,
               )
+
+
 end

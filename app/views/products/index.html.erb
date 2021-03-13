@@ -4,33 +4,33 @@
 	<div class="col-xs-10 col-xs-offset-1">
 		<h2>商品一覧
 		  <span>
-			  (全<%#= @products.total_count %>件中　<%#= @products.count %>件)
+			  (全<%= @products.total_count %>件中　<%= @products.count %>件)
 		  </span>
 		</h2>
-				<%# @products.each do |product| %>
-				<%# end %>
-			<div class="row row-cols-1 row-cols-md-2 g-4">	
-				<div class="col">	
-					<div class="card">	
-					<img src="https://picsum.photos/200/100/?random" class="card-img-top" alt="...">	
-						<div class="card-body">	
+				<% @products.each do |product| %>
+				<% end %>
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				<div class="col">
+					<div class="card">
+					<img src="<% attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>" class="card-img-top" alt="...">
+						<div class="card-body">
 							<h5 class="card-title">Card title</h5>
 							<p class="card-text">カードボディ</p>
       			</div>
     			</div>
   			</div>
-  			<div class="col">	
-					<div class="card">	
-						<img src="https://picsum.photos/200/101/?random" class="card-img-top" alt="...">	
-							<div class="card-body">	
+  			<div class="col">
+					<div class="card">
+						<img src="https://picsum.photos/200/101/?random" class="card-img-top" alt="...">
+							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
 							<p class="card-text">カードボディ</p>
       			</div>
     			</div>
   			</div>
-  		</div>	
+  		</div>
 
-			<div class="text-center"><%#= paginate(@products) %></div>
+			<div class="text-center"><%= paginate(@products) %></div>
 	</div>
 </div>
 

@@ -8,22 +8,22 @@
         <ul class="nav justify-content-end">
           <% if user_signed_in? %>
             <li>
-              ようこそ、フルネーム<%#= full_name(current_user) %>さん！
+              ようこそ、フルネーム<%# first_name(current_user) %><%# last_name(current_user) %>さん！
             </li>
-            <li><%= link_to "マイページ", "#" %></li>
-            <li><%= link_to "商品一覧", "#" %></li>
-            <li><%= link_to "カート", "#" %></li>
-            <li><%= link_to "ログアウト", "#"%></li>
-          <%# elsif admin_signed_in? %>
-            <li><%#= link_to "商品一覧", "#" %></li>
-            <li><%#= link_to "会員一覧", "#" %></li>
-            <li><%#= link_to "注文履歴一覧", "#" %></li>
-            <li><%#= link_to "ジャンル一覧", "#" %></li>
-            <li><%#= link_to "ログアウト", "#" %></li>
+            <li><%= link_to "マイページ", user_path(current_user) %></li>
+            <li><%= link_to "商品一覧", products_path %></li>
+            <li><%= link_to "カート", carts_path %></li>
+            <li><%= link_to "ログアウト", root_path %></li>
+          <%# elsif current_user.admin == true %>
+            <li><%= link_to "商品一覧", products_path %></li>
+            <li><%= link_to "会員一覧", "users_path" %></li>
+            <li><%= link_to "注文履歴一覧", order_path(current_user) %></li>
+            <li><%= link_to "ジャンル一覧", "categories_path" %></li>
+            <li><%= link_to "ログアウト", root_path %></li>
           <% else %>
-            <li><%= link_to "商品一覧", "#" %></li>
-            <li><%= link_to "新規登録", "#" %></li>
-            <li><%= link_to "ログイン", "#" %></li>
+            <li><%= link_to "商品一覧", products_path %></li>
+            <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
           <% end %>
         </ul>
       </div>

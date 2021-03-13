@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :update, :create, :destroy]
   get 'destroy_all' => 'carts#destroy_all'
 #--------------------------------
-<<<<<<< HEAD
 
 #----------Orders-----------------
   get 'orders/thanks' => 'orders#thanks'
@@ -20,9 +19,7 @@ Rails.application.routes.draw do
 #--------------------------------
 
 
-=======
 #----------Shipping_address--------------
   resources :shipping_addresses, only: [:index, :create, :edit, :destroy]
 #--------------------------------
->>>>>>> shipping_address
 end

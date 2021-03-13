@@ -6,11 +6,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+
     if @product.save
-      redirect_to product(@product), notice: "You have created book successfully."
+      redirect_to product_path(@product)
     else
-      redirect_to product(@product), notice: "You have created book successfully."
+      render "new"
     end
+
+  end
+
+  def show
   end
 
   def log
@@ -25,7 +30,9 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:name, :description, :non_taxed_price, :sales_status)
+      params.require(:product).permit(:name, :description, :non_taxed_price)
     end
+
+    # , :image, :sales_status
 
 end

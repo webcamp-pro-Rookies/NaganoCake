@@ -15,13 +15,20 @@
 
   <div class="form-group">
     <%= f.label :non_taxed_price, "商品価格" %>
-    <%= f.text_area :non_taxed_price, class: 'form-control book_body' %>
+    <%= f.text_field :non_taxed_price, class: 'form-control book_body' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :product_image %>
-    <%= f.attachment_field :product, class: "form-control-file user_image" %>
-  </div>
+  <!--<div class="form-group", "画像" %>-->
+  <!--  < %= f.label :image %>-->
+  <!--  < %= f.attachment_field :image, class: "form-control-file product_image" %>-->
+  <!--</div>-->
+
+  <!--<div class="form-group", "商品ステータス" %>-->
+  <!--  < %= f.label :sales_status %>-->
+  <!--  < %= f.select :sales_status, Product.sales_statuses.keys, {} , class: "form-control-file sales_status" %>-->
+  <!--</div>-->
+
+  <!--[["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]-->
 
   <!--商品ステータス-->
 

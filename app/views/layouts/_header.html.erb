@@ -8,7 +8,7 @@
         <ul class="nav justify-content-around">
           <% if user_signed_in? %>
             <li>
-              ようこそ、フルネーム<%# first_name(current_user) %><%# last_name(current_user) %>さん！
+              ようこそ、<%= current_user.last_name %><%= current_user.first_name %>さん！
             </li>
             <li><%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-dark"  %></li>
@@ -16,9 +16,9 @@
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark"  %></li>
           <%# elsif current_user.admin == true %>
             <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-dark"  %></li>
-            <li><%= link_to "会員一覧", "users_path", class: "btn btn-outline-dark"  %></li>
+            <li><%= link_to "会員一覧", 'users_path', class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "注文履歴一覧", order_path(current_user), class: "btn btn-outline-dark"  %></li>
-            <li><%= link_to "ジャンル一覧", "categories_path", class: "btn btn-outline-dark"  %></li>
+            <li><%= link_to "ジャンル一覧", categories_path, class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark"  %></li>
           <% else %>
             <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-dark" %></li>

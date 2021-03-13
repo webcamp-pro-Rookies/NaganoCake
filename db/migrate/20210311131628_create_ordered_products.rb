@@ -1,6 +1,6 @@
-class CreateOrderdproducts < ActiveRecord::Migration[5.2]
+class CreateOrderedProducts < ActiveRecord::Migration[5.2]
   def change
-    create_table :orderdproducts do |t|
+    create_table :ordered_products do |t|
       t.integer :product_id
       t.integer :order_id
       t.integer :order_num

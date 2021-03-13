@@ -2,6 +2,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
       t.integer :user_id
+      t.integer :ordered_product_id
       t.integer :shipping
       t.integer :billing_amount
       t.integer :method_payment
@@ -10,7 +11,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :prefecture_code
       t.string :address_city
       t.string :address_street
-      t.string :address_build
+      t.string :address_building
       t.integer :order_status
 
       t.timestamps

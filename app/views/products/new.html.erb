@@ -1,32 +1,5 @@
 <h1>商品登録ページ</h1>
 
-<%= form_with model:@product, local:true do |f| %>
-<!--, url: "create"-->
-
-  <div class="form-group">
-    <%= f.label :name, "商品名" %>
-    <%= f.text_field :name, class: 'form-control book_title' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :description, "商品紹介文" %>
-    <%= f.text_area :description, class: 'form-control book_body' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :non_taxed_price, "商品価格" %>
-    <%= f.text_area :non_taxed_price, class: 'form-control book_body' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :product_image %>
-    <%= f.attachment_field :product, class: "form-control-file user_image" %>
-  </div>
-
-  <!--商品ステータス-->
-
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
-
-<% end %>
+<div class='col-md-3 mx-auto'>
+    <%= render 'products/foam', product: @product %>
+</div>

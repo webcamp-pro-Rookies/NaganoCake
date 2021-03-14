@@ -39,10 +39,7 @@ class ShippingAddressesController < ApplicationController
     params.require(:shipping_address).permit(
       :destination_name,
       :postcode,
-      :prefecture_code,
-      :address_city,
-      :address_street,
-      :address_building
+      :address
       )
   end
 

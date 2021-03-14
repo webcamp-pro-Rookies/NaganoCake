@@ -3,8 +3,9 @@ class ProductsController < ApplicationController
   def top
     @products = Product.all.page(params[:page]).per(4)
   end
+
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(8)
   end
 
   def new
@@ -48,7 +49,7 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:name, :description, :non_taxed_price, :image, :sales_status)
+      params.require(:product).permit(:product_name, :description, :non_taxed_price, :image, :sales_status)
     end
 
 end

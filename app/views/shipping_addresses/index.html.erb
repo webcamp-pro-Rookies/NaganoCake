@@ -6,23 +6,11 @@
       <table class="table table-borderless">
         <tr>
           <th><%= f.label :postcode, '郵便番号' %></th>
-          <td><%= f.text_field :postcode, autocomplete: 'postcode' %></td>
+          <td><%= f.text_field :postcode %></td>
         </tr>
         <tr>
-          <th><%= f.label :prefecture_name, '都道府県' %></th>
-          <td><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' } %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :address_city, '市区町村' %></th>
-          <td><%= f.text_field :address_city, autocomplete: 'address_city' %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :address_street, '番地' %></th>
-          <td><%= f.text_field :address_street, autocomplete: 'address_street' %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :address_building, '建物' %></th>
-          <td><%= f.text_field :address_building, autocomplete: 'address_building' %></td>
+          <th><%= f.label :address, '住所' %></th>
+          <td><%= f.text_field :address %></td>
         </tr>
         <tr>
           <th><%= f.label :destination_name, '宛名' %></th>
@@ -44,7 +32,7 @@
         <tbody>
           <tr>
             <td><%= shipping_address.postcode %></td>
-            <td><%= shipping_address.prefecture_name %><%= shipping_address.address_city %><%= shipping_address.address_street %><%= shipping_address.address_building %></td>
+            <td><%= shipping_address.address %></td>
             <td><%= shipping_address.destination_name %></td>
             <td><%= link_to "編集する", edit_shipping_address_path(shipping_address), class: "btn btn-success" %><%= link_to " 削除する", shipping_address_path(shipping_address), method: :delete, class: "btn btn-danger ml-3" %></td>
           </tr>

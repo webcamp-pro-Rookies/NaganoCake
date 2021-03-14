@@ -3,7 +3,7 @@ orderslog
 <h2 class="head-line title_h2 text-center">注文情報確認</h2>
 <div calss="row">
   <div class="col-xs-9">
-    <%# if current_customer.cart_items.present? %>
+    <%# if current_user.carts.present? %>
       <table class="table table-hover table-inverse table-bordered">
         <thead>
           <tr class="info">
@@ -14,20 +14,20 @@ orderslog
           </tr>
         </thead>
         <tbody>
-          <%# @cart_items.each do |cart| %>
+          <% @carts.each do |cart| %>
             <tr>
               <td class="text-left">
                 <%#= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "no_image.jpg") %>
-                <%#= cart.product.name %>
+                <%= cart.product.name %>
               </td>
               <td class="text-right">
-                ¥<%#= tax_price(cart.product.tax_out_price).to_s(:delimited) %>
+                ¥<%= tax_price(cart.product.tax_out_price).to_s(:delimited) %>
               </td>
               <td class="text-right">
-                  <%#= cart.quantity %>
+                  <%= cart.quantity %>
               </td>
               <td class="text-right">
-                ¥<%#= sub_price(cart).to_s(:delimited) %>
+                ¥<%= sub_price(cart).to_s(:delimited) %>
               </td>
             </tr>
           <%# end %>
@@ -42,7 +42,7 @@ orderslog
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right">¥<%#= total_price(@cart_items).to_s(:delimited) %></td>
+            <td class="text-right">¥<%#= total_price(@carts).to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
@@ -55,13 +55,13 @@ orderslog
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
-            <%#= @order.payment_method %>
+            <%= @order.payment_method %>
           </td>
         </tr>
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%#= "#{@order.postal_code} #{@order.address} 　#{@order.name}" %>
+            <%= @order.postcode %><%= @order.address %><%= @order.name %>
           </td>
         </tr>
       </table>

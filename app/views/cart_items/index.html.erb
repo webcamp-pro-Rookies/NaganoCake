@@ -21,7 +21,7 @@ cartsindex
 
       <tbody>
         <% @cart_items.each do |cart| %>
-  			  <tr id="cart-<%#= cart_item.id %>">
+  			  <tr id="cart-<%= cart_item.id %>">
             <%= render "quantity_form", cart: cart %>
           </tr>
         <% end %>

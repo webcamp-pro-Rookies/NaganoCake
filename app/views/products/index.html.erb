@@ -1,6 +1,5 @@
 
 <div class='col-md-8 mx-auto'>
-
 	<h2 class="py-5">商品一覧</h2>
 
 	<div class="row">
@@ -9,12 +8,15 @@
 
 	<div class='col-md-3 col-sm-6'>
 
-		<%= attachment_image_tag(@product, :image, fallback: "no-image-icon.jpg", class: "product_image", style: "width: 100%; height: 70%") %>
+		<%= attachment_image_tag(product, :image, fallback: "no-image-icon.jpg", class: "product_image", style: "width: 100%; height: 70%") %>
 		<div><%= product.name %></div>
 		<div><%= product.non_taxed_price %></div>
-  </div>
+
+  	</div>
 
 	<% end %>
 
 	</div>
+	<%= paginate @products %>
+
 </div>

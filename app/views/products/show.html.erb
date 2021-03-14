@@ -16,6 +16,25 @@
     <% end %>
     <p class="mt-5 mb-1">個数選択</p>
     <p>カートに入れる</p>
+
+    
+          <div class="field">
+        <%# if @product.is_sale == true %>
+          <%# if @product.genre.is_valid == true %>
+            <%= form_for(@cart_item , url: add_item_path, method: :post) do |f| %>
+              <%= f.hidden_field :product_id, value: @product.id %>
+              <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+              <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
+            <% end %>
+          <%# else %>
+            <h3>売り切れ中</h3>
+          <%# end %>
+        <%# elsif @product.is_sale == false %>
+          <h3>売り切れ中</h3>
+        <%# end %>
+      </div>
+
+    
   </div>
 
   <p class="col-md-1 offset-md-5 my-5 btn btn-success w-50"><!--後に管理者のみ表示に変更-->

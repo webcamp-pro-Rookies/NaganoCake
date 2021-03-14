@@ -13,7 +13,7 @@ ordersshow
               </tr>
               <tr>
               　<th class="info">配送先</th>
-                <td class="text-left"><%#= @order.postal_code %><br>
+                <td class="text-left"><%#= @order.postcode %><br>
                 	  <%#= @order.address %><br>
                 	  <%#= @order.name %>
                 </td>
@@ -70,10 +70,10 @@ ordersshow
           </tbody>
         </table>
     </div>
-    <%# if customer_signed_in? %>
-      <%= link_to "注文履歴一覧へ戻る", '#', class: "btn btn-info btn-lg order-index-back" %>
+    <%# if user_signed_in? %>
+      <%= link_to "注文履歴一覧へ戻る", orders_path, class: "btn btn-info btn-lg order-index-back" %>
     <%# else %>
-      <%= link_to "会員詳細へ戻る", '#', class: "btn btn-info order-index-back" %>
+      <%= link_to "会員詳細へ戻る", user_path(current_user), class: "btn btn-info order-index-back" %>
     <%# end %>
   <%# else %>
     <p>注文履歴がありません。</p>

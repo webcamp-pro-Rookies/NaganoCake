@@ -9,12 +9,16 @@
     <p style="font-size: 24px; margin-bottom: 70px;"><%= @product.description %></p>
     <spap style="font-size: 24px; font-weight: bold;">￥<%= @product.non_taxed_price %></span>
     <spap style="font-size: 18px; ">(税抜)</span>
-
+    <% if @product.sales_status %>
+      <p class="text-success">販売中</p>
+    <% else %>
+      <p class="text-danger">準備中</p>
+    <% end %>
     <p class="mt-5 mb-1">個数選択</p>
     <p>カートに入れる</p>
   </div>
 
-  <p class="col-md-1 offset-md-5 my-5 btn btn-success w-50"><!--後に管理者のみ表示に-->
+  <p class="col-md-1 offset-md-5 my-5 btn btn-success w-50"><!--後に管理者のみ表示に変更-->
     <%= link_to "Edit", edit_product_path(@product), class: 'to_product_edit_link' %>
   </p>
 

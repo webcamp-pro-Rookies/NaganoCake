@@ -2,6 +2,11 @@
 <div class='col-md-8 mx-auto'>
 	<h2 class="py-5">商品一覧</h2>
 
+	<!--<#%= form_tag(search_path , method: :get) do %>-->
+	<!--	<#%= select(@products, :category_id, Product.get_Categories_list)%>-->
+ 	<!--   	<#%= submit_tag "検索" %>-->
+	<!--<#% end %>-->
+
 	(全<%= @products.total_count %>件中、<%= @products.count %>件を表示)
 
 	<div class="row">

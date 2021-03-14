@@ -7,14 +7,10 @@ User.create!(
               email: "tes@example.com",
               password: "password",
               postcode: "1020082",
-              prefecture_code: "1",
-              address_city: "新宿区",
-              address_street: "2丁目",
-              address_building: "",
+              address: "新宿",
               user_status: true,
-              admin: false
-                )
-User.create!(
+              )
+  User.create!(
               last_name: "管理者",
               first_name: "太郎",
               ruby_last_name: "カンリシャ",
@@ -23,12 +19,8 @@ User.create!(
               email: "admin@example.com",
               password: "password",
               postcode: "1020082",
-              prefecture_code: "1",
-              address_city: "新宿区",
-              address_street: "2丁目",
-              address_building: "",
+              address: "新宿",
               user_status: true,
-              admin: true
                 )
 
 Category.create!(category_name: "ケーキ")

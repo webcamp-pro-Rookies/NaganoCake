@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # has_many :carts
+  has_many :cart
   # has_many :orders
   # has_many :shipping_addresses
 

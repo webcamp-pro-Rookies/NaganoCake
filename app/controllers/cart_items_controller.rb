@@ -3,13 +3,14 @@ class CartItemsController < ApplicationController
   #user.idとpuroduct.idを持ったデータを保存したい
 
   def index
-    @cart_item = current_cart_items.products.id
+    @cart_items = CartItem.all
+    #@cart_items = current_cart
   end
 
   def add_item
-    #if @cart_item.blank?
-      @cart_item = current_cart_items.build(product_id: params[:product_id])
-    #end
+    if @cart_item.blank?
+      @cart_item = current_cart.build(product_id: params[:product_id])
+    end
 
     @cart_item.quantity += params[:quantity].to_i
     if @cart_item.save

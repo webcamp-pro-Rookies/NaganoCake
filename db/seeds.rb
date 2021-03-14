@@ -78,4 +78,13 @@ Category.all.each do |category|
               non_taxed_price: "400",
               sales_status: 0,
               )
+              
+
+              
 end
+              CartItem.create!(
+                  user_id: 1,
+                  product_id: 1,
+                  quantity: 1,
+                  
+                  )

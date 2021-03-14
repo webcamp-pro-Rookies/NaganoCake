@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_092247) do
   end
 
   create_table "categories", force: :cascade do |t|
+    t.integer "product_id"
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_092247) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "ordered_product_id"
     t.integer "shipping"
     t.integer "billing_amount"
     t.boolean "method_payment"
@@ -87,6 +89,9 @@ ActiveRecord::Schema.define(version: 2021_03_14_092247) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "cart_id"
+    t.integer "order_id"
+    t.integer "shipping_address_id"
     t.string "last_name"
     t.string "first_name"
     t.string "ruby_last_name"

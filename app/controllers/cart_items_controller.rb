@@ -1,4 +1,24 @@
 class CartItemsController < ApplicationController
+<<<<<<< HEAD
+  #before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
+  #user.idとpuroduct.idを持ったデータを保存したい
+
+  def index
+    @cart_item = current_cart_items.products.id
+  end
+
+  def add_item
+    #if @cart_item.blank?
+      @cart_item = current_cart_items.build(product_id: params[:product_id])
+    #end
+
+    @cart_item.quantity += params[:quantity].to_i
+    if @cart_item.save
+      redirect_to cart_items_path
+    else
+      redirect_back(fallback_location: root_path)
+    end
+=======
   before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
 
   def show
@@ -13,6 +33,7 @@ class CartItemsController < ApplicationController
     @cart_item.quantity += params[:quantity].to_i
     @cart_item.save
     redirect_to ''
+>>>>>>> develop
   end
 
   def update_item
@@ -28,7 +49,11 @@ class CartItemsController < ApplicationController
   private
 
   def setup_cart_item!
+<<<<<<< HEAD
+    @cart_item = current_cart_items.find_by(product_id: params[:product_id])
+=======
     @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+>>>>>>> develop
   end
 
 

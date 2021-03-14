@@ -6,6 +6,6 @@ class Product < ApplicationRecord
   #attachment :image, destroy: false
   attachment :image
   #------enumで数値指定-------
-  enum sales_status: { 販売中: 0, 売切: 1 ,準備中: 2 }
+  # enum sales_status: { 販売中: 0, 売切: 1 ,準備中: 2 }
   #---------------------------
 end

@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   # belongs_to :category
 
   #attachment :image, destroy: false
-  attachment :image
+  attachment :image 
   #------enumで数値指定-------
   # enum sales_status: { 販売中: 0, 売切: 1 ,準備中: 2 }
   #---------------------------

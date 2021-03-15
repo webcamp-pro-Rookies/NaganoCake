@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   end
 
   def self.admin?(user) # とりあえず、アドミンかどうか確認出来るメソッドを仮設
-    "User" == user.class.name # 開発の為に判別対象をユーザーに変更
+    "Admin" == user.class.name # 開発の為に判別対象をユーザーに変更
   end
   # <#%= Product.admin?(current_user) %>
 

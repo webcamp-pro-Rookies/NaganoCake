@@ -31,12 +31,15 @@ class ApplicationController < ActionController::Base
   end
 
   #-------cartitem---------------
-    def current_cart
-    Cart.find(session[:cart_id])
-  rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    session[:cart_id] = cart.id
-    cart
+  def current_cart
+    # セッションから取得したcart_idを元にCartテーブルからCart情報を取得
+    current_cart = CartItem.find_by(id: session[:product_id])
+    # Cart情報が存在しない場合、@current_cartを作成
+    current_cart = CartItem.create unless current_cart
+    # 取得したCart情報よりIDを取得し、セッションに設定
+    session[:product_id] = current_cart.id
+    # Cart情報を返却
+    current_cart
   end
    #------------------------------
 

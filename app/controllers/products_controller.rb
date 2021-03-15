@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
     if @product.save
       redirect_to product_path(@product.id)
     else
@@ -25,6 +24,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @cart_item =CartItem.new
   end
 
   def edit
@@ -49,7 +49,9 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:product_name, :description, :non_taxed_price, :image, :sales_status)
+      params.require(:product).permit(:product_name, :description, :non_taxed_price, :image, :sales_status, :category_id)
     end
+
+
 
 end

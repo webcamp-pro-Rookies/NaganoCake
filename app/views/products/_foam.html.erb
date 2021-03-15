@@ -20,15 +20,15 @@
     <%= f.attachment_field :image, class: "form-control-file product_image" %>
   </div>
 
-  <div class="form-group", "商品ステータス" %>
-    <%= f.label :sales_status %>
-    <%= f.select :sales_status, Product.sales_statuses.keys, {} , class: "form-control-file sales_status" %>
+  <div class="form-group">
+    <%= f.label :sales_status, "商品ステータス" %>
+    <div><%= f.select :sales_status, [["販売中", true], ["売り切れ", false]] %></div>
   </div>
 
-  <!--<div class="form-group">-->
-  <!--  <#%= f.label :sales_status, "商品ステータス" %>-->
-  <!--  <div><#%= f.select :sales_status, [["販売中", "aaa"], ["売り切れ", "aaa"]] %></div>-->
-  <!--</div>-->
+  <div class="form-group">
+    <%= f.label :category_id, "商品カテゴリー" %>
+    <div><%= f.select :category_id, Product.get_Categories_list %></div>
+  </div>
 
   <div class="form-group mt-5">
     <%= f.submit class: 'btn btn-success' %>

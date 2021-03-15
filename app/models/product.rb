@@ -18,5 +18,9 @@ class Product < ApplicationRecord
     return cate_hash = (category_str).zip(1..category_str.size)
   end
 
+  def admin? # とりあえず、アドミンかどうか確認出来るメソッドを仮設
+    "Admin" == self.class.name
+  end
+
 end
 

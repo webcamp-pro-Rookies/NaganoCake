@@ -1,90 +1,100 @@
-User.create!(
+Customer.create!(
               last_name: "田中",
               first_name: "太郎",
-              ruby_last_name: "タナカ",
-              ruby_first_name: "タロウ",
-              phone_number: "11111111111",
+              last_name_kana: "タナカ",
+              first_name_kana: "タロウ",
+              telephone_number: "11111111111",
               email: "tes@example.com",
               password: "password",
-              postcode: "1020082",
+              postal_code: "1020082",
               address: "新宿",
-              user_status: true,
+              is_deleted: true,
               )
-  User.create!(
-              last_name: "管理者",
-              first_name: "太郎",
-              ruby_last_name: "カンリシャ",
-              ruby_first_name: "タロウ",
-              phone_number: "11111111111",
+  Admin.create!(
               email: "admin@example.com",
               password: "password",
-              postcode: "1020082",
-              address: "新宿",
-              user_status: true,
                 )
 
-Category.create!(category_name: "ケーキ")
-Category.create!(category_name: "パンダケーキ")
-Category.create!(category_name: "チーズケーキ")
-Category.create!(category_name: "モンブラン")
-Category.create!(category_name: "ミルクレープ")
+Genre.create!(name: "ケーキ")
+Genre.create!(name: "パンダケーキ")
+Genre.create!(name: "チーズケーキ")
+Genre.create!(name: "モンブラン")
+Genre.create!(name: "ミルクレープ")
 
-Category.all.each do |category|
-  Product.create!(
-              category_id: 1,
-              # image_id: open("./app/assets/images/ショートケーキ画像.jpg"),
-              product_name: "ケーキ",
-              description: "甘くて美味しいイチゴのケーキ",
-              non_taxed_price: "400",
-              sales_status: 0,
+  50.times{|num|
+  Item.create!(
+              genre_id: 1,
+              #image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
+              name: "絵のケーキ",
+              introduction: "絵に書いたようなイチゴのケーキ",
+              price: "400",
+              is_active: true,
               )
-  Product.create!(
-              category_id: 1,
-              # image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
-              product_name: "絵のケーキ",
-              description: "絵に書いたようなイチゴのケーキ",
-              non_taxed_price: "400",
-              sales_status: 0,
-              )
-  Product.create!(
-              category_id: 2,
+  Item.create!(
+              genre_id: 2,
               # image_id: open("./app/assets/images/パンダ.jpg"),
-              product_name: "パンダケーキ",
-              description: "白黒のパンダケーキ",
-              non_taxed_price: "400",
-              sales_status: 0,
+              name: "パンダケーキ",
+              introduction: "白黒のパンダケーキ",
+              price: "400",
+              is_active: true,
               )
-  Product.create!(
-              category_id: 3,
+  Item.create!(
+              genre_id: 3,
               # image_id: open("./app/assets/images/チーズケーキ.jpg"),
-              product_name: "チーズケーキ",
-              description: "一番うまいチーズケーキ",
-              non_taxed_price: "400",
-              sales_status: 0,
+              name: "チーズケーキ",
+              introduction: "一番うまいチーズケーキ",
+              price: "400",
+              is_active: true,
               )
-  Product.create!(
-              category_id: 4,
+  Item.create!(
+              genre_id: 4,
               # image_id: open("./app/assets/images/モンブラン.jpg"),
-              product_name: "モンブラン",
-              description: "うまいモンブラン",
-              non_taxed_price: "400",
-              sales_status: 0,
+              name: "モンブラン",
+              introduction: "うまいモンブラン",
+              price: "400",
+              is_active: true,
               )
-  Product.create!(
-              category_id: 5,
+  Item.create!(
+              genre_id: 5,
               # image_id: open("./app/assets/images/ミルクレープ.jpg"),
-              product_name: "ミルクレープ",
-              description: "何層も重なっているミルクレープ",
-              non_taxed_price: "400",
-              sales_status: 0,
+              name: "ミルクレープ",
+              introduction: "何層も重なっているミルクレープ",
+              price: "400",
+              is_active: true,
               )
-              
+  }
 
-              
-end
-              CartItem.create!(
-                  user_id: 1,
-                  product_id: 1,
-                  quantity: 1,
-                  
+
+Order.create!(
+          customer_id: 1,
+          shipping_cost: 800,
+          total_payment: 3000,
+          payment_method: 0,
+          name: "田中太郎",
+          postal_code: 1111111,
+          address: "新宿区1-1-1",
+          status: 2
+          )
+
+OrderDetail.create!(
+                  item_id: 1,
+                  order_id: 1,
+                  amount: 1,
+                  making_status: 1,
+                  price: 3000
+
                   )
+OrderDetail.create!(
+                  item_id: 2,
+                  order_id: 1,
+                  amount: 2,
+                  making_status: 1,
+                  price: 6000
+                  )
+
+CartItem.create!(
+            customer_id: 1,
+            item_id: 1,
+            amount: 1,
+            )
+

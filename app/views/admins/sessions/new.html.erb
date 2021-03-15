@@ -1,0 +1,17 @@
+<div class="mx-auto w-50">
+  <h2 class="text-center mt-3">管理者ログイン</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "admins/shared/error_messages", resource: resource %>
+    <div class="form-group">
+      <%= f.label "メールアドレス" %><br />
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label "パスワード" %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "管理者ログイン", class: "btn btn-block btn-success" %>
+    </div>
+    <% end %>
+</div>

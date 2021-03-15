@@ -1,23 +1,36 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users,
-    :controllers => { :registrations => 'registrations', :sessions => 'users/sessions' }
-  resources :users, only: [:show, :destroy, :quit] do
+  devise_for :customers, :controllers => {
+    :sessions => 'customers/sessions',
+    :registrations => 'customers/registrations',
+    :passwords => 'customers/passwords'
+  }
+  devise_for :admins,:controllers => {
+    :sessions => 'admins/sessions',
+    :registrations => 'admins/registrations',
+    :passwords => 'admins/passwords'
+   }
+  resources :customers, only: [:show, :destroy, :quit]  do
     member do
       get :quit
       patch :out
     end
   end
+#----------items--------------
+  root to: "items#top"
+  get 'about' => 'items#about'
+  get 'search' => 'items#search', as: 'category_search'
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
 #----------Products--------------
   root to: "products#top"
   get 'about' => 'products#about'
   resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-#----------Carts-----------------
-resources :cart_items, only: [:index]
-post '/add_item' => 'cart_items#add_item'
-post '/update_item' => 'cart_items#update_item'
-delete '/delete_item' => 'cart_items#delete_item'
+#----------cart_items-----------------
+  resources :cart_items, only: [:index]
+  post '/add_item' => 'cart_items#add_item'
+  post '/update_item' => 'cart_items#update_item'
+  delete '/delete_item' => 'cart_items#delete_item'
 #--------------------------------
 
 #----------Orders-----------------
@@ -28,12 +41,12 @@ delete '/delete_item' => 'cart_items#delete_item'
 
 
 
-#----------categories--------------
-resources :categories, only: [:index, :create, :show, :edit, :update, :destroy]
+#----------genres--------------
+  resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
 
 
-#----------Shipping_address--------------
-  resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+#----------addresses--------------
+  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 #--------------------------------
 end

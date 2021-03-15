@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
 #----------customer--------------
   resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-#--------------------------------   
-   
+#--------------------------------
+
 #----------items--------------
   root to: "items#top"
   get 'about' => 'items#about'
-  get 'search' => 'items#search', as: 'category_search'
+  get 'search' => 'items#search', as: 'genre_search'
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------cart_items-----------------

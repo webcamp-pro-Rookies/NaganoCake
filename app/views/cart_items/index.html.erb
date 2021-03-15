@@ -20,10 +20,9 @@ cartsindex
       </thead>
 
       <tbody>
-        <% @cart_items.each do |cart| %>
-  			  <tr id="cart-<%#= cart_item.id %>">
-            <%= render "quantity_form", cart: cart %>
-          </tr>
+        <% @cart_items.each do |cart_item| %>
+        <%= cart_item.user.last_name %>
+        <%= cart_item.product.product_name %>
         <% end %>
       </tbody>
     </table>

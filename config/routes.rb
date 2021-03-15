@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users,
     controllers: { registrations: 'registrations' }
   resources :users, only: [:show, :destroy, :quit]
@@ -10,10 +11,10 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------Carts-----------------
-resource :carts, only: [:show]
-post '/add_item' => 'carts#add_item'
-post '/update_item' => 'carts#update_item'
-delete '/delete_item' => 'carts#delete_item'
+resources :cart_items, only: [:index]
+post '/add_item' => 'cart_items#add_item'
+post '/update_item' => 'cart_items#update_item'
+delete '/delete_item' => 'cart_items#delete_item'
 #--------------------------------
 
 #----------Orders-----------------

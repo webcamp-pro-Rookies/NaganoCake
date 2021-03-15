@@ -69,7 +69,7 @@ Order.create!(
           customer_id: 1,
           shipping_cost: 800,
           total_payment: 3000,
-          payment_method: true,
+          payment_method: 0,
           name: "田中太郎",
           postal_code: 1111111,
           address: "新宿区1-1-1",
@@ -93,7 +93,7 @@ OrderDetail.create!(
                   )
 
 CartItem.create!(
-            user_id: 1,
+            customer_id: 1,
             item_id: 1,
             amount: 1,
             )

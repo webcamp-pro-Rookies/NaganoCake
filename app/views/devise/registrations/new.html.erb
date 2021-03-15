@@ -4,7 +4,7 @@
 
       <h2>新規登録</h2>
 
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= form_with model: @customer, url: customer_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -21,10 +21,10 @@
         <div class="form-inline mb-3">
           <label class="mr-4">フリガナ</label>
           <div class="form-group mr-3">
-            <%= f.text_field :ruby_last_name, placeholder: "セイ", class: "form-control" %>
+            <%= f.text_field :last_name_kana, placeholder: "セイ", class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= f.text_field :ruby_first_name, placeholder: "メイ", class: "form-control" %>
+            <%= f.text_field :first_name_kana, placeholder: "メイ", class: "form-control" %>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
 
         <div class="form-group">
           <%= f.label "郵便番号" %><br />
-          <%= f.text_field :postcode, autocomplete: 'postcode', class: 'form-control' %>
+          <%= f.text_field :postal_code, autocomplete: 'postal_code', class: 'form-control' %>
         </div>
 
         <div class="form-group">

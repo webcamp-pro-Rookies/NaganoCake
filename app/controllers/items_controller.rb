@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where(item_id: params[:item_id]).page(params[:page]).per(8)
+    @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).per(8)
     render "index"
   end
 

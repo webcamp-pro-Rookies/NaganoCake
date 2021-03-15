@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   def self.admin?(customer) # とりあえず、アドミンかどうか確認出来るメソッドを仮設
     "Admin" == customer.class.name
   end
-  # <#%= Product.admin?(current_user) %>
+  # <#%= Item.admin?(current_user) %>
 
 end
 

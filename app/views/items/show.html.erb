@@ -18,27 +18,27 @@
     <p>カートに入れる</p>
 
 
-          <div class="field">
+      <!--    <div class="field">-->
         <%# if @item.is_sale == true %>
           <%# if @item.genre.is_valid == true %>
-            <%= form_for(@cart_item , url: add_item_path, method: :post) do |f| %>
-              <%= f.hidden_field :item_id, value: @item.id %>
-              <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-              <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
-            <% end %>
+      <!--      <#%= form_for(@cart_item , url: add_item_path, method: :post) do |f| %>-->
+      <!--        <#%= f.hidden_field :item_id, value: @item.id %>-->
+      <!--        <#%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>-->
+      <!--        <#%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>-->
+      <!--      <#% end %>-->
           <%# else %>
-            <h3>売り切れ中</h3>
+      <!--      <h3>売り切れ中</h3>-->
           <%# end %>
         <%# elsif @item.is_sale == false %>
-          <h3>売り切れ中</h3>
+      <!--    <h3>売り切れ中</h3>-->
         <%# end %>
-      </div>
+      <!--</div>-->
 
 
   </div>
 
-  <% if item.admin?(current_user) %>
-    <%= link_to "Edit", edit_item_path(@item), class: 'to_item_edit_link col-md-1 offset-md-5 my-5 btn btn-success' %>
-  <% end %>
+    <%  if Item.admin?(current_customer) %>
+      <%= link_to "Edit", edit_item_path(@item), class: 'to_item_edit_link col-md-1 offset-md-5 my-5 btn btn-success' %>
+    <% end %>
 
 </div>

@@ -1,7 +1,8 @@
 	<div class='col-md-8 mx-auto my-5'>
 
-		<% if customer_signed_in? %>
-
+		<% if admin_signed_in? %>
+			<%= render 'items/admin_index', items: @items %>
+		<% else %>
 			<%= form_tag(genre_search_path , method: :get) do %>
 				<%= select(@search_content, :genre_id, Product.get_genre_list)%>
 		 		<%= submit_tag "絞り込む" %>
@@ -10,7 +11,6 @@
 
 			<%= render 'items/index', items: @items %>
 
-		<% else %>
-			<%= render 'items/admin_index', items: @items %>
+
 		<% end %>
 	</div>

@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     :registrations => 'admins/registrations',
     :passwords => 'admins/passwords'
    }
+
+#----------customer--------------
+  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+#--------------------------------   
+   
 #----------items--------------
   root to: "items#top"
   get 'about' => 'items#about'

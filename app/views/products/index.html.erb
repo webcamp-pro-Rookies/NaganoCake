@@ -6,7 +6,13 @@
  		<%= link_to "一覧に戻る", products_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
 	<% end %>
 
-	<%= render 'products/index', products: @products %>
+	<% if Product.admin?(current_user) %>
+		<%= render 'products/index', products: @products %>
+	<% end %>
 
+	<% unless Product.admin?(current_user) %>
+		<p>管理者用ページを表示中</p>
+		<%= render 'products/admin_index', products: @products %>
+	<% end %>
 
 </div>

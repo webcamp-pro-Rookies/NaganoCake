@@ -5,11 +5,11 @@
   </div>
 
   <div class='col-md-4'>
-    <p class="mt-3" style="font-size: 24px; font-weight: bold;"><%= @product.product_name %></p>
-    <p style="font-size: 24px; margin-bottom: 70px;"><%= @product.description %></p>
-    <spap style="font-size: 24px; font-weight: bold;">￥<%= @product.non_taxed_price %></span>
+    <p class="mt-3" style="font-size: 24px; font-weight: bold;"><%= @product.name %></p>
+    <p style="font-size: 24px; margin-bottom: 70px;"><%= @product.introduction %></p>
+    <spap style="font-size: 24px; font-weight: bold;">￥<%= @product.price %></span>
     <spap style="font-size: 18px; ">(税抜)</span>
-    <% if @product.sales_status %>
+    <% if @product.is_active %>
       <p class="text-success">販売中</p>
     <% else %>
       <p class="text-danger">準備中</p>

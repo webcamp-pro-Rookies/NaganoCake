@@ -15,11 +15,11 @@
 			   </div>
       </div>
       <div class="row ">
-				<% @.each do |product| %>
+				<% @items.each do |product| %>
 				  <div class="col-3">
 						<div><%= attachment_image_tag(@product, :image, size: "180x130", fallback: "https://picsum.photos/130/180/?random") %></div>
-              <div><%= product.product_name %></div>
-							<div><%= product.description %></div>
+              <div><%= product.name %></div>
+							<div><%= product.introduction %></div>
     			</div>
 				<% end %>
   		</div>

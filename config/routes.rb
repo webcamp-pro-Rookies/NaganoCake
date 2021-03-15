@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 #----------Products--------------
   root to: "products#top"
   get 'about' => 'products#about'
+  get 'search' => 'products#search', as: 'category_search'
   resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------Carts-----------------

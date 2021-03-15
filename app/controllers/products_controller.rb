@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
     @products = Product.all.page(params[:page]).per(8)
   end
 
+  def search
+    @products = Product.where(category_id: params[:category_id]).page(params[:page]).per(8)
+    render "index"
+  end
+
   def new
     @product = Product.new
   end
@@ -19,7 +24,6 @@ class ProductsController < ApplicationController
     else
       render "new"
     end
-
   end
 
   def show

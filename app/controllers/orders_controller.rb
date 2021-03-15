@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = current_user.orders
+    @orders = current_customer.orders
     @order = Order.find_by(params[:id]).order_details.find_by(params[:id])
 
   end

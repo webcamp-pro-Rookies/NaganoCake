@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users,
-    controllers: { registrations: 'registrations' }
+  devise_for :admins,:controllers => {
+    :sessions => 'admins/sessions',
+    :registrations => 'admins/registrations',
+    :passwords => 'admins/passwords'
+   }
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
+  }
   resources :users, only: [:show, :destroy, :quit]
 #----------Products--------------
   root to: "products#top"

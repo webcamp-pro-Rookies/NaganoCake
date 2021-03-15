@@ -10,17 +10,9 @@ User.create!(
               address: "新宿",
               user_status: true,
               )
-  User.create!(
-              last_name: "管理者",
-              first_name: "太郎",
-              ruby_last_name: "カンリシャ",
-              ruby_first_name: "タロウ",
-              phone_number: "11111111111",
+  Admin.create!(
               email: "admin@example.com",
               password: "password",
-              postcode: "1020082",
-              address: "新宿",
-              user_status: true,
                 )
 
 Category.create!(category_name: "ケーキ")

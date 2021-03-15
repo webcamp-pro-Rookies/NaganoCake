@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users,
-    controllers: { registrations: 'registrations' }
-  resources :users, only: [:show, :destroy, :quit]
-  get 'auit/:id' => 'users#quit'
-  patch 'out/:id' => 'users#out'
+    :controllers => { :registrations => 'registrations', :sessions => 'users/sessions' }
+  resources :users, only: [:show, :destroy, :quit] do
+    member do
+      get :quit
+      patch :out
+    end
+  end
 #----------Products--------------
   root to: "products#top"
   get 'about' => 'products#about'

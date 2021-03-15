@@ -10,31 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_133911) do
+ActiveRecord::Schema.define(version: 2021_03_14_092247) do
 
-  create_table "cart_items", force: :cascade do |t|
-    t.integer "quantity", default: 0
-    t.integer "product_id", null: false
-    t.integer "cart_id", null: false
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-    t.index ["product_id"], name: "index_cart_items_on_product_id"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
-    t.integer "order_id"
-    t.integer "product_num"
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.integer "product_id"
     t.string "category_name"
-    t.integer "category_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_133911) do
   create_table "ordered_products", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
-    t.integer "order_num"
+    t.integer "quantity", default: 0
     t.integer "production_status"
     t.integer "price_in_tax"
     t.datetime "created_at", null: false
@@ -51,16 +50,12 @@ ActiveRecord::Schema.define(version: 2021_03_13_133911) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "ordered_product_id"
     t.integer "shipping"
     t.integer "billing_amount"
-    t.integer "method_payment"
-    t.string "destination_name"
+    t.boolean "method_payment"
+    t.string "distination_name"
     t.integer "postcode"
-    t.integer "prefecture_code"
-    t.string "address_city"
-    t.string "address_street"
-    t.string "address_building"
+    t.string "address"
     t.integer "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,11 +63,10 @@ ActiveRecord::Schema.define(version: 2021_03_13_133911) do
 
   create_table "products", force: :cascade do |t|
     t.integer "category_id"
-    t.integer "ordered_product_id"
-    t.string "name"
+    t.string "product_name"
     t.text "description"
     t.integer "non_taxed_price"
-    t.integer "sales_status"
+    t.boolean "sales_status", default: true
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,12 +74,9 @@ ActiveRecord::Schema.define(version: 2021_03_13_133911) do
 
   create_table "shipping_addresses", force: :cascade do |t|
     t.integer "user_id"
-    t.string "destination_name"
+    t.string "distination_name"
     t.integer "postcode"
-    t.integer "prefecture_code"
-    t.string "address_city"
-    t.string "address_street"
-    t.string "address_building"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,21 +87,14 @@ ActiveRecord::Schema.define(version: 2021_03_13_133911) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "cart_id"
-    t.integer "order_id"
-    t.integer "shipping_address_id"
     t.string "last_name"
     t.string "first_name"
     t.string "ruby_last_name"
     t.string "ruby_first_name"
     t.integer "postcode"
-    t.integer "prefecture_code"
-    t.string "address_city"
-    t.string "address_street"
-    t.string "address_building"
+    t.string "address"
     t.integer "phone_number"
     t.boolean "user_status"
-    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -1,15 +1,15 @@
-categoryedit
+genreedit
 
 <% provide(:title, "ジャンル編集") %>
 <h2 class="head-line title_h2 text-center" >ジャンル編集</h2>
 
-  <%# if @category.errors.any? %>
-    <%#= render "layouts/error_messages", resource: @category %>
+  <%# if @genre.errors.any? %>
+    <%#= render "layouts/error_messages", resource: @genre %>
   <%# end %>
-  <%= form_with model: @category, local:true do |f| %>
+  <%= form_with model: @genre, local:true do |f| %>
   <div>
     ジャンル
-      <%= f.text_field :category_name  %>
+      <%= f.text_field :name  %>
       <%#= f.radio_button :is_valid, true %>
       <%#= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
       <%#= f.radio_button :is_valid, false %>
@@ -19,5 +19,5 @@ categoryedit
   <% end %>
 <br>
   <div class="col-xs-12">
-    <%= link_to "戻る", categories_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    <%= link_to "戻る", genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
   </div>

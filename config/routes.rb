@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     :registrations => 'admins/registrations',
     :passwords => 'admins/passwords'
    }
-#----------Products--------------
-  root to: "products#top"
-  get 'about' => 'products#about'
-  get 'search' => 'products#search', as: 'category_search'
-  resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+#----------items--------------
+  root to: "items#top"
+  get 'about' => 'items#about'
+  get 'search' => 'items#search', as: 'category_search'
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-#----------Carts-----------------
+#----------cart_items-----------------
 resources :cart_items, only: [:index]
 post '/add_item' => 'cart_items#add_item'
 post '/update_item' => 'cart_items#update_item'
@@ -26,12 +26,12 @@ delete '/delete_item' => 'cart_items#delete_item'
 
 
 
-#----------categories--------------
-resources :categories, only: [:index, :create, :show, :edit, :update, :destroy]
+#----------genres--------------
+resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
 
 
-#----------Shipping_address--------------
-  resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+#----------addresses--------------
+  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 #--------------------------------
 end

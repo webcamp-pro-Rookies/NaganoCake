@@ -22,7 +22,7 @@
 	          <%= order.distination_name %>
 	        </td>
 	        <td>
-	          <%# orders.each do |order| %>
+	          <%# order.each do |order| %>
 	          	<%= @order.product.product_name %><br>
 	          <%# end %>
 	        </td>
@@ -33,7 +33,7 @@
 	          <%= order.order_status %>
 	        </td>
    	      <td>
- 	          <%= link_to "注文詳細", orders_log_path, class: "glyphicon glyphicon-zoom-in btn btn-success" %>
+ 	          <%= link_to "注文詳細", order_path(order), class: "glyphicon glyphicon-zoom-in btn btn-success" %>
  	        </td>
         </tr>
       <% end %>

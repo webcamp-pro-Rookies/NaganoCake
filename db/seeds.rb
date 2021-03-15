@@ -72,7 +72,6 @@ Category.create!(category_name: "ミルクレープ")
               )
 
 
-
 Order.create!(
           user_id: 1,
           shipping: 800,
@@ -89,10 +88,11 @@ OrderedProduct.create!(
                   quantity: 1,
                   production_status: 1,
                   price_in_tax: 3000
-                    )
-  
-CartItem.create!(
-            user_id: 1,
-            product_id: 1,
-            quantity: 1,
-            )
+                  )
+OrderedProduct.create!(
+                  product_id: 2,
+                  order_id: 1,
+                  quantity: 2,
+                  production_status: 1,
+                  price_in_tax: 6000
+                  )

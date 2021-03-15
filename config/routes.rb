@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :customers
+  devise_for :customers, :controllers => {
+    :sessions => 'customers/sessions',
+    :registrations => 'customers/registrations',
+    :passwords => 'customers/passwords'
+  }
   devise_for :admins,:controllers => {
     :sessions => 'admins/sessions',
     :registrations => 'admins/registrations',
     :passwords => 'admins/passwords'
    }
-
-#----------customer--------------
-  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-#--------------------------------   
-   
+   resources :customers
 #----------items--------------
   root to: "items#top"
   get 'about' => 'items#about'

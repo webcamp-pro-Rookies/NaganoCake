@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   def index
     @orders = current_user.orders
-    @order = Order.find_by(params[:id]).ordered_products.find_by(params[:id])
+    @order = Order.find_by(params[:id]).order_details.find_by(params[:id])
 
   end
 
   def log
-    @order = User.order
+    @order = Customer.order
   end
 
   def new
@@ -14,9 +14,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(params[:id])
-    @price_in_tax = @order.ordered_products.find(params[:id]).price_in_tax
-    @total_price = @price_in_tax + @order.shipping
-    # @orders =  current_user.orders.where(params[:id])
+    @price_in_tax = @order.order_details.find(params[:id]).price_in_tax
+    @total_price = @price_in_tax + @order.shipping_cost
+    # @orders =  current_customer.orders.where(params[:id])
 
   end
 

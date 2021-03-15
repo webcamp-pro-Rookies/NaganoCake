@@ -9,10 +9,10 @@ class CartItemsController < ApplicationController
 
   def add_item
     if @cart_item.blank?
-      @cart_item = current_cart.build(product_id: params[:product_id])
+      @cart_item = current_cart.build(item_id: params[:item_id])
     end
 
-    @cart_item.quantity += params[:quantity].to_i
+    @cart_item.amount += params[:amount].to_i
     if @cart_item.save
       redirect_to cart_items_path
     else
@@ -21,7 +21,7 @@ class CartItemsController < ApplicationController
   end
 
   def update_item
-    @cart_item.update(quantity: params[:quantity].to_i)
+    @cart_item.update(amount: params[:amount].to_i)
     redirect_to ''
   end
 
@@ -33,7 +33,7 @@ class CartItemsController < ApplicationController
   private
 
   def setup_cart_item!
-    @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+    @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
   end
 
 

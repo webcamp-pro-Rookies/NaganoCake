@@ -1,44 +1,44 @@
-class ProductsController < ApplicationController
+class ItemsController < ApplicationController
 
   def top
-    @products = Product.all.page(params[:page]).per(4)
+    @items = Item.all.page(params[:page]).per(4)
   end
 
   def index
-    @products = Product.all.page(params[:page]).per(8)
+    @items = Item.all.page(params[:page]).per(8)
   end
 
   def search
-    @products = Product.where(category_id: params[:category_id]).page(params[:page]).per(8)
+    @items = Item.where(item_id: params[:item_id]).page(params[:page]).per(8)
     render "index"
   end
 
   def new
-    @product = Product.new
+    @item = Item.new
   end
 
   def create
-    @product = Product.new(product_params)
-    if @product.save
-      redirect_to product_path(@product.id)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to item_path(@item.id)
     else
       render "new"
     end
   end
 
   def show
-    @product = Product.find(params[:id])
+    @item = Item.find(params[:id])
     @cart_item =CartItem.new
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
-    if @product.update(product_params)
-      redirect_to product_path(@product)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
     else
       render "edit"
     end
@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:product_name, :description, :non_taxed_price, :image, :sales_status, :category_id)
+      params.require(:item).permit(:name, :introduction, :price, :image, :is_active, :genre_id)
     end
 
 

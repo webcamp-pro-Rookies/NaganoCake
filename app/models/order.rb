@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
-  belongs_to :user
-  has_many :products, through: :ordered_products
-  has_many :ordered_products
+  belongs_to :customer
+  has_many :items, through: :order_details
+  has_many :order_details
 
-  enum order_status: { 発送済み: 0, 発送準備中: 1 ,製作中: 2, 入金確認: 3, 入金待ち: 4 }
-  enum method_payment: { クレジットカード: true, 銀行振込: false }
+  enum status: { 入金待ち: 0, 入金確認: 1 ,製作中: 2, 発送準備中: 3, 発送済み: 4 }
+  enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
 end

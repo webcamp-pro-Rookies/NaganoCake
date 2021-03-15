@@ -1,3 +1,3 @@
-class Category < ApplicationRecord
-  has_many :products
+class Genre < ApplicationRecord
+  has_many :items
 end

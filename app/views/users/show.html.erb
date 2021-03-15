@@ -1,22 +1,47 @@
-<div class="user-show-page">
-  <div class="profile mt-4">
-    <%= @user.last_name %><%= @user.first_name %>
-  </div>git
-  <% if current_user.id == @user.id %>
-    <div class="user-action">
-      <div class="user-action-common">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt fa-2x"></i>
-        <% end %>
-        <span>ログアウト</span>
-      </div>
-      <div class="user-action-common">
-        <%= link_to edit_user_registration_path do %>
-          <i class="fas fa-pencil-alt fa-2x"></i>
-        <% end %>
-        <span>情報を編集</span>
-      </div>
-    </div>
-  <% end %>
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-8">
+		<h2 class="head-line text-center title_h2">マイページ</h2>
+		<p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>
+			<%= link_to " 編集する", edit_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
+			<%= link_to " パスワードを変更する", edit_registration_path, class: "glyphicon glyphicon-pencil btn btn-warning" %>
+		</p>
 
+			<table class="table table-bordered table-condensed" >
+				<tbody>
+					<tr>
+						<td class="info col-xs-2">氏名</td>
+						<td class="text-left"><%= @user.last_name %><%= @user.first_name %></td>
+					</tr>
+					<tr>
+						<td class="info">フリガナ</td>
+						<td class="text-left"><%= @user.ruby_last_name %><%= @user.ruby_first_name %></td>
+					</tr>
+					<tr>
+						<td class="info">郵便番号</td>
+						<td class="text-left"><%= @user.postcode %></td>
+					</tr>
+					<tr>
+						<td class="info">住所</td>
+						<td class="text-left"><%= @user.prefe %> <%= @user.  %></td>
+					</tr>
+					<tr>
+						<td class="info">電話番号</td>
+						<td class="text-left"><%= @customer.phone_number %></td>
+					</tr>
+					<tr>
+						<td class="info">メールアドレス</td>
+						<td class="text-left"><%= @customer.email %></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="mypage-bottoms">
+				<P><strong class="shipping-link">配送先</strong>
+					<%= link_to " 一覧を見る", customers_shipping_addresses_path, data: {"turbolinks" => false}, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				</p>
+				<p><strong class="order-link">注文履歴</strong>
+					<%= link_to " 一覧を見る", customers_orders_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+				</p>
+			</div>
+	</div>
 </div>

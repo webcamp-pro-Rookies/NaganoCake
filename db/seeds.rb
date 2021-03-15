@@ -21,7 +21,7 @@ Category.create!(category_name: "チーズケーキ")
 Category.create!(category_name: "モンブラン")
 Category.create!(category_name: "ミルクレープ")
 
-
+  50.times{|num|
   Product.create!(
               category_id: 1,
               # image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
@@ -62,6 +62,7 @@ Category.create!(category_name: "ミルクレープ")
               non_taxed_price: "400",
               sales_status: 0,
               )
+  }
 
 
 
@@ -82,7 +83,7 @@ OrderedProduct.create!(
                   production_status: 1,
                   price_in_tax: 3000
                     )
-  
+
 CartItem.create!(
             user_id: 1,
             product_id: 1,

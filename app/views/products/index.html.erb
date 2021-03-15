@@ -1,12 +1,13 @@
-<div class='col-md-8 mx-auto my-5'>
+	<div class='col-md-8 mx-auto my-5'>
+		<% if user_signed_in? %>
 
-	<%= form_tag(category_search_path , method: :get) do %>
-		<%= select(@search_content, :category_id, Product.get_Categories_list)%>
- 		<%= submit_tag "絞り込む" %>
- 		<%= link_to "一覧に戻る", products_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
-	<% end %>
-
-	<%= render 'products/index', products: @products %>
-
-
-	
+			<%= form_tag(category_search_path , method: :get) do %>
+				<%= select(@search_content, :category_id, Product.get_Categories_list)%>
+		 		<%= submit_tag "絞り込む" %>
+		 		<%= link_to "一覧に戻る", products_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
+			<% end %>
+			<%= render 'products/index', products: @products %>
+		<% else %>
+			<%= render 'products/admin_index', products: @products %>
+		<% end %>
+	</div>

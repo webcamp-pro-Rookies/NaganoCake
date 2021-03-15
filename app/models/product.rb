@@ -13,14 +13,16 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  def self.get_Categories_list
+  def self.get_Categories_list # カテゴリー一覧を所得するメソッド
     category_str = Category.all.pluck(:category_name)
     return cate_hash = (category_str).zip(1..category_str.size)
   end
 
   def admin? # とりあえず、アドミンかどうか確認出来るメソッドを仮設
-    "Admin" == self.class.name
+    "User" == self.class.name
   end
+
+# .unshift(["全件表示", 0])
 
 end
 

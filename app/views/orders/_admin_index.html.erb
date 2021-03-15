@@ -11,9 +11,9 @@
   <tbody>
     <tr>
       <td><%= order.created_at.strftime('%Y/%m/%d/%H:%M:%S') %></td>
-      <td><%= order.user.last_name %><%= order.user.first_name %></td>
+      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
       <td><%= @order.quantity %></td>
-      <td><%= order.order_status %></td>
+      <td><%= order.status %></td>
     </tr>
   <% end %>
   </tbody>

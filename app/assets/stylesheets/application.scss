@@ -17,6 +17,16 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+  .notice {
+    color: white;
+    background-color: skyblue;
+  }
+  
+  .alert {
+    color: white;
+    background-color: pink;
+  }
+
   .top{
     margin: 0 auto;
     background-image:url("adpDSC_2759-750x500.jpg");

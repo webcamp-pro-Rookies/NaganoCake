@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   attachment :image
 
-  def self.get_Genres_list # カテゴリー一覧を所得するメソッド
+  def self.get_genre_list # カテゴリー一覧を所得するメソッド
       genre_str = Genre.all.pluck(:name)
     return cate_hash = (genre_str).zip(1..genre_str.size)
   end
@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   def self.admin?(customer) # とりあえず、アドミンかどうか確認出来るメソッドを仮設
     "Admin" == customer.class.name
   end
-  # <#%= Product.admin?(current_user) %>
+  # <#%= Item.admin?(current_user) %>
 
 end
 

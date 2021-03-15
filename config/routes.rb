@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     :registrations => 'admins/registrations',
     :passwords => 'admins/passwords'
    }
+
+#----------customer--------------
+  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+#--------------------------------
+
   resources :customers, only: [:show, :destroy, :quit]  do
     member do
       get :quit
@@ -18,7 +23,7 @@ Rails.application.routes.draw do
 #----------items--------------
   root to: "items#top"
   get 'about' => 'items#about'
-  get 'search' => 'items#search', as: 'category_search'
+  get 'search' => 'items#search', as: 'genre_search'
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------Products--------------

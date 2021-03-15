@@ -8,10 +8,10 @@
 		  </span>
 		</h2>
 			<div class="row ">
-				<% @items.each do |product| %>
+				<% @items.each do |item| %>
 				<div class="col-3">
 					<div class="card" style="width: 18rem;">
-						<div><%= attachment_image_tag(@product, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></div>
+						<div><%= attachment_image_tag(@item, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></div>
 							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
 							<p class="card-text">カードボディだよ</p>

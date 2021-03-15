@@ -18,11 +18,10 @@ class Product < ApplicationRecord
     return cate_hash = (category_str).zip(1..category_str.size)
   end
 
-  def admin? # とりあえず、アドミンかどうか確認出来るメソッドを仮設
-    "User" == self.class.name
+  def self.admin?(user) # とりあえず、アドミンかどうか確認出来るメソッドを仮設
+    "User" == user.class.name # 開発の為に判別対象をユーザーに変更
   end
-
-# .unshift(["全件表示", 0])
+  # <#%= Product.admin?(current_user) %>
 
 end
 

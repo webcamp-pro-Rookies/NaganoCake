@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cart
-  # has_many :orders
+  has_many :orders
   # has_many :shipping_addresses
 
   validates :last_name, presence: true

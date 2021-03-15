@@ -14,7 +14,7 @@
             <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-dark"  %></li>
             <!--<li><#%= link_to "カート", cart_items_path, class: "btn btn-outline-dark"  %></li>-->
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark"  %></li>
-          <%# elsif current_user.admin == true %>
+          <% elsif current_admin %>
             <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "会員一覧", 'users_path', class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "注文履歴一覧", orders_path, class: "btn btn-outline-dark"  %></li>

@@ -17,23 +17,23 @@
 	          <%= order.created_at.strftime('%Y/%m/%d') %>
 	        </td>
 	        <td class="text-left">
-	          <%= order.postal_code %><br>
-	          <%= order.prefecture_code %><%= order.address_city %><%= order.address_street %><%= order.address_building %><br>
-	          <%= order.name %>
+	          <%= order.postcode %><br>
+	          <%= order.address %><br>
+	          <%= order.distination_name %>
 	        </td>
 	        <td>
-	          <% order.order_details.each do |order_detail| %>
-	          	<%= order_detail.product.name %><br>
-	          <% end %>
+	          <%# orders.each do |order| %>
+	          	<%= @order.product.product_name %><br>
+	          <%# end %>
 	        </td>
 	        <td class="text-right">
-	          <%= order.total_price.to_s(:delimited) %>円
+	          <%= order.billing_amount.to_s(:delimited) %>円
 	        </td>
 	        <td>
 	          <%= order.order_status %>
 	        </td>
    	      <td>
- 	          <%= link_to "注文詳細", 'orders_log_path', class: "glyphicon glyphicon-zoom-in btn btn-success" %>
+ 	          <%= link_to "注文詳細", orders_log_path, class: "glyphicon glyphicon-zoom-in btn btn-success" %>
  	        </td>
         </tr>
       <% end %>

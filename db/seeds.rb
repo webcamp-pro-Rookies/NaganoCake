@@ -29,15 +29,7 @@ Category.create!(category_name: "チーズケーキ")
 Category.create!(category_name: "モンブラン")
 Category.create!(category_name: "ミルクレープ")
 
-Category.all.each do |category|
-  Product.create!(
-              category_id: 1,
-              # image_id: open("./app/assets/images/ショートケーキ画像.jpg"),
-              product_name: "ケーキ",
-              description: "甘くて美味しいイチゴのケーキ",
-              non_taxed_price: "400",
-              sales_status: 0,
-              )
+
   Product.create!(
               category_id: 1,
               # image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
@@ -78,13 +70,29 @@ Category.all.each do |category|
               non_taxed_price: "400",
               sales_status: 0,
               )
-              
 
-              
-end
-              CartItem.create!(
-                  user_id: 1,
+
+
+Order.create!(
+          user_id: 1,
+          shipping: 800,
+          billing_amount: 3000,
+          method_payment: true,
+          distination_name: "田中太郎",
+          postcode: 1111111,
+          address: "新宿区1-1-1",
+          order_status: 2
+          )
+OrderedProduct.create!(
                   product_id: 1,
+                  order_id: 1,
                   quantity: 1,
-                  
-                  )
+                  production_status: 1,
+                  price_in_tax: 3000
+                    )
+  
+CartItem.create!(
+            user_id: 1,
+            product_id: 1,
+            quantity: 1,
+            )

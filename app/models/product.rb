@@ -1,8 +1,15 @@
 class Product < ApplicationRecord
-  has_many :ordered_products
   belongs_to :category
   has_many :cart_items
+  has_many :orders, through: :ordered_products
+  has_many :ordered_products
 
+
+  #attachment :image, destroy: false
+  attachment :image
+  #------enumで数値指定-------
+  enum sales_status: { 販売中: 0, 売切: 1 ,準備中: 2 }
+  #---------------------------
 
   attachment :image
 
@@ -12,3 +19,4 @@ class Product < ApplicationRecord
   end
 
 end
+

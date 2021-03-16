@@ -1,17 +1,19 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  has_many :customer, through: :cart_items
   has_many :cart_items
   has_many :orders, through: :order_details
   has_many :order_details
 
+  validates :genre_id, presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :introduction, presence: true, length: { maximum: 300 }
+  validates :price, presence: true
 
-  #attachment :image, destroy: false
   attachment :image
   #------enumで数値指定-------
-  enum is_active: { 販売中: true, 販売停止中: false }
+  # enum is_active: { 販売中: true, 販売停止中: false }
   #---------------------------
-
-  attachment :image
 
   def self.get_genre_list # カテゴリー一覧を所得するメソッド
       genre_str = Genre.all.pluck(:name)

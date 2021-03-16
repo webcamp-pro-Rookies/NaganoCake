@@ -6,33 +6,22 @@
 
   <div class='col-md-4'>
     <p class="mt-3" style="font-size: 24px; font-weight: bold;"><%= @item.name %></p>
-    <p style="font-size: 24px; margin-bottom: 70px;"><%= @item.introduction %></p>
-    <spap style="font-size: 24px; font-weight: bold;">￥<%= @item.price %></span>
+    <p style="font-size: 24px; margin-bottom: 50px;"><%= @item.introduction %></p>
+    <spap style="font-size: 24px; font-weight: bold;">￥<%= @item.price.to_s(:delimited) %></span>
     <spap style="font-size: 18px; ">(税抜)</span>
     <% if @item.is_active %>
-      <p class="text-success">販売中</p>
+      <p class="text-success mb-5 mb-1">販売中</p>
     <% else %>
-      <p class="text-danger">準備中</p>
+      <p class="text-danger mb-5 mb-1">準備中</p>
     <% end %>
-    <p class="mt-5 mb-1">個数選択</p>
-    <p>カートに入れる</p>
 
+      <%= form_for(@cart_item , url: cart_items_path, method: :post) do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+        <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
+      <% end %>
 
-          <div class="field">
-        <% if @item.is_sale == true %>
-          <% if @item.genre.is_valid == true %>
-            <%= form_for(@cart_item , url: add_item_path, method: :post) do |f| %>
-              <%= f.hidden_field :item_id, value: @item.id %>
-              <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-              <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
-            <% end %>
-          <% else %>
-            <h3>売り切れ中</h3>
-          <% end %>
-        <% elsif @item.is_sale == false %>
-          <h3>売り切れ中</h3>
-        <% end %>
-      </div>
+  </div>
 
 
   </div>
@@ -41,4 +30,4 @@
       <%= link_to "Edit", edit_item_path(@item), class: 'to_item_edit_link col-md-1 offset-md-5 my-5 btn btn-success' %>
     <% end %>
 
-</div>
+  </div>

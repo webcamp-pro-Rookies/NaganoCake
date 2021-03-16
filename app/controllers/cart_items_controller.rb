@@ -6,9 +6,6 @@ class CartItemsController < ApplicationController
     @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
     #@cart_items = current_cart
     @cart_item = CartItem.new
-     @cart_items.each do |cart_item|
-      cart_item * cart_item.amount
-     end
   end
 
   def update
@@ -25,9 +22,6 @@ class CartItemsController < ApplicationController
     @cart_item.update(cart_item_params)
     end
 
-    # binding.pry
-    # test = "test"
-
     redirect_back(fallback_location: root_path)
   end
 
@@ -39,8 +33,6 @@ class CartItemsController < ApplicationController
 
   def all_item
     @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
-    # binding.pry
-    # test = "test"
     @cart_items.destroy_all
     redirect_back(fallback_location: root_path)
   end

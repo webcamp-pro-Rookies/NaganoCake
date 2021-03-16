@@ -32,9 +32,11 @@
 		</table>
 
 		<div class="d-flex">
-		  <div>
-				<%= link_to "配送先一覧を見る", addresses_path, data: {"turbolinks" => false}, class: "mr-2 btn btn-info" %>
-			</div>
+			<% unless current_admin %>
+			  <div>
+					<%= link_to "配送先一覧を見る", customer_addresses_path(@customer), data: {"turbolinks" => false}, class: "mr-2 btn btn-info" %>
+				</div>
+			<% end %>
 			<div>
 				<%= link_to "注文履歴一覧を見る", orders_path, class: "mr-2 btn btn-info" %>
 			</div>

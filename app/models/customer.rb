@@ -3,9 +3,11 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  has_many :cart
-  # has_many :orders
+
+
+  has_many :items, through: :cart_items
+  has_many :cart_items
+  has_many :orders
   # has_many :shipping_addresses
 
   validates :last_name, presence: true

@@ -3,7 +3,7 @@
   <h2 class="text-center mt-3">ログイン</h2>
   
   <%= form_with scope: resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= bootstrap_devise_error_messages! %>
 
     <div class="form-group">
       <%= f.label "メールアドレス" %><br />

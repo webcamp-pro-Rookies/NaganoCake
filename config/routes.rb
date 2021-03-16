@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   devise_for :customers, :controllers => {
     :sessions => 'customers/sessions',
     :registrations => 'customers/registrations',
-    :passwords => 'customers/passwords'
   }
   devise_for :admins,:controllers => {
     :sessions => 'admins/sessions',
     :registrations => 'admins/registrations',
-    :passwords => 'admins/passwords'
    }
 
 #----------customer--------------
@@ -37,9 +35,12 @@ Rails.application.routes.draw do
 #--------------------------------
 
 #----------Orders-----------------
-  get 'orders/thanks' => 'orders#thanks'
-  resources :orders, only: [:index, :show, :new,]
-  get 'orders/log' => 'orders#log'
+  resources :orders,only: [:new,:index,:show,:create] do
+    collection do
+      post 'log'
+      get 'thanx'
+    end
+  end
 #--------------------------------
 
 

@@ -75,12 +75,12 @@ orderslog
         <%= f.hidden_field :payment_method %>
         <%= f.hidden_field :total_price %>
         <%= f.hidden_field :ship, value: @ship %>
-        <%= link_to "注文情報入力へ戻る", , data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
+        <%= link_to "注文情報入力へ戻る" , data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
         　　<i class="fas fa-shipping-fast fa-2x"></i>
         <%= f.submit "購入を確定する", class: "btn btn-warning center-block col-xs-5" %>
       <% end %>
       </div>
-    <% else %>
+    <%# else %>
         <!-- if カートアイテムがない時 -->
         <p>お客様のショッピングカートに商品はありませんので注文確定ができません。</p>
         <p><%= link_to "商品一覧", items_path %>から商品をお探し下さい。</p>

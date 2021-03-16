@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  has_many :customer, through: :cart_items
   has_many :cart_items
   has_many :orders, through: :order_details
   has_many :order_details

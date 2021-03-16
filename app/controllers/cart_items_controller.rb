@@ -9,9 +9,9 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
+    @cart_item = CartItem.new
     @cart_item.save
-    redirect_back(fallback_locaction: root_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -21,6 +21,12 @@ class CartItemsController < ApplicationController
   end
 
   def all_item
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  # def add_item
     # if @cart_item.blank?
       # @cart_item = current_cart.build(item_id: params[:item_id])
 
@@ -31,7 +37,7 @@ class CartItemsController < ApplicationController
     # else
     #   redirect_back(fallback_location: root_path)
     # end
-  end
+  # end
 
   # def update_item
   #   @cart_item.update(amount: params[:amount].to_i)
@@ -46,8 +52,8 @@ class CartItemsController < ApplicationController
 
   private
 
-  def setup_cart_item!
-    @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
+  def cart_item_params
+    params.require(:cart_item).permit(:amount)
   end
 
 

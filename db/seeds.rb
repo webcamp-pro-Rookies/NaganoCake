@@ -8,7 +8,7 @@ Customer.create!(
               password: "password",
               postal_code: "1020082",
               address: "新宿",
-              is_deleted: true,
+              is_deleted: false,
               )
 Customer.create!(
               last_name: "三浦",

@@ -1,0 +1,5 @@
+<% if current_admin %>
+<%= render 'admin_show', order: @order %>
+<% else %>
+<%= render 'customer_show', order: @order %>
+<% end %>

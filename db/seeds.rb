@@ -10,6 +10,19 @@ Customer.create!(
               address: "新宿",
               is_deleted: false,
               )
+Customer.create!(
+              last_name: "三浦",
+              first_name: "翔",
+              last_name_kana: "ミウラ",
+              first_name_kana: "ショウ",
+              telephone_number: "11111111111",
+              email: "sho@example.com",
+              password: "password",
+              postal_code: "1020082",
+              address: "岩手",
+              is_deleted: false,
+              )
+
   Admin.create!(
               email: "admin@example.com",
               password: "password",
@@ -97,4 +110,10 @@ CartItem.create!(
             item_id: 1,
             amount: 1,
             )
+CartItem.create!(
+            customer_id: 1,
+            item_id: 2,
+            amount: 2,
+            )
+
 

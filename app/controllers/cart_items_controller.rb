@@ -3,9 +3,12 @@ class CartItemsController < ApplicationController
   #user.idとpuroduct.idを持ったデータを保存したい
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
     #@cart_items = current_cart
     @cart_item = CartItem.new
+     @cart_items.each do |cart_item|
+      cart_item * cart_item.amount
+     end
   end
 
   def update
@@ -13,13 +16,13 @@ class CartItemsController < ApplicationController
 
     if @my_cart_item = CartItem.find_by(customer_id: current_customer.id, id: params[:id])
       @my_cart_item.amount = cart_item_params[:amount]
-      @my_cart_item.save
+      @my_cart_item.update
     else
     @cart_item = CartItem.new
     @cart_item.amount = cart_item_params[:amount]
     @cart_item.customer_id = current_customer.id
     @cart_item.item_id = params[:id]
-    @cart_item.save
+    @cart_item.update(cart_item_params)
     end
 
     # binding.pry
@@ -35,8 +38,10 @@ class CartItemsController < ApplicationController
   end
 
   def all_item
-    @cart_items = current_customer.cart_items
-    @cart_items.destroy
+    @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
+    # binding.pry
+    # test = "test"
+    @cart_items.destroy_all
     redirect_back(fallback_location: root_path)
   end
 

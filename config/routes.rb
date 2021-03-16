@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   # post '/add_item' => 'cart_items#add_item'
   # post '/update_item' => 'cart_items#update_item'
   # delete '/delete_item' => 'cart_items#delete_item'
+  get '/all_item' => 'cart_items#all_item'
   delete '/all_item' => 'cart_items#all_item'
 #--------------------------------
 
@@ -59,5 +60,4 @@ Rails.application.routes.draw do
 #----------genres--------------
   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
-end
 end

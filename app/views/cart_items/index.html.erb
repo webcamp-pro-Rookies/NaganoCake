@@ -28,7 +28,7 @@
 
               <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10,20,30] %>
                 <%= f.submit '変更', class: "btn btn-primary" %></td>
-                <!--<#%= link_to "Edit", cart_item_path(@item), class: 'to_item_edit_link col-md-1 offset-md-5 my-5 btn btn-success' %>-->
+                <%#= link_to "Edit", cart_item_path(@item), class: 'to_item_edit_link col-md-1 offset-md-5 my-5 btn btn-success' %>
               <td><%= cart_item.amount * cart_item.item.price %></td>
 
               <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
@@ -49,7 +49,7 @@
             <tr>
               <td class="warning">合計金額</td>
               <td class="text-right" id='total_price'>
-                <%#= total_price(@cart_items).to_s(:delimited) %>
+              <td><%= @total_price %></td>
               </td>
             </tr>
           </thead>

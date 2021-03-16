@@ -1,5 +1,7 @@
 <%= form_with model:item, local:true do |f| %>
 
+<%= render "devise/shared/error_messages", resource: item %>
+
   <div class="form-group">
     <%= f.label :item_name, "商品名" %>
     <%= f.text_field :item_name, class: 'form-control item_name' %>

@@ -27,10 +27,11 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------cart_items-----------------
-  resources :cart_items, only: [:index]
-  post '/add_item' => 'cart_items#add_item'
-  post '/update_item' => 'cart_items#update_item'
-  delete '/delete_item' => 'cart_items#delete_item'
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  # post '/add_item' => 'cart_items#add_item'
+  # post '/update_item' => 'cart_items#update_item'
+  # delete '/delete_item' => 'cart_items#delete_item'
+  delete '/all_item' => 'cart_items#all_item'
 #--------------------------------
 
 #----------Orders-----------------

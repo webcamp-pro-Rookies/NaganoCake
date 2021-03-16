@@ -15,19 +15,19 @@
             <th></th>
           </tr>
         </thead>
+        <%= form_with model: @cart_item, method: :put, local: true do |f| %>
         <% @cart_items.each do |cart_item| %>
         <tbody>
           <tr>
             <td><%= cart_item.item.name %></td>
             <td><%= cart_item.item.price %></td>
-            <%= form_with model: @cart_item, method: :post, local: true do |f| %>
-              <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], class: "form-item" %>
+              <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10,20,30] %>
               <%= f.submit '変更', class: "btn btn-primary" %></td>
-            <% end %>
-            <td><%= cart_item.amount * cart_item.item.price %></td>
+              <td><%= cart_item.amount * cart_item.item.price %></td>
             <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
           </tr>
         </tbody>
+        <% end %>
         <% end %>
       </table>
       <div class="col-xs-9 margin-bottom">

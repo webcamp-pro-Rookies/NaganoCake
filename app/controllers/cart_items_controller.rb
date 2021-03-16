@@ -9,14 +9,21 @@ class CartItemsController < ApplicationController
   end
 
   def update
+
+
+    if @my_cart_item = CartItem.find_by(customer_id: current_customer.id, id: params[:id])
+      @my_cart_item.amount = cart_item_params[:amount]
+      @my_cart_item.save
+    else
     @cart_item = CartItem.new
-    @cart_item.amount = cart_item_params
+    @cart_item.amount = cart_item_params[:amount]
     @cart_item.customer_id = current_customer.id
     @cart_item.item_id = params[:id]
+    @cart_item.save
+    end
+
     # binding.pry
     # test = "test"
-
-    @cart_item.save
 
     redirect_back(fallback_location: root_path)
   end

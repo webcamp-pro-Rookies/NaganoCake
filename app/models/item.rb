@@ -9,8 +9,6 @@ class Item < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :introduction, presence: true, length: { maximum: 300 }
   validates :price, presence: true
-  validates :is_active, presence: true
-
 
   attachment :image
   #------enumで数値指定-------

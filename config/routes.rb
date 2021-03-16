@@ -7,6 +7,17 @@ Rails.application.routes.draw do
     :sessions => 'admins/sessions',
     :registrations => 'admins/registrations',
    }
+#----------admin--------------
+  namespace :admin do
+    resources :customers,only: [:index,:show,:edit,:update]
+    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
+    get 'top'=>'items#top'
+    resources :genres,only: [:index,:create,:edit,:update, :show]
+    resources :orders,only: [:index,:show,:update]
+    resource :order_details,only: [:update]
+  end
+#--------------------------------
+
 
 #----------customer--------------
   resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
@@ -27,7 +38,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 #----------cart_items-----------------
-  resources :cart_items, only: [:index, :create, :update, :destroy]
+  resources :cart_items, only: [:index, :update, :destroy]
   # post '/add_item' => 'cart_items#add_item'
   # post '/update_item' => 'cart_items#update_item'
   # delete '/delete_item' => 'cart_items#delete_item'
@@ -48,9 +59,5 @@ Rails.application.routes.draw do
 #----------genres--------------
   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
-
-
-#----------addresses--------------
-  # customerの入れ子にしています
-#--------------------------------
+end
 end

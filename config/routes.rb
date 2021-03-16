@@ -60,4 +60,6 @@ Rails.application.routes.draw do
 #----------genres--------------
   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
 #--------------------------------
+
 end
+

@@ -1,47 +1,39 @@
 class Admin::OrdersController < ApplicationController
-    def index
-    @orders = Order.all.page(params[:page]).per(10)
-    #orderモデルのデータをすべて持ってきている。10項目づつ表示
-  end
-  
+  before_action :authenticate_admin!
+
+  def index
+  		@orders = Order.all.page(params[:page]).per(10)
+	end
+
   def current_index
     @orders = Order.where(customer_id: params[:id]).page(params[:page]).per(10)
     render :index
   end
-  
+
   def today_order_index
     now = Time.current
     @orders = Order.where(created_at: now.all_day).page(params[:page]).per(10)
     render :index
   end
 
-  def log
-    #@cart_items = current_customer.cart_items
-    @cart_items = CartItem.all 
-    
-		@order = Order.new
+	def show
+		@order = Order.find(params[:id])
+		@order_details = @order.order_details
 
-  end
+	end
 
-  def new
-    @order = Order.new
-    @addresses = Address.where(customer: current_customer)
-  end
+	def update
+		@order = Order.find(params[:id])
+		if @order.update(order_params)
+		   flash[:success] = "注文ステータスを変更しました"
+		   redirect_to admin_order_path(@order)
+		else
+		   render "show"
+		end
+	end
 
-
-  def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
-    #@price_in_tax = @order.order_details.find(params[:id]).price_in_tax
-    #@total_price = @price_in_tax + @order.shipping_cost
-    # @orders =  current_customer.orders.where(params[:id])
-
-  end
-
-  def thanks
-  end
-  
-  def order_params
-		  params.require(:order).permit(:order_status)
+	private
+	def order_params
+		  params.require(:order).permit(:status)
 	end
 end

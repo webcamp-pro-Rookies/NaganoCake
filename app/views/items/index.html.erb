@@ -7,8 +7,8 @@
 		<% end %>
 
 
-		<% if admin_signed_in? %>
-			<%= render 'items/admin_index', items: @items %>
+		<% if current_admin %>
+			<%= render 'admin/items/admin_index', items: @items %>
 		<% else %>
 			<%= render 'items/index', items: @items %>
 		<% end %>

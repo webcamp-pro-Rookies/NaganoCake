@@ -1,15 +1,13 @@
 class AddressesController < ApplicationController
 
   def index
-    @addresses = Address.where(customer_id: params[:id])
+    @addresses = Address.where(customer_id: current_customer.id)
     @address = Address.new
   end
 
   def create
     @address = Address.new(address_params)
-    @address.customer_id = current_customer.customer_id
-    binding.pry
-    test = "test"
+    @address.customer_id = current_customer.id
     if @address.save
       redirect_to customer_addresses_path
 

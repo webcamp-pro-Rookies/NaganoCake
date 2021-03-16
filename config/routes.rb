@@ -34,9 +34,12 @@ Rails.application.routes.draw do
 #--------------------------------
 
 #----------Orders-----------------
-  get 'orders/thanks' => 'orders#thanks'
-  resources :orders, only: [:index, :show, :new,]
-  get 'orders/log' => 'orders#log'
+  resources :orders,only: [:new,:index,:show,:create] do
+    collection do
+      post 'log'
+      get 'thanx'
+    end
+  end
 #--------------------------------
 
 

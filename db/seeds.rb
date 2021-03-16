@@ -8,7 +8,7 @@ Customer.create!(
               password: "password",
               postal_code: "1020082",
               address: "新宿",
-              is_deleted: false,
+              is_deleted: true,
               )
   Admin.create!(
               email: "admin@example.com",
@@ -75,6 +75,16 @@ Order.create!(
           address: "新宿区1-1-1",
           status: 2
           )
+Order.create!(
+          customer_id: 2,
+          shipping_cost: 800,
+          total_payment: 4000,
+          payment_method: 1,
+          name: "三浦翔",
+          postal_code: 1111111,
+          address: "岩手1-1-1",
+          status: 1
+          )
 
 OrderDetail.create!(
                   item_id: 1,
@@ -91,10 +101,40 @@ OrderDetail.create!(
                   making_status: 1,
                   price: 6000
                   )
+OrderDetail.create!(
+                  item_id: 3,
+                  order_id: 2,
+                  amount: 5,
+                  making_status: 0,
+                  price: 3000
+
+                  )
+OrderDetail.create!(
+                  item_id: 4,
+                  order_id: 2,
+                  amount: 3,
+                  making_status: 1,
+                  price: 2000
+                  )
 
 CartItem.create!(
             customer_id: 1,
             item_id: 1,
             amount: 1,
+            )
+CartItem.create!(
+            customer_id: 1,
+            item_id: 2,
+            amount: 2,
+            )
+CartItem.create!(
+            customer_id: 2,
+            item_id: 3,
+            amount: 5,
+            )
+CartItem.create!(
+            customer_id: 2,
+            item_id: 4,
+            amount: 3,
             )
 

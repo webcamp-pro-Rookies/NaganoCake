@@ -9,7 +9,9 @@ Rails.application.routes.draw do
    }
 
 #----------customer--------------
-  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :addresses, only: [:index, :create, :show, :edit, :update, :destroy]
+  end
 #--------------------------------
 
   resources :customers, only: [:show, :destroy, :quit]  do
@@ -49,6 +51,6 @@ Rails.application.routes.draw do
 
 
 #----------addresses--------------
-  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  # customerの入れ子にしています
 #--------------------------------
 end

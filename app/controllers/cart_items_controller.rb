@@ -8,9 +8,16 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-  def create
+  def update
     @cart_item = CartItem.new
+    @cart_item.amount = cart_item_params
+    @cart_item.customer_id = current_customer.id
+    @cart_item.item_id = params[:id]
+    # binding.pry
+    # test = "test"
+
     @cart_item.save
+
     redirect_back(fallback_location: root_path)
   end
 

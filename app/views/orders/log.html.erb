@@ -18,16 +18,17 @@ orderslog
             <tr>
               <td class="text-left">
                 <%#= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "no_image.jpg") %>
-                <%= cart_item.item.name %>
+                <%#= cart_item.count %>
               </td>
               <td class="text-right">
-                ¥<%= tax_price(cart_item.item.price).to_s(:delimited) %>
+                ¥<%#= tax_price(cart_item.item.price).to_s(:delimited) %>
               </td>
               <td class="text-right">
+                <%= current_customer.id %>
                   <%= cart_item.amount %>
               </td>
               <td class="text-right">
-                ¥<%= price(cart_item).to_s(:delimited) %>
+                ¥<%#= price(cart_item).to_s(:delimited) %>
               </td>
             </tr>
           <%# end %>
@@ -68,17 +69,11 @@ orderslog
 
       <!-- 表示とformを分けて記入 -->
       <div class ="col-xs-11">
-      <%= form_with model: @order, url: customers_orders_path, method: :post, local: true do |f| %>
-        <%= f.hidden_field :postal_code %>
-        <%= f.hidden_field :address %>
-        <%= f.hidden_field :name %>
-        <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :total_price %>
-        <%= f.hidden_field :ship, value: @ship %>
-        <%= link_to "注文情報入力へ戻る" , data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
+      <%#= form_with model: @order, url: customers_orders_path, method: :post, local: true do |f| %>
+        <%#= link_to "注文情報入力へ戻る" , "", class: "btn btn-info col-xs-3 back" %>
         　　<i class="fas fa-shipping-fast fa-2x"></i>
-        <%= f.submit "購入を確定する", class: "btn btn-warning center-block col-xs-5" %>
-      <% end %>
+        <%#= f.submit "購入を確定する", class: "btn btn-warning center-block col-xs-5" %>
+      <%# end %>
       </div>
     <%# else %>
         <!-- if カートアイテムがない時 -->

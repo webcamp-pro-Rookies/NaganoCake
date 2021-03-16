@@ -30,7 +30,7 @@ class Customers::SessionsController < Devise::SessionsController
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
       if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
-        redirect_to new_customer_session_path
+        redirect_to new_customer_session_path, alert: "退会済のユーザーです"
       end
     end
   end

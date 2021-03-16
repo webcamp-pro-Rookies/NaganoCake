@@ -7,6 +7,17 @@ Rails.application.routes.draw do
     :sessions => 'admins/sessions',
     :registrations => 'admins/registrations',
    }
+#----------admin--------------
+  namespace :admin do
+    resources :customers,only: [:index,:show,:edit,:update]
+    resources :items,only: [:index,:new,:create,:show,:edit,:update,]
+    get 'top'=>'items#top'
+    resources :genres,only: [:index,:create,:edit,:update, :show]
+    resources :orders,only: [:index,:show,:update]
+    resource :order_details,only: [:update]
+  end
+#--------------------------------
+
 
 #----------customer--------------
   resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy] do

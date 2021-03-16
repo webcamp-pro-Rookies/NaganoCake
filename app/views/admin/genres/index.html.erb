@@ -1,0 +1,47 @@
+genreindex
+<% provide(:title, "ジャンル一覧・追加") %>
+<div class="container">
+<div class="row">
+  <div class="col-7 text-left">
+    <h2 class="bg-light">ジャンル一覧・追加</h2>
+      <%= form_with model: @genre_new, local:true do |f| %>
+        <%#= render "layouts/error_messages", resource: @genre %>
+          <i class="fas fa-candy-cane"></i>ジャンル
+          <%= f.text_field :name  %>
+            <%#= f.radio_button :is_valid, true %>
+            <%#= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
+            <%#= f.radio_button :is_valid, false %>
+            <%#= f.label :is_valid, "無効", {value: :false, style: "display: inline-block;"} %>
+          <%= f.submit "追加", class: "btn btn-info" %>
+      <% end %>
+
+      <table class="table table-hover table-inverse table-bordered">
+            <div><%= paginate(@genres) %></div>
+        <thead >
+          <tr class="info">
+            <th class="bg-light">ジャンル</th>
+            <!--<th>状態</th>-->
+            
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td class="text-left"><%= genre.name%></td>
+
+              <%# if genre.is_valid == true %>
+                <!--<td class="genre-td"><i class="fas fa-bullseye red"></i>有効</td>-->
+              <%# elsif genre.is_valid == false %>
+                <!--<td class="genre-td"><i class="fas fa-bullseye blue"></i>無効</td>-->
+              <%# end %>
+              <td class="genre-td"><%= link_to "編集する", edit_genre_path(genre.id), class: "glyphicon glyphicon-pencil btn btn-success" %></td>
+              <td class="genre-td"><%= link_to "消去する", genre_path(genre.id), class: "glyphicon glyphicon-pencil btn btn-danger" ,method: :delete%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <div class= "text-center"><%= paginate(@genres) %></div>
+    </div>
+  </div>
+</div>

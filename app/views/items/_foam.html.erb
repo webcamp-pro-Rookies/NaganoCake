@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <%= f.label :genre_id, "商品カテゴリー" %>
-    <div><%= f.select :genre_id, item.get_genre_list %></div>
+    <div><%= f.select :genre_id, Item.get_genre_list %></div>
   </div>
 
   <div class="form-group mt-5">

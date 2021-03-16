@@ -26,11 +26,6 @@ Rails.application.routes.draw do
   get 'search' => 'items#search', as: 'genre_search'
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-#----------Products--------------
-  root to: "products#top"
-  get 'about' => 'products#about'
-  resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-
 #----------cart_items-----------------
   resources :cart_items, only: [:index]
   post '/add_item' => 'cart_items#add_item'

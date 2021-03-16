@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   has_many :items, through: :cart_items
   has_many :cart_items
   has_many :orders
-  # has_many :shipping_addresses
+  has_many :addresses
 
   validates :last_name, presence: true
   validates :first_name, presence: true

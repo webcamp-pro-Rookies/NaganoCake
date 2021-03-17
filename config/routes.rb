@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'top'=>'items#top'
     resources :genres,only: [:index,:create,:edit,:update, :show]
     resources :orders,only: [:index,:show,:update]
-    resource :order_details,only: [:update]
+    resources :order_details, only: [:update]
   end
 #--------------------------------
 

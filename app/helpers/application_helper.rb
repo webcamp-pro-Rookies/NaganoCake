@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   def current_cart
-    @cart_items = current_customer.cart_items
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
     # 小数点切り捨てはfloor,３桁区切りはto_s(:delimited)
@@ -22,6 +23,11 @@ module ApplicationHelper
       price  +=  sub_price(total)
     end
     return price
+  end
+
+  # 請求額の計算
+  def billing(order)
+    total_payment(current_cart) + order.shipping_cost.to_i
   end
 
 end

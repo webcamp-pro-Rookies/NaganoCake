@@ -19,9 +19,9 @@ Rails.application.routes.draw do
 #--------------------------------
 
 
-#----------customer--------------
-  resources :customers, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :addresses, only: [:index, :create, :show, :edit, :update, :destroy]
+#----------customer & addresses--------------
+  resource :customers, only: [:show, :new, :create, :edit, :update, :destroy] do
+    resources :addresses, only: [:index, :create, :new, :show, :edit, :update, :destroy]
   end
 #--------------------------------
 

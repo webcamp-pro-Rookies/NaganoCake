@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
 
   attachment :image
+
   #------enumで数値指定-------
   # enum is_active: { 販売中: true, 販売停止中: false }
   #---------------------------

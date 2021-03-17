@@ -1,6 +1,6 @@
-<%# if orders.present? %>
+<% if orders.present? %>
   <table class="table table-hover table-bordered table-condensed">
-    <thead>
+    <thead class="bg-light">
       <tr class="info">
         <th>注文日</th>
         <th>配送先</th>
@@ -23,7 +23,7 @@
 	        </td>
 	        <td>
 	          <%# order.each do |order| %>
-	          	<%#= order.items.name %><br>
+	          	<%#= order.items %><br>
 	          <%# end %>
 	        </td>
 	        <td class="text-right">
@@ -39,6 +39,6 @@
       <% end %>
     </tbody>
   </table>
-<%# else %>
+<% else %>
   <p>注文履歴がありません。</p>
-<%# end %>
+<% end %>

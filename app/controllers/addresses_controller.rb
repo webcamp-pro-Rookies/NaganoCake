@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
 
   def index
-    @customer = Customer.find(params[:customer_id])
+    @customer = Customer.find(current_customer.id)
     @addresses = @customer.addresses
     @address = Address.new
   end

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all.page(params[:page]).per(10)
+    @orders = current_customer.orders
     #orderモデルのデータをすべて持ってきている。10項目づつ表示
   end
   

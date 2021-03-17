@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   resources :orders,only: [:new,:index,:show,:create] do
     collection do
       post 'log'
-      get 'thanx'
+      get 'thanks'
     end
   end
 #--------------------------------

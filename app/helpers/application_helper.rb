@@ -24,20 +24,4 @@ module ApplicationHelper
     return price
   end
 
-  # 請求額の計算
-  def billing(order)
-    total_price(current_cart) + order.shipping_cost
-  end
-
-    # 請求額の計算 orders/logで使用
-  def billing(order)
-    total_price(current_cart) + order.shipping_cost
-  end
-
-
-
-
-
-
-
 end

@@ -13,7 +13,7 @@ class CartItemsController < ApplicationController
       @already_cart_item.update(amount: params[:amount])
       redirect_to cart_items_path
     else
-      @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:item_id], amount: params[:mount]) # 新規カート追加の商品は新規追加処理
+      @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:item_id], amount: params[:amount]) # 新規カート追加の商品は新規追加処理
       redirect_to cart_items_path
     end
 

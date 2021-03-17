@@ -21,7 +21,7 @@
           <td><%= cart_item.item.price %></td>
 
           <%= form_with model: cart_item, method: :PATCH, local: true do |f| %>
-            <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9,10,20,30] %>
+            <td><%= f.select :amount, [cart_item.amount,1,2,3,4,5,6,7,8,9,10,20,30] %>
             <%= f.hidden_field :item_id, value: cart_item.item.id %>
               <%= f.submit '変更', class: "btn btn-primary" %>
             </td>

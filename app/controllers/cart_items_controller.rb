@@ -9,11 +9,11 @@ class CartItemsController < ApplicationController
 
   def create
 
-    if @already_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id]) # 既にカードに追加済みの商品には更新処理
-      @already_cart_item.update(amount: params[:cart_item][:amount])
+    if @already_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:item_id]) # 既にカードに追加済みの商品には更新処理
+      @already_cart_item.update(amount: params[:amount])
       redirect_to cart_items_path
     else
-      @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:cart_item][:item_id], amount: params[:cart_item][:mount]) # 新規カート追加の商品は新規追加処理
+      @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:item_id], amount: params[:mount]) # 新規カート追加の商品は新規追加処理
       redirect_to cart_items_path
     end
 

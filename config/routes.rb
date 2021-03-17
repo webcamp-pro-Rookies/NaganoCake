@@ -19,11 +19,15 @@ Rails.application.routes.draw do
 #--------------------------------
 
 
-#----------customer & addresses--------------
-  resource :customers, only: [:show, :new, :create, :edit, :update, :destroy] do
-    resources :addresses, only: [:index, :create, :new, :show, :edit, :update, :destroy]
-  end
-#--------------------------------
+#----------customer--------------
+  resource :customers, only: [:show, :new, :create, :edit, :update, :destroy]
+
+
+
+#----------caddresses--------------
+resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
+
 
   resources :customers, only: [:show, :destroy, :quit]  do
     member do
@@ -52,7 +56,7 @@ Rails.application.routes.draw do
   resources :orders,only: [:new,:index,:show,:create] do
     collection do
       post 'log'
-      get 'thanx'
+      get 'thanks'
     end
   end
 #--------------------------------

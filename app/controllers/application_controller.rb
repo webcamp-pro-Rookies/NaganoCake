@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(recource)
     if current_admin
-      orders_path
+      admin_orders_path
     else
       customer_path(current_customer.id)
     end

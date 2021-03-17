@@ -17,7 +17,7 @@
             <%= customer.id %>
           </td>
           <td class="text-left">
-            <%= link_to customer_path(customer), class: "btn-link"  do %>
+            <%= link_to admin_customer_path(customer), class: "btn-link"  do %>
               <i class="far fa-user"></i>
               <%= customer.last_name %><%= customer.first_name %>
             <% end %>

@@ -7,8 +7,6 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-
-
   def create
 
     if @already_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id]) # 既にカードに追加済みの商品には更新処理
@@ -20,9 +18,6 @@ class CartItemsController < ApplicationController
     end
 
   end
-
-
-  # params[:cart_item][:item_id]
 
   def update
 
@@ -39,8 +34,8 @@ class CartItemsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def all_item
-    @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
+  def all_destroy
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items.destroy_all
     redirect_back(fallback_location: root_path)
   end

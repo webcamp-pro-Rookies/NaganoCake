@@ -4,9 +4,6 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
   
-  def index
-    @customers = Customer.all.page(params[:page]).per(10)
-  end
   
   def quit
     @customer = Customer.find(params[:id])

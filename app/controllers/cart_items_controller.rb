@@ -4,11 +4,10 @@ class CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    binding.pry
-    test = "test"
-    #@cart_items = current_cart
     @cart_item = CartItem.new
   end
+
+
 
   def create
 
@@ -22,23 +21,16 @@ class CartItemsController < ApplicationController
 
   end
 
-  def update
-    if @my_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
-      binding.pry
-      test = "test"
-      @my_cart_item.amount = cart_item_params[:amount]
-      @my_cart_item.update
-    else
-    @cart_item = CartItem.new(customer_id: current_customer.id, item_id: params[:cart_item][:item_id], amount: params[:cart_item][:mount])
-      binding.pry
-      test = "test"
-    @cart_item.amount = cart_item_params[:amount]
-    @cart_item.customer_id = current_customer.id
-    @cart_item.item_id = params[:id]
-    @cart_item.update(cart_item_params)
-    end
 
-    redirect_back(fallback_location: root_path)
+  # params[:cart_item][:item_id]
+
+  def update
+
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(amount: params[:cart_item][:amount])
+    @cart_item.save
+
+    redirect_to cart_items_path
   end
 
   def destroy

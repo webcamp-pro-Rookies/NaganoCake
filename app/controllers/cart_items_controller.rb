@@ -3,19 +3,35 @@ class CartItemsController < ApplicationController
   #user.idとpuroduct.idを持ったデータを保存したい
 
   def index
-    @cart_items = Customer.find_by(params[:id]).cart_items.where(params[:id])
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    binding.pry
+    test = "test"
     #@cart_items = current_cart
     @cart_item = CartItem.new
   end
 
+  def create
+
+    if @already_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id]) # 既にカードに追加済みの商品には更新処理
+      @already_cart_item.update(amount: params[:cart_item][:amount])
+      redirect_to cart_items_path
+    else
+      @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:cart_item][:item_id], amount: params[:cart_item][:mount]) # 新規カート追加の商品は新規追加処理
+      redirect_to cart_items_path
+    end
+
+  end
+
   def update
-
-
-    if @my_cart_item = CartItem.find_by(customer_id: current_customer.id, id: params[:id])
+    if @my_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
+      binding.pry
+      test = "test"
       @my_cart_item.amount = cart_item_params[:amount]
       @my_cart_item.update
     else
-    @cart_item = CartItem.new
+    @cart_item = CartItem.new(customer_id: current_customer.id, item_id: params[:cart_item][:item_id], amount: params[:cart_item][:mount])
+      binding.pry
+      test = "test"
     @cart_item.amount = cart_item_params[:amount]
     @cart_item.customer_id = current_customer.id
     @cart_item.item_id = params[:id]

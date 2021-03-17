@@ -40,35 +40,10 @@ class CartItemsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # def add_item
-    # if @cart_item.blank?
-      # @cart_item = current_cart.build(item_id: params[:item_id])
-
-
-    # @cart_item.amount += params[:amount].to_i
-    # if @cart_item.save
-    #   redirect_to cart_items_path
-    # else
-    #   redirect_back(fallback_location: root_path)
-    # end
-  # end
-
-  # def update_item
-  #   @cart_item.update(amount: params[:amount].to_i)
-  #   redirect_to ''
-  # end
-
-  # def delete_item
-  #   @cart_item.destroy
-  #   redirect_to ''
-  # end
-
-
   private
 
-  def cart_item_params
-    params.require(:cart_item).permit(:amount)
-  end
-
+    def cart_item_params
+      params.require(:cart_item).permit(:amount)
+    end
 
 end

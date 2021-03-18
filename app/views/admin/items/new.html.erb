@@ -1,11 +1,12 @@
 <div class="container">
 
-  <div clss="col-md-4 offset-md-4 mt-4">商品新規登録</div>
+
+  <div class="col-md-4 offset-md-2 my-5">
+    <span class="px-4" style="font-size: 30px; background-color: #d3d3d3">商品新規登録</span>
+  </div>
 
   <div class="col-md-6 mx-auto my-5">
 
-      <!--<#%= form_with model: @item, method: :patch do |f| %>-->
-      <!--<#%= form_with model: @item, url:  new_admin_item_path, method: :POST do |f| %>-->
       <%= form_with model: @item, url: admin_items_path, method: :POST, local: true do |f| %>
 
         <%= render "devise/shared/error_messages", resource: @item %>
@@ -43,7 +44,7 @@
         <div class="row mb-3">
           <%= f.label :is_active, "商品ステータス", class: "col-md-4"  %>
           <%= f.radio_button :is_active, true, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span class="mr-5">販売中</span>
-          <%= f.radio_button :is_active, false, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span class="mr-5">販売停止中</span>
+          <%= f.radio_button :is_active, false, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span>販売停止中</span>
         </div>
 
         <div class="row my-5">

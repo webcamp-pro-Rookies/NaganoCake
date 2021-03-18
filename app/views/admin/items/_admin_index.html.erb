@@ -1,16 +1,16 @@
-	<h2 class="py-5">商品一覧</h2>
-
+<h3 class="bg-light mt-5">商品一覧</h3>
 	(全<%= items.total_count %>件中、<%= items.count %>件を表示)
   <div class="col-xs-10 col-xs-offset-1">
-    <%#= link_to new_admin_item_path, data: {"turbolinks" => false}, class: "btn btn-warning pull-right new_item" do %>
-    <i class="fas fa-plus"></i>
-    新規商品登録
-    <%# end %>
+    <%= link_to new_admin_item_path, class: "" do %>
+      <div class="col text-right">
+        <i class="fas fa-plus-circle fa-3x fa-spin text-secondary"></i>
+      </div>
+    <% end %>
 	  <table class="table table-hover table-bordered table-condensed">
       <thead>
-        <tr class="info">
+        <tr class="bg-light">
           <th>商品ID</th>
-          <th>商品名</th>
+          <td>商品名</td>
           <th>税抜価格</th>
           <th>ジャンル</th>
           <th>ステータス</th>
@@ -21,7 +21,7 @@
         <tr>
           <td><%= item.id %></td>
           <td>
-            <%= link_to item_path(item), class: 'btn_link' do %>
+            <%= link_to admin_item_path(item), class: 'btn_link' do %>
     		    <%= item.name %>
     		    <% end %>
           </td>
@@ -29,9 +29,11 @@
             ¥<%= item.price.to_s(:delimited) %>
           </td>
           <td><%= item.genre.name %></td>
-          <td class="col-xs-2">
-            <%= item.is_active %>
-          </td>
+          <% if item.is_active == true %>
+            <td class="col-xs-2 text-success">販売中</td>
+          <% else %>
+            <td class="col-xs-2">販売停止中</td>
+          <% end %>
         </tr>
 	    <% end %>
 	    </tbody>

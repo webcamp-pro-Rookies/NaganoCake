@@ -57,7 +57,7 @@ Genre.create!(name: "ミルクレープ")
               name: "チーズケーキ",
               introduction: "一番うまいチーズケーキ",
               price: "400",
-              is_active: true,
+              is_active: false,
               )
   Item.create!(
               genre_id: 4,
@@ -65,7 +65,7 @@ Genre.create!(name: "ミルクレープ")
               name: "モンブラン",
               introduction: "うまいモンブラン",
               price: "400",
-              is_active: true,
+              is_active: false,
               )
   Item.create!(
               genre_id: 5,

@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   attachment :image
 
   #------enumで数値指定-------
-  enum is_active: { 販売中: true, 販売停止中: false }
+  #enum is_active: { 販売中: true, 販売停止中: false }
   #---------------------------
 
   def self.get_genre_list # カテゴリー一覧を所得するメソッド

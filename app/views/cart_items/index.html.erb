@@ -21,9 +21,15 @@
               <td><%= cart_item.item.price %></td>
               <td class="p-2">
                 <%= form_with model: cart_item, method: :PATCH, local: true do |f| %>
-                <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10,20,30], selected: cart_item.amount, class:"form-control" %>
-                <%= f.hidden_field :item_id, value: cart_item.item.id %>
-                <%= f.submit '変更', class: "btn btn-primary" %>
+                <div class="row">
+                  <div class="col">
+                    <%= f.select(:amount, (1..20).to_a, {selected: cart_item.amount}, {class:"form-control p-2"}) %>
+                    <%= f.hidden_field :item_id, value: cart_item.item.id %>
+                  </div>
+                  <div class="col">
+                    <%= f.submit '変更', class: "btn btn-primary" %>
+                  </div>
+                </div>
               </td>
               <% end %>
               <% subtotal = cart_item.item.price * cart_item.amount %>

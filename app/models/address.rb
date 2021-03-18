@@ -7,4 +7,8 @@ class Address < ApplicationRecord
   validates :postal_code, presence: true, length: { maximum: 7 }
   validates :address, presence: true
 
+  def order_address
+    self.postal_code + self.address + self.name
+  end
+
 end

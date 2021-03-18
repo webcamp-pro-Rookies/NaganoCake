@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  
+
   def top
     @items = Item.all.page(params[:page]).per(4)
   end
@@ -20,7 +20,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to item_path(@item.id)
+      redirect_to admin_item_path(@item.id)
     else
       render "new"
     end
@@ -38,7 +38,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_path(@item)
+      redirect_to admin_item_path(@item)
     else
       render "edit"
     end

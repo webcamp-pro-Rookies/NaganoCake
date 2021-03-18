@@ -3,6 +3,9 @@
 		<%= select(@search_content, :genre_id, Item.get_genre_list)%>
 	 	<%= submit_tag "絞り込む" %>
 	 	<%= link_to "一覧に戻る", items_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
-</div>	
+</div>
 	<% end %>
+
+	<div class="col-md-10 mx-auto">
 		<%= render 'admin_index', items: @items %>
+	</div>

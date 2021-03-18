@@ -27,7 +27,7 @@
 
         <div class="row mb-3">
           <%= f.label :genre_id, "ジャンル", class: "col-md-4" %>
-          <%= f.select :genre_id, Item.get_genre_list, {}, {class: 'form-control-sm col-md-8'}%>
+          <%= f.select :genre_id, Item.get_genre_list.unshift("-- 選択して下さい --"), {}, {class: 'form-control-sm col-md-8'}%>
         </div>
 
         <div class="row mb-3">

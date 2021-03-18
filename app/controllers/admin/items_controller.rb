@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  
+
   def top
     @items = Item.all.page(params[:page]).per(4)
   end
@@ -18,6 +18,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
+    # test = "test"
     @item = Item.new(item_params)
     if @item.save
       redirect_to item_path(@item.id)

@@ -18,7 +18,7 @@
       <%= form_for(@cart_item , url: cart_items_path, method: :post) do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
         <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-        <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
+        <%= f.submit "カートに入れる", class: "btn btn-primary" %>
       <% end %>
 
   </div>

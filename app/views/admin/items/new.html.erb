@@ -1,5 +1,6 @@
-
-<%= form_with model: @item, method: :patch do |f| %>
+<div class='col-5 mx-auto'>
+  <h3 class="bg-light mt-5">新規商品登録</h3>
+<%= form_with model: @item, url: admin_items_path(@item), method: :post do |f| %>
 
 <%= render "devise/shared/error_messages", resource: @item %>
   <div class="row m-3">
@@ -37,4 +38,3 @@
 
   <% end %>
   </div>
-

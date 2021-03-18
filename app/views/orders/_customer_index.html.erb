@@ -22,9 +22,9 @@
 	          <%= order.name %>
 	        </td>
 	        <td>
-	          <%# order.each do |order| %>
-	          	<%#= order.items %><br>
-	          <%# end %>
+	          <% order.items.each do |item| %>
+	          	<%= item.name %><br>
+	          <% end %>
 	        </td>
 	        <td class="text-right">
 	          <%= order.total_payment.to_s(:delimited) %>円

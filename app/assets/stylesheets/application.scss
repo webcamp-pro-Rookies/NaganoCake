@@ -17,32 +17,32 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-  .notice {
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    background-color: skyblue;
-  }
-  
-  .alert {
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    background-color: tomato;
-  }
+.notice {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: skyblue;
+}
 
-  .top{
-    margin: 0 auto;
-    background-image:url("adpDSC_2759-750x500.jpg");
-    background-color:rgba(255,255,255,0.5);
-    background-blend-mode:lighten;
-    height:500px;
-    width:750px;
-  }
+.alert {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: tomato;
+}
 
-  .top-text{
-      margin-top: 50px ;
-      text-align: center;
-      line-height: 100px;
-      font-size: 30px;
-    }
+.top{
+  margin: 0 auto;
+  background-image:url("adpDSC_2759-750x500.jpg");
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+  height:500px;
+  width:750px;
+}
+
+.top-text{
+  margin-top: 50px ;
+  text-align: center;
+  line-height: 100px;
+  font-size: 30px;
+}

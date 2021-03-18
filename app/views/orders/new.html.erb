@@ -30,7 +30,7 @@
             <!-- order_addressはshipping_addressのモデルでpostal_code+address+name -->
         </div>
         <div class="m-2 ml-5">
-          <%= f.collection_select(:address_id, @addresses, :id, :order_address) %>
+          <%= f.collection_select(:address_id, @addresses, :id, :order_address, {}, {class:"form-control col-8"}) %>
         </div>
         <% end %>
         <div class="m-2 ml-4">

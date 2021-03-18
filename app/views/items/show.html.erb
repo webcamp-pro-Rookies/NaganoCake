@@ -17,7 +17,7 @@
 
     <%= form_with url: cart_items_path, method: :post, local:true do |f| %>
       <%= f.hidden_field :item_id, value: @item.id %>
-      <div class="mr-5 d-inline"><%= f.select :amount, options_for_select((1..10).to_a.unshift(["個数選択", 1])) %></div>
+      <%= f.select :amount, options_for_select((1..10).to_a.unshift(["個数選択", 1])), {}, {class: 'form-control-sm coler-red mb-3 w-25 d-inline mr-4 selectpicker'}  %>
       <%= f.submit "カートに入れる", class: "btn btn-success" %>
     <% end %>
 

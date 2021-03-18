@@ -33,13 +33,16 @@
           <%= f.text_field :price, class: 'form-control price col-md-8', placeholder: "1000" %>
         </div>
 
+        <!--<div class="row mb-3">-->
+        <!--  <#%= f.label :is_active, "商品ステータス", class: "col-md-4"  %>-->
+        <!--  <#%= f.select :is_active, [["販売中", true], ["売り切れ", false]], class: 'col-md-8' %>-->
+        <!--</div>-->
+
         <div class="row mb-3">
           <%= f.label :is_active, "商品ステータス", class: "col-md-4"  %>
-          <%= f.select :is_active, [["販売中", true], ["売り切れ", false]], class: 'col-md-8' %>
+          <%= f.radio_button :is_active, true, class: 'form-control-md' %><span class="mr-5">販売中</span>
+          <%= f.radio_button :is_active, false, class: 'form-control-md' %><span class="mr-5">販売停止中</span>
         </div>
-
-        <!--<#%= f.check_box(:is_active, {:multiple => true}, checked_value = "true", unchecked_value = "false" ) %>-->
-
 
         <div class="row my-5">
           <div class="col-5 offset-3 text-center"><%= f.submit class: 'py-3 px-5 btn btn-success' %></div>

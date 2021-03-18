@@ -17,12 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def log
-    #@cart_items = current_customer.cart_items
-    @cart_items = CartItem.all
-<<<<<<< HEAD
-=======
-
->>>>>>> fc6c0ada9b111d8ff5ae9637198d9c811f4777e4
+    @cart_items = current_customer.cart_items
 		@order = Order.new
   end
 
@@ -46,14 +41,8 @@ class OrdersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
   def order_params
 	  params.require(:order).permit(:status)
 	end
-=======
-    def order_params
-      params.require(:order).permit(:order_status)
-    end
->>>>>>> fc6c0ada9b111d8ff5ae9637198d9c811f4777e4
 
 end

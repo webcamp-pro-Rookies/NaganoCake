@@ -2,15 +2,15 @@
 
 	(全<%= items.total_count %>件中、<%= items.count %>件を表示)
   <div class="col-xs-10 col-xs-offset-1">
-    <%#= link_to new_admin_item_path, data: {"turbolinks" => false}, class: "btn btn-warning pull-right new_item" do %>
-    <i class="fas fa-plus"></i>
+    <%= link_to new_admin_item_path, class: "" do %>
+    <i class="fas fa-plus-circle"></i>
     新規商品登録
-    <%# end %>
+    <% end %>
 	  <table class="table table-hover table-bordered table-condensed">
       <thead>
         <tr class="info">
           <th>商品ID</th>
-          <th>商品名</th>
+          <td>商品名</td>
           <th>税抜価格</th>
           <th>ジャンル</th>
           <th>ステータス</th>
@@ -30,7 +30,7 @@
           </td>
           <td><%= item.genre.name %></td>
           <td class="col-xs-2">
-            <%= item.is_active %>
+            <%= item.is_active[item.is_active] %>
           </td>
         </tr>
 	    <% end %>

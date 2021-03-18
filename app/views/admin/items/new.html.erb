@@ -1,15 +1,14 @@
 <div class="container">
 
-
   <div class="col-md-4 offset-md-2 my-5">
     <span class="px-4" style="font-size: 30px; background-color: #d3d3d3">商品新規登録</span>
   </div>
 
   <div class="col-md-6 mx-auto my-5">
 
-      <%= form_with model: @item, url: admin_items_path, method: :POST, local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: @item %>
 
-        <%= render "devise/shared/error_messages", resource: @item %>
+      <%= form_with model: @item, url: admin_items_path, method: :POST, local: true do |f| %>
 
         <div class="row mb-3">
           <%= f.label :image, "商品画像", class: "col-md-4" %>

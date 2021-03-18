@@ -2,8 +2,8 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_many :customers, through: :cart_items
   has_many :cart_items
-  has_many :orders, through: :order_details
   has_many :order_details
+  has_many :orders, through: :order_details
 
   validates :genre_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   attachment :image
 
   #------enumで数値指定-------
-  # enum is_active: { 販売中: true, 販売停止中: false }
+  #enum is_active: { 販売中: true, 販売停止中: false }
   #---------------------------
 
   def self.get_genre_list # カテゴリー一覧を所得するメソッド

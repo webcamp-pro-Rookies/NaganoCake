@@ -9,27 +9,27 @@
 			<table class="table table-bordered table-condensed" >
 				<tbody>
 					<tr>
-						<td class="info col-xs-2">氏名</td>
+						<th class="info col-xs-2 bg-light">氏名</th>
 						<td class="text-left"><%= @customer.last_name %><%= @customer.first_name %></td>
 					</tr>
 					<tr>
-						<td class="info">フリガナ</td>
+						<th class="bg-light">フリガナ</th>
 						<td class="text-left"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
 					</tr>
 					<tr>
-						<td class="info">メールアドレス</td>
+						<th class="bg-light">メールアドレス</th>
 						<td class="text-left"><%= @customer.email %></td>
 					</tr>
 					<tr>
-						<td class="info">郵便番号</td>
+						<th class="bg-light">郵便番号</th>
 						<td class="text-left"><%= @customer.postal_code %></td>
 					</tr>
 					<tr>
-						<td class="info">住所</td>
+						<th class="bg-light">住所</th>
 						<td class="text-left"><%= @customer.address %></td>
 					</tr>
 					<tr>
-						<td class="info">電話番号</td>
+						<th class="bg-light">電話番号</th>
 						<td class="text-left"><%= @customer.telephone_number %></td>
 					</tr>
 				</tbody>

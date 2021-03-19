@@ -1,8 +1,6 @@
 class Admin::ItemsController < ApplicationController
 
-  def top
-    @items = Item.all.page(params[:page]).per(4)
-  end
+
 
   def index
     @items = Item.all.page(params[:page]).per(8)
@@ -44,11 +42,6 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
-  def log
-  end
-
-  def thanks
-  end
 
   private
 

@@ -17,11 +17,8 @@ class OrdersController < ApplicationController
   end
 
   def log
-
-
-    # @cart_items = current_customer.cart_items
-
-    # @order = Order.find_by(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items
+    @order = Order.where(customer_id: current_customer.id).last
 
 		# @order = Order.new(
 		#   customer: current_customer,
@@ -53,6 +50,8 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
+
+    @total_payment = params[:total_payment]
   end
 
     # t.integer "customer_id" クリア
@@ -76,9 +75,6 @@ class OrdersController < ApplicationController
     @order.total_payment = pay_amount
     @order.shipping_cost = 800
 
-
-    # binding.pry
-    # test = "test"
     if params[:order][:addresses] == "home"
       @order.address = current_customer.address
       @order.name = current_customer.last_name
@@ -87,7 +83,8 @@ class OrdersController < ApplicationController
 
     if @order.save
       @cart_items = current_customer.cart_items
-      render :log
+      # render :log
+      redirect_to log_orders_path(order: @order)
     else
       render :new
     end

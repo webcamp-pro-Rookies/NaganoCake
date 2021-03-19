@@ -14,13 +14,13 @@
 
         <!--ここにチェックをつけると、payment_methodカラムにクレジットカードを代入-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :payment_method, 0, checked: true %>
+          <%= f.radio_button :payment_method, "クレジットカード", checked: true %>
           <span>&nbsp;クレジットカード</span>
         </div>
 
         <!--ここにチェックをつけると、payment_methodカラムに銀行振込を代入-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :payment_method, 1 %>
+          <%= f.radio_button :payment_method, "銀行振込" %>
           <span>&nbsp;銀行振り込み</span>
         </div>
 
@@ -67,6 +67,7 @@
           <div class="col-4"><%= f.text_field :name, class:"form-control ml-5", placeholder:"田中太郎" %></div>
         </div>
 
+      <%= f.hidden_field :total_payment, value: @total_payment %>
       <%= f.submit "確認画面へ進む", class: "btn btn-primary text-center" %>
 
       <% end %>

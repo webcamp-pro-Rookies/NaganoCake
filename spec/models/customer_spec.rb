@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  describe 'バリデーションのテスト' do
+  describe 'カスタマーバリデーションのテスト' do
     let(:customer_test) { FactoryBot.build(:customer_test) }
     
     it 'バリデーションが有効なこと' do

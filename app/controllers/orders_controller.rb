@@ -79,10 +79,6 @@ class OrdersController < ApplicationController
     @cart_items = current_customer.items # ユーザーのカートに入っている商品の一覧を所得する
     @order = Order.find(params[:order][:order_id])
 
-    price_array = current_customer.items.pluck(:price)
-    num_array = current_customer.cart_items.pluck(:amount)
-    pay_amount = Order.total_amount_calculator(price_array, num_array)
-
     @cart_items.each do |cart_item|
     orderDetail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
     orderDetail.save
@@ -93,7 +89,7 @@ class OrdersController < ApplicationController
 
   def thanks
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    # @cart_items.destroy_all
+    @cart_items.destroy_all
   end
 
   private

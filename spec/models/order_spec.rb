@@ -10,8 +10,8 @@ RSpec.describe Order, type: :model do
       total_payment: 2000,
       status: 3,
       name: '田中',
-      postal_code: 1111111,
-      address: '東京都千代田区'
+      address: '東京都千代田区',
+      postal_code: '1111111'
       )}
       
     it 'バリデーションが有効であること' do

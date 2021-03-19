@@ -8,7 +8,7 @@
         <ul class="nav justify-content-around">
           <% if customer_signed_in? %>
             <li>
-              ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん！
+              ようこそ、<strong><%= current_customer.last_name %><%= current_customer.first_name %></strong>さん！
             </li>
             <li><%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "商品一覧", items_path, class: "btn btn-outline-dark"  %></li>

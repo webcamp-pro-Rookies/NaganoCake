@@ -2,16 +2,16 @@
 <div class="container">
 <div class="row">
   <div class="col-7 text-left">
-    <h2 class="bg-light">ジャンル一覧・追加</h2>
-      <%= form_with model: @genre_new, local:true do |f| %>
+    <h2 class="bg-light mt-5 px-3 d-inline-block">ジャンル一覧・追加</h2>
+      <%= form_with model: @genre_new, class: "my-5",local:true do |f| %>
         <%#= render "layouts/error_messages", resource: @genre %>
-          <i class="fas fa-candy-cane"></i>ジャンル
-          <%= f.text_field :name  %>
+          <i class="fas fa-candy-cane"></i>ジャンル名
+          <%= f.text_field :name, class: "mx-5"  %>
             <%#= f.radio_button :is_valid, true %>
             <%#= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
             <%#= f.radio_button :is_valid, false %>
             <%#= f.label :is_valid, "無効", {value: :false, style: "display: inline-block;"} %>
-          <%= f.submit "追加", class: "btn btn-info" %>
+          <%= f.submit "新規追加", class: "btn btn-success" %>
       <% end %>
 
       <table class="table table-hover table-inverse table-bordered">
@@ -20,7 +20,7 @@
           <tr class="info">
             <th class="bg-light">ジャンル</th>
             <!--<th>状態</th>-->
-            
+
           </tr>
         </thead>
         <tbody>

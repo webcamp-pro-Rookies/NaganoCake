@@ -24,10 +24,10 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
-    @total_payment = params[:total_payment]
   end
 
   def create
+
     price_array = current_customer.items.pluck(:price)
     num_array = current_customer.cart_items.pluck(:amount)
     pay_amount = Order.total_amount_calculator(price_array, num_array)
@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.total_payment = pay_amount
     @order.shipping_cost = 800
+
 
     if params[:order][:addresses] == "home"
       #この書き方はストロングパラメータをまず見る
@@ -54,6 +55,9 @@ class OrdersController < ApplicationController
       @cart_items = current_customer.cart_items
       redirect_to log_orders_path(order: @order)
     else
+      @customer = current_customer
+      @order = Order.new
+      @addresses = Address.where(customer: current_customer)
       render :new
     end
 
@@ -78,8 +82,14 @@ class OrdersController < ApplicationController
   end
 
   def completed
-    @order = Order.new
-    @order.save
+    @cart_items = current_customer.items # ユーザーのカートに入っている商品の一覧を所得する
+    @order = Order.find(params[:order][:order_id])
+
+    @cart_items.each do |cart_item| # デフォルト値適当、まだまだ改善の余地あり。
+    orderDetail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+    orderDetail.save
+    end
+
     redirect_to '/orders/thanks'
   end
 

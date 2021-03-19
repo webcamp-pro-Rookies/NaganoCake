@@ -15,6 +15,8 @@ class Customer < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :telephone_number, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
 
   def update_without_current_password(params, *options)
     if params[:password].blank? || params[:password_confirmation].blank?

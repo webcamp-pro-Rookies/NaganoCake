@@ -4,6 +4,7 @@ FactoryBot.define do
   end
   
   factory :customer_test, class: 'Customer' do
+    id {1}
     email { 'tes@example.com' }
     password { 'password' }
     last_name {'田中'}

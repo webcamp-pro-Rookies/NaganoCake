@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
-    #orderモデルのデータをすべて持ってきている。10項目づつ表示
   end
 
   def current_index
@@ -19,31 +18,6 @@ class OrdersController < ApplicationController
   def log
     @cart_items = current_customer.cart_items
     @order = Order.where(customer_id: current_customer.id).last
-
-		# @order = Order.new(
-		#   customer: current_customer,
-		#   payment_metod: params[:order][:payment_method]
-		#   )
-		# if params[:order][:addresses] == "home"
-		#   @order.postal_code = current_customer.postal_code
-		#   @order.address     = current_customer.address
-		#   @order.name        = current_customer.last_name +
-		#                       current_customer.first_name
-
-  #   elsif params[:order][:addresses] == "addresses"
-  #     ship = Addresses.find(params[:order][:address_id])
-  #     @order.postal_code = ship.postal_code
-		#   @order.address     = ship.address
-		#   @order.name        = ship.name
-
-		# else
-		#   @order.postal_code = params[:order][:postal_code]
-		#   @order.address     = params[:order][:address]
-		#   @order.name        = params[:order][:name]
-		#   @ship = "1"
-		# end
-
-		# @order_new = Order.new
   end
 
   def new
@@ -53,18 +27,6 @@ class OrdersController < ApplicationController
 
     @total_payment = params[:total_payment]
   end
-
-    # t.integer "customer_id" クリア
-    # # t.integer "total_payment"
-    # t.integer "payment_method", default: 0
-    # t.integer "shipping_cost" クリア
-    # t.integer "status", default: 0
-
-    # a = current_customer.items.pluck(:price)
-
-    # b = current_customer.cart_items.pluck(:amount)
-
-    # c = a.map { |x| x * a[1..a.length]}
 
   def create
     price_array = current_customer.items.pluck(:price)
@@ -80,10 +42,17 @@ class OrdersController < ApplicationController
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code
     end
+    if params[:order][:addresses] == "addresses"
+      @order.address = Address.find(params[:order][:address_id]).address
+      @order.name = Address.find(params[:order][:address_id]).name
+      @order.postal_code = Address.find(params[:order][:address_id]).postal_code
+    end
+
+    # binding.pry
+    # test = "test"
 
     if @order.save
       @cart_items = current_customer.cart_items
-      # render :log
       redirect_to log_orders_path(order: @order)
     else
       render :new

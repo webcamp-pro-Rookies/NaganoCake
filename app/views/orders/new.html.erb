@@ -18,7 +18,7 @@
         </div>
         <strong>お届け先</strong>
         <div class="m-2 ml-4">
-          <%= f.radio_button :addresses, "residence", checked: true  %>
+          <%= f.radio_button :addresses, "home", checked: true  %>
           <span>&nbsp;ご自身の住所</span><br>
           <div class="m-2 ml-4">〒<%= current_customer.postal_code %>&emsp;<%= current_customer.address %></div>
           <div class="m-2 ml-4"><%= "#{current_customer.last_name} #{current_customer.first_name}" %></div>

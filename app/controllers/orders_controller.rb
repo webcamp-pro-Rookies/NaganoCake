@@ -37,6 +37,8 @@ class OrdersController < ApplicationController
     @order.shipping_cost = 800
 
     if params[:order][:addresses] == "home"
+      #この書き方はストロングパラメータをまず見る
+      #orderのadressersをパラメータ取得
       @order.address = current_customer.address
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code
@@ -61,8 +63,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    binding.pry
-    test = "test"
     #@price_in_tax = @order.order_details.find(params[:id]).price_in_tax
     #@total_price = @price_in_tax + @order.shipping_cost
     #@orders =  current_customer.orders.where(params[:id])

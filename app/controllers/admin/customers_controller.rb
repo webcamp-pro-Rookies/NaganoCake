@@ -2,15 +2,15 @@ class Admin::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
   end
-  
+
   def index
     @customers = Customer.all.page(params[:page]).per(10)
   end
-  
+
   def quit
     @customer = Customer.find(current_customer.id)
   end
-  
+
   def out
     @customer = Customer.find(current_customer.id)
     @customer.update(is_deleted: true)

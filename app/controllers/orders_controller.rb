@@ -61,8 +61,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    binding.pry
-    test = "test"
     #@price_in_tax = @order.order_details.find(params[:id]).price_in_tax
     #@total_price = @price_in_tax + @order.shipping_cost
     #@orders =  current_customer.orders.where(params[:id])
@@ -86,19 +84,9 @@ class OrdersController < ApplicationController
     pay_amount = Order.total_amount_calculator(price_array, num_array)
 
     @cart_items.each do |cart_item|
-    a = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
-    a.save
+    orderDetail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+    orderDetail.save
     end
-    
-    # binding.pry
-    # test = "test"
-    # t.integer "item_id" ok
-    # t.integer "order_id" ok
-    # t.integer "amount", default: 0 ok
-    # t.integer "making_status", default: 0 ok
-    # t.integer "price" ok
-    # t.datetime "created_at", null: false
-    # t.datetime "updated_at", null: false
 
     redirect_to '/orders/thanks'
   end

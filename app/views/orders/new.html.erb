@@ -12,18 +12,19 @@
 
         <strong>支払い方法</strong>
         
+        
         <!--ここにチェックをつけると、payment_methodカラムにクレジットカードを代入-->
         <div class="m-2 ml-4">
           <%= f.radio_button :payment_method, 0, checked: true %>
           <span>&nbsp;クレジットカード</span>
         </div>
 
-
         <!--ここにチェックをつけると、payment_methodカラムに銀行振込を代入-->
         <div class="m-2 ml-4">
           <%= f.radio_button :payment_method, 1 %>
           <span>&nbsp;銀行振り込み</span>
         </div>
+
 
         <strong>お届け先</strong>
         

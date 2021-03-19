@@ -1,12 +1,14 @@
-	<div class="col bg-light text-right">
+	<div class="col bg-light d-flex justify-content-end">
 		<%= form_tag(genre_search_path , method: :get) do %>
-			<%= select(@search_content, :genre_id, Item.get_genre_list)%>
-	 		<%= submit_tag "絞り込む" %>
-	 		<%= link_to "一覧に戻る", items_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
+		<ul class="nav">
+			<li><%= select(@search_content, :genre_id, Item.get_genre_list,{}, {class:"form-control p-1 mt-1"})%></li>
+	 		<li><%= submit_tag "絞り込む", class:"p-1 m-1 btn btn-info" %></li>
+	 		<li><%= link_to "一覧に戻る", items_path, class: 'to_index_link p-1 mt-1 btn btn-outline-secondary' %></li>
+		</ul>
 		<% end %>
-	</div>	
+	</div>
 	<div class='col-md-8 mx-auto my-5'>
-	
+
 	<%= render 'items/index', items: @items %>
 
 	</div>

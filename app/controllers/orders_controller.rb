@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
-    @total_payment = params[:total_payment]
   end
 
   def create
@@ -35,6 +34,7 @@ class OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.total_payment = pay_amount
     @order.shipping_cost = 800
+
 
     if params[:order][:addresses] == "home"
       @order.address = current_customer.address

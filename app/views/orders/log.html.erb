@@ -60,7 +60,12 @@
       <table class="table table-borderless ml-5">
         <tr>
           <th>支払方法</th>
-          <td>&emsp;<%= @order.payment_method %></td>
+          <% if @order.payment_method == 0 %>
+            <td>&emsp;クレジットカード</td>
+          <% else @order.payment_method == 1 %>
+            <td>&emsp;銀行振込</td>
+          <% end %>
+          <!--<td>&emsp;<"%= @order.payment_method %></td>-->
         </tr>
         <tr>
           <th>お届け先</th>

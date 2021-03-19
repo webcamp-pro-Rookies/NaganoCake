@@ -3,7 +3,7 @@ class Address < ApplicationRecord
   belongs_to :customer
 
   validates :customer_id, presence: true
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true
   validates :postal_code, presence: true, length: { is: 7 }
   validates :address, presence: true
 

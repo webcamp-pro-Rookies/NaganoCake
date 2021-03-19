@@ -5,6 +5,8 @@ class GenresController < ApplicationController
   end
 
   def create
+    binding.pry
+    test = "test"
     @genre = Genre.new(genre_params)
     if @genre.save
        flash[:notice] = "ジャンルを追加しました"
@@ -28,9 +30,9 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
     redirect_to genres_path
-    
+
   end
-  
+
   def destroy
     @genre = Genre.find(params[:id])
     @genre.destroy
@@ -38,7 +40,7 @@ class GenresController < ApplicationController
   end
 
   private
-  
+
   def genre_params
     params.require(:genre).permit(:name)
   end

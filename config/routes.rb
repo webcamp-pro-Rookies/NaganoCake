@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :customers,only: [:index,:show,:edit,:update]
     resources :items,only: [:index,:new,:create,:show,:edit,:update,]
     get 'top'=>'items#top'
-    resources :genres,only: [:index,:create,:edit,:update, :show]
+    resources :genres,only: [:index,:create,:edit,:update, :show, :destroy]
     resources :orders,only: [:index,:show,:update]
     resources :order_details, only: [:update]
   end
@@ -64,9 +64,9 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
 
 
-#----------genres--------------
-  resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
-#--------------------------------
+# #----------genres--------------
+#   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
+# #--------------------------------
 
 end
 

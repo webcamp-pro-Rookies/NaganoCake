@@ -41,15 +41,11 @@ class OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code
-    end
-    if params[:order][:addresses] == "addresses"
+    else params[:order][:addresses] == "addresses"
       @order.address = Address.find(params[:order][:address_id]).address
       @order.name = Address.find(params[:order][:address_id]).name
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
     end
-
-    # binding.pry
-    # test = "test"
 
     if @order.save
       @cart_items = current_customer.cart_items

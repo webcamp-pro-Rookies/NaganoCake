@@ -21,8 +21,6 @@ class ItemsController < ApplicationController
   end
 
 
-
-
   def log
   end
 

@@ -18,3 +18,10 @@ module NaganoCake
     # the framework and any gems in your application.
   end
 end
+
+module FreemarketSample65d # 自動で添付されるfield_with_errorsを無効化
+  class Application < Rails::Application
+    #以下を追加
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+  end
+end

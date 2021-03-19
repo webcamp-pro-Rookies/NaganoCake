@@ -64,9 +64,9 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
 
 
-#----------genres--------------
-  resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
-#--------------------------------
+# #----------genres--------------
+#   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
+# #--------------------------------
 
 end
 

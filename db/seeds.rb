@@ -37,7 +37,7 @@ Genre.create!(name: "ミルクレープ")
   50.times{|num|
   Item.create!(
               genre_id: 1,
-              #image_id: open("./app/assets/images/ショートケーキイラスト.jpg"),
+              #image_id: atattch.open("#{Rails.root}/db/fixtures/img1.jpg"),
               name: "絵のケーキ",
               introduction: "絵に書いたようなイチゴのケーキ",
               price: "400",

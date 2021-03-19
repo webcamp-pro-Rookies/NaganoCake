@@ -1,16 +1,12 @@
-	<div class='col-md-8 mx-auto my-5'>
-
+	<div class="col bg-light text-right">
 		<%= form_tag(genre_search_path , method: :get) do %>
 			<%= select(@search_content, :genre_id, Item.get_genre_list)%>
 	 		<%= submit_tag "絞り込む" %>
 	 		<%= link_to "一覧に戻る", items_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
 		<% end %>
-
-
-		<% if current_admin %>
-			<%= render 'admin/items/admin_index', items: @items %>
-		<% else %>
-			<%= render 'items/index', items: @items %>
-		<% end %>
+	</div>	
+	<div class='col-md-8 mx-auto my-5'>
+	
+	<%= render 'items/index', items: @items %>
 
 	</div>

@@ -1,12 +1,15 @@
-genreedit
-
 <% provide(:title, "ジャンル編集") %>
-<h2 class="head-line title_h2 text-center" >ジャンル編集</h2>
+
+<div class="col-md-4 offset-md-2 my-5">
+  <span class="px-4" style="font-size: 30px; background-color: #d3d3d3">ジャンル編集</span>
+</div>
 
   <%# if @genre.errors.any? %>
     <%#= render "layouts/error_messages", resource: @genre %>
   <%# end %>
-  <%= form_with model: @genre, local:true do |f| %>
+
+  <div class="col-md-10 offset-2"></div>
+  <%= form_with model: @genre, url: edit_admin_genre_path, local:true do |f| %>
   <div>
     ジャンル
       <%= f.text_field :name  %>
@@ -19,5 +22,5 @@ genreedit
   <% end %>
 <br>
   <div class="col-xs-12">
-    <%= link_to "戻る", genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    <%= link_to "戻る", admin_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
   </div>

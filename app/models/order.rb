@@ -14,7 +14,19 @@ class Order < ApplicationRecord
   enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
 
 end
+  # enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
 
+  def self.total_amount_calculator(array1, array2)
+    count = 0
+    sum = 0
+    array1.each do |num|
+      sum += array2[count] * num
+      count += 1
+    end
+    return sum
+  end
+
+end
 
 
 # class Room < ApplicationRecord

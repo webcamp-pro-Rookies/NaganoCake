@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
-
+ before_action :authenticate_customer!,except: [:top,:about,:index,:show]
   def top
-    @items = Item.all.page(params[:page]).per(4)
+    @items = Item.where(is_active: true).page(params[:page]).per(4)
   end
 
   def index
-    @items = Item.all.page(params[:page]).per(8)
+    @items = Item.where(is_active: true).page(params[:page]).per(8)
   end
 
   def search

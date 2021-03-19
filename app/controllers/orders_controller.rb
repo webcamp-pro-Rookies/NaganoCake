@@ -18,48 +18,77 @@ class OrdersController < ApplicationController
 
   def log
     @cart_items = current_customer.cart_items
-  # binding.pry
-		@order = Order.new(
-		  customer: current_customer,
-		  payment_metod: params[:order][:payment_method]
-		  )
-		if params[:order][:addresses] == "home"
-		  @order.postal_code = current_customer.postal_code
-		  @order.address     = current_customer.address
-		  @order.name        = current_customer.last_name +
-		                       current_customer.first_name
+    @order = Order.where(customer_id: current_customer.id).last
 
-    elsif params[:order][:addresses] == "addresses"
-      ship = Addresses.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-		  @order.address     = ship.address
-		  @order.name        = ship.name
+		# @order = Order.new(
+		#   customer: current_customer,
+		#   payment_metod: params[:order][:payment_method]
+		#   )
+		# if params[:order][:addresses] == "home"
+		#   @order.postal_code = current_customer.postal_code
+		#   @order.address     = current_customer.address
+		#   @order.name        = current_customer.last_name +
+		#                       current_customer.first_name
 
-		else
-		  @order.postal_code = params[:order][:postal_code]
-		  @order.address     = params[:order][:address]
-		  @order.name        = params[:order][:name]
-		  @ship = "1"
-		end
+  #   elsif params[:order][:addresses] == "addresses"
+  #     ship = Addresses.find(params[:order][:address_id])
+  #     @order.postal_code = ship.postal_code
+		#   @order.address     = ship.address
+		#   @order.name        = ship.name
 
-		@order_new = Order.new
+		# else
+		#   @order.postal_code = params[:order][:postal_code]
+		#   @order.address     = params[:order][:address]
+		#   @order.name        = params[:order][:name]
+		#   @ship = "1"
+		# end
+
+		# @order_new = Order.new
   end
 
   def new
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
+
+    @total_payment = params[:total_payment]
   end
 
+    # t.integer "customer_id" クリア
+    # # t.integer "total_payment"
+    # t.integer "payment_method", default: 0
+    # t.integer "shipping_cost" クリア
+    # t.integer "status", default: 0
+
+    # a = current_customer.items.pluck(:price)
+
+    # b = current_customer.cart_items.pluck(:amount)
+
+    # c = a.map { |x| x * a[1..a.length]}
+
   def create
-    @customer = current_customer
-    @address = Address.find_by(customer: current_customer)
-    @order = current_customer.orders.new(order_params)
+    price_array = current_customer.items.pluck(:price)
+    num_array = current_customer.cart_items.pluck(:amount)
+    pay_amount = Order.total_amount_calculator(price_array, num_array)
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.total_payment = pay_amount
+    @order.shipping_cost = 800
+
+    if params[:order][:addresses] == "home"
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name
+      @order.postal_code = current_customer.postal_code
+    end
+
     if @order.save
-      redirect_to log_orders_path
+      @cart_items = current_customer.cart_items
+      # render :log
+      redirect_to log_orders_path(order: @order)
     else
       render :new
     end
+
   end
 
 
@@ -93,14 +122,10 @@ class OrdersController < ApplicationController
 
   def order_params
 	  params.require(:order).permit(
-	    :customer_id,
 	    :address,
-	    :total_payment,
 	    :payment_method,
 	    :name,
 	    :postal_code,
-	    :shipping_cost,
-	    :status
 	    )
   end
 

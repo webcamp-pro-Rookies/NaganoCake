@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
-
     @total_payment = params[:total_payment]
   end
 
@@ -41,7 +40,9 @@ class OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code
-    else params[:order][:addresses] == "addresses"
+    end
+    
+    if params[:order][:addresses] == "addresses"
       @order.address = Address.find(params[:order][:address_id]).address
       @order.name = Address.find(params[:order][:address_id]).name
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code

@@ -1,12 +1,13 @@
-<div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <h2 class="bg-light mt-5 col-4">ジャンル一覧・追加</h2>
-    </div>
+<div class="container mt-4 text-left">
+  <div calss="row">
+    <div class="col">
+      <span class="px-3" style="font-size: 24px; background-color: #d3d3d3;">
+			  ジャンル一覧・追加
+			</span>
   </div>
-  <%= form_with model: @genre_new, url: admin_genres_path, class: "my-5",local:true do |f| %>
+  <%= form_with model: @genre_new, url: admin_genres_path, class: "my-2",local:true do |f| %>
   <div class="row">
-    <div class="col-2 offset-2">
+    <div class="col-2">
       <h5><i class="fas fa-candy-cane"></i>ジャンル名</h5>
     </div>
     <div class="col-3">
@@ -18,7 +19,7 @@
   </div>
   <% end %>
   <div class="row">
-    <div class="col-9 mx-auto">
+    <div class="col-9">
       <table class="table table-hover table-inverse table-bordered">
             <div><%= paginate(@genres) %></div>
         <thead class="bg-light">

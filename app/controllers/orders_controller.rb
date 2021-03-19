@@ -18,7 +18,30 @@ class OrdersController < ApplicationController
 
   def log
     @cart_items = current_customer.cart_items
-		@order = current_customer.orders.find_by(params[:id])
+  # binding.pry
+		@order = Order.new(
+		  customer: current_customer,
+		  payment_metod: params[:order][:payment_method]
+		  )
+		if params[:order][:addresses] == "home"
+		  @order.postal_code = current_customer.postal_code
+		  @order.address     = current_customer.address
+		  @order.name        = current_customer.last_name +
+		                       current_customer.first_name
+
+    elsif params[:order][:addresses] == "addresses"
+      ship = Addresses.find(params[:order][:address_id])
+      @order.postal_code = ship.postal_code
+		  @order.address     = ship.address
+		  @order.name        = ship.name
+
+		else
+		  @order.postal_code = params[:order][:postal_code]
+		  @order.address     = params[:order][:address]
+		  @order.name        = params[:order][:name]
+		  @ship = "1"
+		end
+
 		@order_new = Order.new
   end
 
@@ -29,7 +52,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @customer = current_customer
+    @address = Address.find_by(customer: current_customer)
+    @order = current_customer.orders.new(order_params)
     if @order.save
       redirect_to log_orders_path
     else

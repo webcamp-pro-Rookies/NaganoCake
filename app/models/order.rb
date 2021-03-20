@@ -18,7 +18,7 @@ class Order < ApplicationRecord
     cart_items.each do |cart_item|
       sum += cart_item.amount * cart_item.item.price
     end
-    return sum
+    return sum * 1.1
   end
 
 end

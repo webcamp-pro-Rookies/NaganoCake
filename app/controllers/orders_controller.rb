@@ -31,7 +31,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     pay_amount = Order.total_amount_calculator(current_customer.cart_items)
-    @order.update(customer_id: current_customer.id, total_payment: pay_amount, shipping_cost: 800)
+    shipping_cost = 800
+
+    @order.update(customer_id: current_customer.id, total_payment: pay_amount + shipping_cost, shipping_cost: shipping_cost)
 
     if params[:order][:address_selection] == "my_home"
       @order.update(address: current_customer.address, name: current_customer.last_name, postal_code: current_customer.postal_code)

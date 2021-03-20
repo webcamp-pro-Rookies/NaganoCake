@@ -47,9 +47,6 @@ class OrdersController < ApplicationController
       @order.postal_code = address.postal_code
     end
 
-    # binding.pry
-    # test = "test"
-
     if @order.valid?
       @cart_items = current_customer.cart_items
       render 'log'
@@ -77,17 +74,13 @@ class OrdersController < ApplicationController
   end
 
   def completed
-
-    @cart_items = current_customer.items # ユーザーのカートに入っている商品の一覧を所得する
-    @order = Order.new(order_params)
-    @order.save
-
-    @cart_items.each do |cart_item| # デフォルト値適当、まだまだ改善の余地あり。
+    @order = Order.create(order_params)
+    current_customer.items.each do |cart_item|
     OrderDetail.create(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
-    redirect_to '/orders/thanks'
+    :re
   end
 
   def thanks

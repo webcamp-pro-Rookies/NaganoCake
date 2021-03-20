@@ -1,10 +1,11 @@
 <div class="container">
-  
+
   <div calss="row">
     <div class="col">
       <h4 class="m-3">注文情報確認</h4>
     </div>
   </div>
+
   <% if current_customer.cart_items.present? %>
   <%= form_with model: @order, url: "/orders/completed", method: :post, local: true do |f| %>
   <div class="row">
@@ -61,12 +62,7 @@
       <table class="table table-borderless ml-5">
         <tr>
           <th>支払方法</th>
-          <% if @order.payment_method == 0 %>
-            <td>&emsp;クレジットカード</td>
-          <% else @order.payment_method == 1 %>
-            <td>&emsp;銀行振込</td>
-          <% end %>
-          <!--<td>&emsp;<"%= @order.payment_method %></td>-->
+           <td>&emsp;<%= @order.payment_method %></td>
         </tr>
         <tr>
           <th>お届け先</th>

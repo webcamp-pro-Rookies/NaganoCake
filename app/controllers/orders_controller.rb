@@ -28,36 +28,25 @@ class OrdersController < ApplicationController
 
   def create
 
-    price_array = current_customer.items.pluck(:price)
-    num_array = current_customer.cart_items.pluck(:amount)
-    pay_amount = Order.total_amount_calculator(price_array, num_array)
     @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.total_payment = pay_amount
-    @order.shipping_cost = 800
 
+    pay_amount = Order.total_amount_calculator(current_customer.cart_items)
+    @order.update(customer_id: current_customer.id, total_payment: pay_amount, shipping_cost: 800)
 
-    if params[:order][:addresses] == "home"
-      @order.address = current_customer.address
-      @order.name = current_customer.last_name
-      @order.postal_code = current_customer.postal_code
+    if params[:order][:address_selection] == "my_home"
+      @order.update(address: current_customer.address, name: current_customer.last_name, postal_code: current_customer.postal_code)
     end
 
-    if params[:order][:addresses] == "addresses"
-      @order.address = Address.find(params[:order][:address_id]).address
-      @order.name = Address.find(params[:order][:address_id]).name
-      @order.postal_code = Address.find(params[:order][:address_id]).postal_code
+    if params[:order][:address_selection] == "addresses"
+      address = Address.find(params[:order][:address_id])
+      @order.update(address: address.address, name: address.name, postal_code: address.postal_code)
     end
-
-    binding.pry
-    test = "test"
 
     if @order.save
       @cart_items = current_customer.cart_items
       redirect_to log_orders_path(order: @order)
     else
       @customer = current_customer
-      @order = Order.new
       @addresses = Address.where(customer: current_customer)
       render :new
     end
@@ -101,7 +90,7 @@ class OrdersController < ApplicationController
   def order_params
 	  params.require(:order).permit(
 	    :address,
-	    :payment_method.to_i,
+	    :payment_method,
 	    :name,
 	    :postal_code,
 	    )

@@ -38,6 +38,8 @@ class OrdersController < ApplicationController
 
 
     if params[:order][:addresses] == "home"
+      #この書き方はストロングパラメータをまず見る
+      #orderのadressersをパラメータ取得
       @order.address = current_customer.address
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code

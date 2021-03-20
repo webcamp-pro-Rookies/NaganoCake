@@ -1,8 +1,8 @@
 FactoryBot.define do
-  
+
   factory :customer do
   end
-  
+
   factory :customer_test, class: 'Customer' do
     id {1}
     email { 'tes@example.com' }
@@ -15,5 +15,20 @@ FactoryBot.define do
     address {'東京都　新宿　2丁目'}
     telephone_number {'1234567'}
     is_deleted {false}
+  end
+
+  factory :item, class:'Item' do
+    id {1}
+    genre_id {1}
+    name {'ケーキ'}
+    introduction {'ケーキ'}
+    price {440}
+    is_active {true}
+    image_id {'image'}
+  end
+
+  factory :genre, class:'Genre' do
+    id {1}
+    name {'ケーキ'}
   end
 end

@@ -33,7 +33,7 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
 
 
-  resources :customers, only: [:show, :destroy, :quit]  do
+  resources :customers, only: [:destroy, :quit]  do
     member do
       get :quit
       patch :out

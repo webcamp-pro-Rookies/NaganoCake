@@ -7,7 +7,6 @@
   </div>
 
   <% if current_customer.cart_items.present? %>
-  <%= form_with model: @order, url: "/orders/completed", method: :post, local: true do |f| %>
   <div class="row">
     <div class="col-8">
       <table class="table table-hover table-inverse table-bordered">
@@ -74,9 +73,7 @@
   <div class="row">
     <!-- 表示とformを分けて記入 -->
     <div class ="col-xs-11">
-      <%= f.hidden_field :order_id, value: @order.id %>
-      <%= f.submit "購入を確定する", class:"btn btn-warning center-block col-xs-5" %>
-      <% end %>
+      <%= link_to "リンク１へ", completed_orders_path(order: @order.attributes), method: :post %>
     </div>
   <% else %>
     <!-- if カートアイテムがない時 -->

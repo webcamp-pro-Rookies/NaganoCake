@@ -6,7 +6,7 @@
         <th class="bg-light">購入者</th>
         <td><%= @order.name %></td>
       </tr>
-        <th class="bg-light">注文者</th>
+        <th class="bg-light">購入日</th>
   	    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
       <tr>
       　<th class="bg-light">配送先</th>
@@ -18,7 +18,11 @@
       </tr>
       <tr>
       　<th class="bg-light">支払方法</th>
-        <td><%= @order.payment_method %></td>
+        <% if @order.payment_method == 0 %>
+        <td>クレジットカード</td>
+        <% else %>
+        <td>銀行振込</td>
+        <% end %>
       </tr>
       <tr>
      		<th class="col-xs-4 bg-light">注文ステータス</th>
@@ -30,7 +34,7 @@
       	</td>
 	    </tr>
 		</table>
-		
+
   	<div class="row">
   		<div class="col-md-8">
 				<table class="table table-hover table-bordered table-inverse">
@@ -69,7 +73,7 @@
 					</tbody>
 				</table>
   		</div>
-	
+
 		  <div class="col-md-3 mt-3">
 				<table class="table table-hover table-bordered table-condensed">
 					<tr>

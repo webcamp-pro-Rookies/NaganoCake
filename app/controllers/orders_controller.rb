@@ -24,10 +24,10 @@ class OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @addresses = Address.where(customer: current_customer)
-    @total_payment = params[:total_payment]
   end
 
   def create
+
     price_array = current_customer.items.pluck(:price)
     num_array = current_customer.cart_items.pluck(:amount)
     pay_amount = Order.total_amount_calculator(price_array, num_array)
@@ -36,7 +36,10 @@ class OrdersController < ApplicationController
     @order.total_payment = pay_amount
     @order.shipping_cost = 800
 
+
     if params[:order][:addresses] == "home"
+      #この書き方はストロングパラメータをまず見る
+      #orderのadressersをパラメータ取得
       @order.address = current_customer.address
       @order.name = current_customer.last_name
       @order.postal_code = current_customer.postal_code
@@ -52,6 +55,9 @@ class OrdersController < ApplicationController
       @cart_items = current_customer.cart_items
       redirect_to log_orders_path(order: @order)
     else
+      @customer = current_customer
+      @order = Order.new
+      @addresses = Address.where(customer: current_customer)
       render :new
     end
 
@@ -61,8 +67,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    binding.pry
-    test = "test"
     #@price_in_tax = @order.order_details.find(params[:id]).price_in_tax
     #@total_price = @price_in_tax + @order.shipping_cost
     #@orders =  current_customer.orders.where(params[:id])
@@ -78,8 +82,14 @@ class OrdersController < ApplicationController
   end
 
   def completed
-    @order = Order.new
-    @order.save
+    @cart_items = current_customer.items # ユーザーのカートに入っている商品の一覧を所得する
+    @order = Order.find(params[:order][:order_id])
+
+    @cart_items.each do |cart_item| # デフォルト値適当、まだまだ改善の余地あり。
+    orderDetail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+    orderDetail.save
+    end
+
     redirect_to '/orders/thanks'
   end
 

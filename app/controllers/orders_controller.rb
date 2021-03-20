@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
-    :re
+    render :thanks
   end
 
   def thanks

@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @cart_items.each do |cart_item| %>
+          <% current_customer.cart_items.each do |cart_item| %>
             <tr>
               <td class="text-left">
                 <%= attachment_image_tag( cart_item.item, :image, size: "60x50", fallback: "no_image.jpg") %>
@@ -47,11 +47,11 @@
         </tr>
         <tr>
           <th class="bg-light">商品合計</th>
-          <td class="text-right">¥<%= total_payment(@cart_items).to_s(:delimited) %></td>
+          <td class="text-right">¥<%= total_payment(current_customer.cart_items).to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="bg-light">請求金額</th>
-          <td class="text-right">¥<%= (@order.shipping_cost. + total_payment(@cart_items)).to_s(:delimited) %></td>
+          <td class="text-right">¥<%= (@order.shipping_cost. + total_payment(current_customer.cart_items)).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>

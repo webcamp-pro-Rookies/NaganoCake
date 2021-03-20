@@ -57,6 +57,7 @@ RSpec.describe "管理者ログイン", type: :system do
   
   describe 'ログイン後' do
     before do
+      @item = Item.create(id:1, name: 'ショートケーキ', genre_id: 1, introduction: '美味しいです', price: 500, is_active: true)
       visit new_admin_session_path
       fill_in 'admin_email', with: admin.email
       fill_in 'admin_password', with: admin.password
@@ -86,13 +87,27 @@ RSpec.describe "管理者ログイン", type: :system do
     context '商品のテスト' do
       it '新規登録画面へ遷移する' do
         visit admin_items_path
-        find('.item_new').click
+        find('.new_item').click
         expect(current_path).to eq new_admin_item_path
       end
       
-      it '商品登録' do
-      
+      it '商品登録後、商品詳細へ遷移' do
+        Genre.create(id:1, name: 'ケーキ')
+        visit new_admin_item_path
+        fill_in '商品名', with: 'ショートケーキ'
+        fill_in '商品説明', with: '美味しいよ'
+        find('#item_genre_id').click
+        select 'ケーキ', from: 'ジャンル'
+        fill_in '税抜価格', with: '500'
+        choose 'item_is_active_true'
+        click_button '登録する'
+        expect(current_path).to eq admin_item_path(@item)
       end
+      
+      # it '商品一覧へ遷移する' do
+      #   visit admin_item_path(@item)
+      #   expect(current_path).to eq admin_item_path(@item)
+      # end
     end
   end
 end

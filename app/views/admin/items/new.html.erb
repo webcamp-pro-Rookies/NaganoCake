@@ -8,7 +8,7 @@
 
       <%= render "devise/shared/error_messages", resource: @item %>
 
-      <%= form_with model: @item, url: admin_items_path, method: :POST, local: true do |f| %>
+      <%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
 
         <div class="row mb-3">
           <%= f.label :image, "商品画像", class: "col-md-4" %>

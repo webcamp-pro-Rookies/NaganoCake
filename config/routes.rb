@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :items,only: [:index,:new,:create,:show,:edit,:update,]
     get 'top'=>'items#top'
     resources :genres,only: [:index,:create,:edit,:update, :show, :destroy]
-    resources :orders,only: [:index,:show,:update]
+    resources :orders,only: [:index,:show,:update] do
+      member do
+        get :current_index
+      end
+    end
     resources :order_details, only: [:update]
   end
 #--------------------------------
@@ -61,6 +65,12 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     end
   end
 #--------------------------------
+
+
+
+# #----------genres--------------
+#   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
+# #--------------------------------
 
 end
 

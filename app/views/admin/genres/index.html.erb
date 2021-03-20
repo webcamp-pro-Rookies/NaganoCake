@@ -1,26 +1,32 @@
-<% provide(:title, "ジャンル一覧・追加") %>
-<div class="container">
-<div class="row">
-  <div class="col-7 text-left">
-    <h2 class="bg-light mt-5 px-3 d-inline-block">ジャンル一覧・追加</h2>
-      <%= form_with model: @genre_new, url: admin_genres_path, class: "my-5",local:true do |f| %>
-        <%#= render "layouts/error_messages", resource: @genre %>
-          <i class="fas fa-candy-cane"></i>ジャンル名
-          <%= f.text_field :name, class: "mx-5"  %>
-            <%#= f.radio_button :is_valid, true %>
-            <%#= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
-            <%#= f.radio_button :is_valid, false %>
-            <%#= f.label :is_valid, "無効", {value: :false, style: "display: inline-block;"} %>
-          <%= f.submit "新規追加", class: "btn btn-success" %>
-      <% end %>
-
+<div class="container mt-4 text-left">
+  <div calss="row">
+    <div class="col">
+      <span class="px-3" style="font-size: 24px; background-color: #d3d3d3;">
+			  ジャンル一覧・追加
+			</span>
+  </div>
+  <%= form_with model: @genre_new, url: admin_genres_path, class: "my-2",local:true do |f| %>
+  <div class="row">
+    <div class="col-2">
+      <h5><i class="fas fa-candy-cane"></i>ジャンル名</h5>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :name, placeholder:"ジャンル名", class: "form-control"  %>
+    </div>
+    <div class="col">
+      <%= f.submit "新規追加", class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="col-9">
       <table class="table table-hover table-inverse table-bordered">
             <div><%= paginate(@genres) %></div>
-        <thead >
+        <thead class="bg-light">
           <tr class="info">
-            <th class="bg-light">ジャンル</th>
+            <th>ジャンル</th>
             <!--<th>状態</th>-->
-
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody>

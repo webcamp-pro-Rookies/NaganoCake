@@ -2,13 +2,13 @@
   <nav class="navbar navbar-nav bg-light">
     <div class="container">
       <div class="col-3">
-        <h3><%= link_to "NaganoCAKE", root_path, class: "text-body text-decoration-none" %></h3>
+        <h3><%= link_to "NaganoCAKE", root_path, class: "text-body font-italic border-bottom" %></h3>
       </div>
       <div class="col-9">
         <ul class="nav justify-content-around">
           <% if customer_signed_in? %>
             <li>
-              ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん！
+              ようこそ、<strong><%= current_customer.last_name %><%= current_customer.first_name %></strong>さん！
             </li>
             <li><%= link_to "マイページ", customer_path(current_customer), class: "btn btn-outline-dark"  %></li>
             <li><%= link_to "商品一覧", items_path, class: "btn btn-outline-dark"  %></li>

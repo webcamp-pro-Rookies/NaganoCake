@@ -49,6 +49,9 @@ class OrdersController < ApplicationController
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
     end
 
+    binding.pry
+    test = "test"
+
     if @order.save
       @cart_items = current_customer.cart_items
       redirect_to log_orders_path(order: @order)
@@ -65,9 +68,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    #@price_in_tax = @order.order_details.find(params[:id]).price_in_tax
-    #@total_price = @price_in_tax + @order.shipping_cost
-    #@orders =  current_customer.orders.where(params[:id])
   end
 
   def update
@@ -84,8 +84,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:order][:order_id])
 
     @cart_items.each do |cart_item| # デフォルト値適当、まだまだ改善の余地あり。
-    orderDetail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
-    orderDetail.save
+    order_detail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+    order_detail.save
     end
 
     redirect_to '/orders/thanks'
@@ -101,7 +101,7 @@ class OrdersController < ApplicationController
   def order_params
 	  params.require(:order).permit(
 	    :address,
-	    :payment_method,
+	    :payment_method.to_i,
 	    :name,
 	    :postal_code,
 	    )

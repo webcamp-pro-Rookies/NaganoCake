@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-    def index
+  def index
     @genres = Genre.all.page(params[:page]).per(10)
     @genre_new = Genre.new
   end
@@ -10,8 +10,8 @@ class Admin::GenresController < ApplicationController
        flash[:notice] = "ジャンルを追加しました"
        redirect_to admin_genres_path
     else
-      @genres = Genre.all.page(params[:page]).per(10)
-      render :index and return
+      flash[:alert] = "ジャンル名を入力してください"
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -33,7 +33,7 @@ class Admin::GenresController < ApplicationController
   def destroy
     @genre = Genre.find(params[:id])
     @genre.destroy
-    redirect_to genres_path
+    redirect_to admin_genres_path
   end
 
   private

@@ -18,8 +18,8 @@
 				<% @items.each do |item| %>
 				  <div class="col-3">
 				  	<%= link_to item_path(item) do %>
-							<div><%= attachment_image_tag(item, :image, size: "180x130", fallback: "https://picsum.photos/130/180/?random") %></div>
-            <% end %>  
+							<div><%= attachment_image_tag(item, :image, size: "180x130", id:"no_image", fallback: "no-image-icon.jpg", class:"item_image") %></div>
+            <% end %>
               <div><%= item.name %></div>
 							<div><%= item.introduction %></div>
     			</div>

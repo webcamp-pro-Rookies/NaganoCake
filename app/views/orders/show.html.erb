@@ -21,13 +21,7 @@
         </tr>
         <tr>
         　<th class="bg-light">支払方法</th>
-        　
-          <% if @order.payment_method == 0 %>
-            <td>クレジットカード</td>
-          <% else @order.payment_method == 1 %>
-            <td>銀行振込</td>
-          <% end %>
-
+          <td class="text-left"><%= @order.payment_method %></td>
         </tr>
         <tr>
           <th class="bg-light">ステータス</th>

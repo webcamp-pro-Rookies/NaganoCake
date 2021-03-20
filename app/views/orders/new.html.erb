@@ -11,27 +11,27 @@
       <%= form_with model: @order, local: true  do |f| %>
 
         <strong>支払い方法</strong>
-        
-        
+
+
         <!--ここにチェックをつけると、payment_methodカラムにクレジットカードを代入-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :payment_method, 0, checked: true %>
+          <%= f.radio_button :payment_method, :クレジットカード, checked: true %>
           <span>&nbsp;クレジットカード</span>
         </div>
 
         <!--ここにチェックをつけると、payment_methodカラムに銀行振込を代入-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :payment_method, 1 %>
+          <%= f.radio_button :payment_method, :銀行振込 %>
           <span>&nbsp;銀行振り込み</span>
         </div>
 
 
         <strong>お届け先</strong>
-        
+
 
         <!--ここのボタンにチェックを付けると、addressesカラムにhomeを代入する-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :addresses, "home", checked: true  %>
+          <%= f.radio_button :address_selection, "my_home", checked: true  %>
           <span>&nbsp;ご自身の住所</span><br>
           <div class="m-2 ml-4">〒<%= current_customer.postal_code %>&emsp;<%= current_customer.address %></div>
           <div class="m-2 ml-4"><%= "#{current_customer.last_name} #{current_customer.first_name}" %></div>
@@ -41,7 +41,7 @@
         <!--ここのボタンにチェックを付けると、addressesカラムにaddressesを代入する-->
         <% if @addresses != [] %>
           <div class="m-2 ml-4">
-            <%= f.radio_button :addresses, "addresses" %>
+            <%= f.radio_button :address_selection, "addresses" %>
             <span>&nbsp;登録済住所から選択</span>
             <!-- order_addressはshipping_addressのモデルでpostal_code+address+name -->
           </div>
@@ -53,7 +53,7 @@
 
         <!--ここのボタンにチェックを付けると、addressesカラムにnew_addressを代入する-->
         <div class="m-2 ml-4">
-          <%= f.radio_button :addresses, "new_address" %>
+          <%= f.radio_button :address_selection, "new_address" %>
           <span>&nbsp;新しいお届け先</span>
         </div>
 

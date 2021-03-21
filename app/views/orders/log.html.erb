@@ -73,7 +73,7 @@
   <div class="row">
     <!-- 表示とformを分けて記入 -->
     <div class ="col-xs-11">
-      <%= link_to "リンク１へ", completed_orders_path(order: @order.attributes), method: :post %>
+      <%= link_to "注文を確定する", completed_orders_path(order: @order.attributes), class: "btn btn-success text-center", method: :post %>
     </div>
   <% else %>
     <!-- if カートアイテムがない時 -->

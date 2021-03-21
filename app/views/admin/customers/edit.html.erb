@@ -32,11 +32,11 @@
       <%= f.label "郵便番号" %><br />
       <%= f.text_field :postal_code, autocomplete: 'postcode', class: 'form-control' %>
     </div>
-    
+
     <div class="form-group">
       <%= f.label "住所" %><br />
       <%= f.text_field :address, autocomplete: 'address', class: 'form-control' %>
-    </div>  
+    </div>
     <div class="form-group">
       <%= f.label "メールアドレス" %><br />
       <%= f.email_field :email, class: "form-control" %>
@@ -56,7 +56,7 @@
 
     <div class="form-group">
       <%= f.submit "変更内容を保存", class: "btn btn-block btn-success" %>
-      
+
     </div>
   <% end  %>
 

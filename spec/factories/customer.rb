@@ -17,4 +17,22 @@ FactoryBot.define do
     is_deleted {false}
   end
 
+
+  factory :genre, class:'Genre' do
+    id {1}
+    name {'ケーキ'}
+  end
+
+  factory :item, class:'Item' do
+    id {1}
+    genre_id {1}
+    name {'絵のケーキ'}
+    introduction {'ケーキ'}
+    price {400}
+    is_active {true}
+    image_id {'image.jpg'}
+  end
+
+  
+
 end

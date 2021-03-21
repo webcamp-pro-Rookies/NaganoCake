@@ -37,7 +37,11 @@ class OrdersController < ApplicationController
     shipping_cost = 800
 
     @order = Order.new(order_params)
-    @order.update(customer_id: current_customer.id, total_payment: pay_amount + shipping_cost, shipping_cost: shipping_cost)
+    
+    @order.customer_id = current_customer.id
+    @order.total_payment = pay_amount + shipping_cost
+    @order.shipping_cost = shipping_cost
+    
 
     if params[:order][:address_selection] == "my_home"
       @order.address = current_customer.address
@@ -77,7 +81,6 @@ class OrdersController < ApplicationController
 
     CartItem.where(customer_id: current_customer.id).destroy_all
     session[:order].clear
-    # render :thanks
     redirect_to thanks_orders_path(message: "thank_you_for_purchasing_it")
   end
 

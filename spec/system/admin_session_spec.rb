@@ -57,11 +57,12 @@ RSpec.describe "管理者ログイン", type: :system do
   
   describe 'ログイン後' do
     before do
-      @item = Item.create(id:1, name: 'ショートケーキ', genre_id: 1, introduction: '美味しいです', price: 500, is_active: true)
       visit new_admin_session_path
       fill_in 'admin_email', with: admin.email
       fill_in 'admin_password', with: admin.password
       click_button '管理者Login'
+      Genre.create(id:1, name: 'ケーキ')
+      @item = Item.create(id: 1,name: 'ショートケーキ', genre_id: 1, introduction: '美味しいです', price: 500, is_active: true)
     end
     
     context 'ジャンルのテスト' do
@@ -77,7 +78,7 @@ RSpec.describe "管理者ログイン", type: :system do
         expect(page).to have_content('ケーキ')
       end
       
-      it '商品一覧へ遷移' do
+      it 'ジャンル一覧から商品一覧へ遷移' do
         visit admin_genres_path
         click_link '商品一覧'
         expect(current_path).to eq admin_items_path
@@ -92,22 +93,47 @@ RSpec.describe "管理者ログイン", type: :system do
       end
       
       it '商品登録後、商品詳細へ遷移' do
-        Genre.create(id:1, name: 'ケーキ')
         visit new_admin_item_path
-        fill_in '商品名', with: 'ショートケーキ'
-        fill_in '商品説明', with: '美味しいよ'
+        fill_in '商品名', with: 'モンブラン'
+        fill_in '商品説明', with: '美味です'
         find('#item_genre_id').click
         select 'ケーキ', from: 'ジャンル'
-        fill_in '税抜価格', with: '500'
+        fill_in '税抜価格', with: '1000'
         choose 'item_is_active_true'
         click_button '登録する'
-        expect(current_path).to eq admin_item_path(@item)
+        expect(current_path).to eq admin_item_path(id: 2)
       end
       
-      # it '商品一覧へ遷移する' do
-      #   visit admin_item_path(@item)
-      #   expect(current_path).to eq admin_item_path(@item)
-      # end
+      it '商品詳細から商品一覧へ遷移する' do
+        visit admin_item_path(@item)
+        click_link '商品一覧'
+        expect(current_path).to eq admin_items_path
+      end
+      
+      it '登録した商品が表示されていること' do
+        visit new_admin_item_path
+        fill_in '商品名', with: 'モンブラン'
+        fill_in '商品説明', with: '美味です'
+        find('#item_genre_id').click
+        select 'ケーキ', from: 'ジャンル'
+        fill_in '税抜価格', with: '1000'
+        choose 'item_is_active_true'
+        click_button '登録する'
+        visit admin_items_path
+        expect(page).to have_content('モンブラン')
+      end
+    end
+    
+    context 'ロウアウトのテスト' do
+      it 'ログアウトできること' do
+        click_link '管理者ログアウト'
+        expect(page).to have_content('ログアウトしました')
+      end
+      
+      it 'ログアウト後管理者ログインに遷移すること' do
+        click_link '管理者ログアウト'
+        expect(current_path).to eq new_admin_session_path
+      end
     end
   end
 end

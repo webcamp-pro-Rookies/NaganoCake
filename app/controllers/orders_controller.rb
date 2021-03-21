@@ -17,7 +17,11 @@ class OrdersController < ApplicationController
 
   def log
     @cart_items = current_customer.cart_items
-    @order = Order.new(session[:order])
+    unless session[:order] == {}
+      @order = Order.new(session[:order])
+    else
+      redirect_to new_order_path
+    end
   end
 
   def new
@@ -28,6 +32,7 @@ class OrdersController < ApplicationController
 
   def create
 
+    session[:order].clear
     @order = Order.new(order_params)
 
     pay_amount = Order.total_amount_calculator(current_customer.cart_items)
@@ -66,19 +71,20 @@ class OrdersController < ApplicationController
   end
 
   def completed
-    @order = Order.create(order_params)
+    order = Order.create(order_params)
     current_customer.items.each do |cart_item|
-    OrderDetail.create(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+    OrderDetail.create(item_id: cart_item.id, order_id: order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
     session[:order].clear
-    redirect_to thanks_orders_path, {thanks: "true"}
+    redirect_to thanks_orders_path(message: "thank_you_for_purchasing_it")
   end
 
   def thanks
-
-    # redirect_to
+    unless params[:message] == "thank_you_for_purchasing_it"
+    redirect_to customers_path
+    end
   end
 
   private

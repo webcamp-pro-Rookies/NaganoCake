@@ -75,16 +75,18 @@ RSpec.describe "ECサイト", type: :system do
 
 
 
-    it '該当商品の詳細ページへの遷移' do
-      visit admin_genres_path
-      find_by_id('genre_name').click
-      fill_in 'genre_name', with: 'ケーキ'
-      click_button '新規追加'
-      visit new_admin_item_path
-      fill_in ':image', with: 'C:\fakepath\no_image.jpg'
-      find_by_id('item_name').click
-      visit root_path
-      expect(page).to have_link '', href: item_path(item)
-    end
+    # it '該当商品の詳細ページへの遷移' do
+    #   visit admin_genres_path
+    #   find_by_id('genre_name').click
+    #   fill_in 'genre_name', with: 'ケーキ'
+    #   click_button '新規追加'
+    #   visit new_admin_item_path
+    #   fill_in ':image', with: 'C:\fakepath\no_image.jpg'
+    #   find_by_id('item_name').click
+    #   visit root_path
+    #   expect(page).to have_link '', href: item_path(item)
+    # end
+    
+    
   end
 end

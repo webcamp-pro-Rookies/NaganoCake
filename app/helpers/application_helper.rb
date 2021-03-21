@@ -30,4 +30,5 @@ module ApplicationHelper
     total_payment(current_cart) + order.shipping_cost.to_i
   end
 
+
 end

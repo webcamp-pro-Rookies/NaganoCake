@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
     if current_admin
       admin_orders_path
     else
-      customer_path(current_customer.id)
+      customers_path
     end
   end
 end

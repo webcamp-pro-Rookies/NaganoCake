@@ -57,7 +57,7 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 #--------------------------------
 
 #----------Orders-----------------
-  resources :orders, only: [:new, :index, :show, :create, :update] do
+  resources :orders, only: [:new, :index, :show, :create] do
     collection do
       get 'log'
       post 'completed'

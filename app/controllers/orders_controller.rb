@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @cart_items = current_customer.cart_items
-      render 'log'
+      render :log
     else
       @customer = current_customer
       @addresses = Address.where(customer: current_customer)
@@ -62,15 +62,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-  end
-
-  def update
-    @order = current_customer.orders
-    if @order.update()
-      redirect_to log_orders_path
-    else
-      render :new
-    end
   end
 
   def completed

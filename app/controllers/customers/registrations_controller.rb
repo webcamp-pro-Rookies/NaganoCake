@@ -61,9 +61,6 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_update_path_for(resource)
-    puts "aaa"
-
-    # customer_path(resource) # 2021/03/21日に↓の記述に書き直しました。
     '/customers'
   end
 

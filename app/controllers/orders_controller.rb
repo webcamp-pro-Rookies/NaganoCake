@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @cart_items = current_customer.cart_items
-      render :log
+      render log_orders_path
     else
       @customer = current_customer
       @addresses = Address.where(customer: current_customer)

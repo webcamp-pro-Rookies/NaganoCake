@@ -1,34 +1,32 @@
-
-<link href='/'>
-    <div class="container">
-	    <div class="row" >
-		   <div class="top" >
-			     <div class="top-text">
-				      <p>
-				      <h1>Welcome to NaganoCake</h1>
-				        <p>
-        				  このサイトは、ケーキ販売のECサイトになります。<br>
-        				  会員でない方も商品の閲覧はできますが、<br>
-        				  購入には会員登録が必要になります。<br>
-				        </p>
-			     </div>
-			   </div>
-      </div>
-      <div class="row ">
-				<% @items.each do |item| %>
-				  <div class="col-3">
-				  	<%= link_to item_path(item) do %>
-							<div><%= attachment_image_tag(item, :image, size: "180x130", id:"no_image", fallback: "no-image-icon.jpg", class:"item_image") %></div>
-            <% end %>
-              <div><%= item.name %></div>
-							<div><%= item.introduction %></div>
-    			</div>
-				<% end %>
-  		</div>
-      <div class="row">
-        <div class="col text-center">
-          <h2 class="toppage-head">新着商品</h2>
-			    <%= link_to "全ての商品を見る", items_path, class: "btn-link  pull-right" %>
-        </div>
+<div class="container">
+  <div class="row" >
+	<div class="top" >
+	  <div class="top-text">
+	    <h1>Welcome to NaganoCake</h1>
+          <p>
+		    このサイトは、ケーキ販売のECサイトになります。<br>
+		    会員でない方も商品の閲覧はできますが、<br>
+		    購入には会員登録が必要になります。<br>
+          </p>
+		</div>
       </div>
     </div>
+    <h4 class="m-3">新着商品</h4>
+    <div class="row ">
+	    <% @items.each do |item| %>
+      	<div class="col-3">
+		  <%= link_to item_path(item) do %>
+			<div><%= attachment_image_tag(item, :image, size: "180x130",id: 'no_image', fallback: "no-image-icon.jpg", :alt => "image", class:"item_image") %></div>
+          <% end %>
+          <div><%= item.name %></div>
+		  <div><%= item.introduction %></div>
+		  <div>¥ <%= tax_price(item.price) %></div>
+      	</div>
+	    <% end %>
+  	</div>
+    <div class="row">
+      <div class="col text-right m-5">
+	    <%= link_to "全ての商品を見る >", items_path, class: "btn-link  pull-right" %>
+      </div>
+    </div>
+  </div>

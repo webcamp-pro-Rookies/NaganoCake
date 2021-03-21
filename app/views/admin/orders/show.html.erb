@@ -27,7 +27,7 @@
       <tr>
      		<th class="col-xs-4 bg-light">注文ステータス</th>
   	  	<td class="col-xs-6">
-      		<%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
+      		<%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %> <!--admin/orders#update-->
         		<%= f.select :status, Order.statuses.keys.to_a,{}, class: "order_status" %>
 						<%= f.submit '更新' ,id: 'order-status' ,class: "btn-sm btn-success" %>
       		<% end %>
@@ -63,7 +63,7 @@
 		              ¥<%= sub_price(order_detail).to_s(:delimited) %>
 		            </td>
 			          <td>
-		            	<%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+		            	<%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %><!--admin/order_details#update-->
 			            	<%= f.select :making_status, OrderDetail.making_statuses.keys, class: "order_detail" %>
 			            	<%= f.submit '更新',id: 'create-status', class: "btn btn-success" %>
 		            	<% end %>

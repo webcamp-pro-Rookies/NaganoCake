@@ -10,18 +10,6 @@ Customer.create!(
               address: "新宿",
               is_deleted: false,
               )
-Customer.create!(
-              last_name: "三浦",
-              first_name: "翔",
-              last_name_kana: "ミウラ",
-              first_name_kana: "ショウ",
-              telephone_number: "11111111111",
-              email: "sho@example.com",
-              password: "password",
-              postal_code: "1020082",
-              address: "岩手",
-              is_deleted: false,
-              )
 
   Admin.create!(
               email: "admin@example.com",
@@ -76,79 +64,3 @@ Genre.create!(name: "ミルクレープ")
               is_active: true,
               )
   }
-
-
-Order.create!(
-          customer_id: 1,
-          shipping_cost: 800,
-          total_payment: 3000,
-          payment_method: 0,
-          name: "田中太郎",
-          postal_code: 1111111,
-          address: "新宿区1-1-1",
-          status: 2
-          )
-Order.create!(
-          customer_id: 2,
-          shipping_cost: 800,
-          total_payment: 4000,
-          payment_method: 1,
-          name: "三浦翔",
-          postal_code: 1111111,
-          address: "岩手1-1-1",
-          status: 1
-          )
-
-OrderDetail.create!(
-                  item_id: 1,
-                  order_id: 1,
-                  amount: 1,
-                  making_status: 1,
-                  price: 3000
-
-                  )
-OrderDetail.create!(
-                  item_id: 2,
-                  order_id: 1,
-                  amount: 2,
-                  making_status: 1,
-                  price: 6000
-                  )
-OrderDetail.create!(
-                  item_id: 3,
-                  order_id: 2,
-                  amount: 5,
-                  making_status: 0,
-                  price: 3000
-
-                  )
-OrderDetail.create!(
-                  item_id: 4,
-                  order_id: 2,
-                  amount: 3,
-                  making_status: 1,
-                  price: 2000
-                  )
-
-CartItem.create!(
-            customer_id: 1,
-            item_id: 1,
-            amount: 1,
-            )
-CartItem.create!(
-            customer_id: 1,
-            item_id: 2,
-            amount: 2,
-            )
-CartItem.create!(
-            customer_id: 2,
-            item_id: 3,
-            amount: 5,
-            )
-CartItem.create!(
-            customer_id: 2,
-            item_id: 4,
-            amount: 3,
-            )
-
-

@@ -13,8 +13,8 @@ class Admin::OrderDetailsController < ApplicationController
         if [] == @order_detail.order.order_details.pluck(:making_status).reject {|n| n  == "製作完了"}
           @order_detail.order.update(status: 3)
         end
-  
-      	flash[:notice] = "制作ステータスを変更しました"
+
+      	flash[:notice] = "製作ステータスを変更しました"
         redirect_to admin_order_path(@order_detail.order)
       else
          render "show"

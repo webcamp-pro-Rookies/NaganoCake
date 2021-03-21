@@ -25,7 +25,7 @@ RSpec.describe "ECサイト", type: :system do
 
   # 請求額の計算
   def billing(order)
-    total_payment(current_cart) + order.shipping_cost.to_i
+    total_payment(customer.cart_items) + @order.shipping_cost.to_i
   end
 
   context 'トップページ' do
@@ -98,6 +98,15 @@ RSpec.describe "ECサイト", type: :system do
         shipping_cost: 800,
         status: 0,
         )
+      @order_detail = OrderDetail.create(
+        id: 1,
+        item_id: 1,
+        order_id: 1,
+        amount: 2,
+        making_status: 0,
+        price: 1660
+        )
+
       visit new_customer_session_path
       fill_in 'customer_email', with: customer.email
       fill_in 'customer_password', with: customer.password
@@ -216,13 +225,54 @@ RSpec.describe "ECサイト", type: :system do
         expect(page).to have_content('東京都渋谷区')
         expect(page).to have_content(total_payment(customer.cart_items))
       end
+    end
+
+    context 'サンクスページ' do
+      before do
+        visit new_order_path
+        choose 'order_payment_method_銀行振込'
+        choose 'order_address_selection_new_address'
+        fill_in 'order_postal_code', with: '0000000'
+        fill_in 'order_address', with: '東京都渋谷区'
+        fill_in 'order_name', with: '田中太郎'
+        click_button '確認画面へ進む'
+        click_on '注文を確定する'
+      end
 
       it 'サンクスページへ遷移' do
-        click_button '注文を確定する'
-        expect(current_path).to eq thanks_path
+        expect(current_path).to eq thanks_orders_path
+      end
+
+      it '注文履歴一覧画面の表示' do
+        # visit thanks_orders_path
+        click_link '注文履歴はこちら'
+        expect(current_path).to eq orders_path
       end
     end
 
+    context '注文履歴詳細画面' do
+
+      it '注文詳細画面へ遷移' do
+        visit orders_path
+        click_on '注文詳細'
+        expect(current_path).to eq order_path(@order)
+      end
+
+      it '注文詳細の表示' do
+        visit order_path(@order)
+        expect(page).to have_content(@order.address)
+        expect(page).to have_content(@order.payment_method.to_i)
+        expect(page).to have_content(@order.status.to_i)
+        expect(page).to have_content(billing(customer))
+        expect(page).to have_content(@item.name)
+        expect(page).to have_content(@order_detail.amount)
+      end
+
+      it 'ステータスが入金待ち' do
+        visit order_path(@order)
+        expect(page).to have_content('入金待ち')
+      end
+    end
 
   end
 end

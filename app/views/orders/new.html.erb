@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <h4 class="m-3 bg-light col-2 text-center">注文情報入力</h4>
 
       <% unless current_customer.cart_items.present? %>
-        <h4>注文情報入力</h4>
         <p>お客様のショッピングカートに商品はありませんので注文情報の入力ができません。</p>
         <p><%= link_to "商品一覧", items_path, class: "btn btn-warning" %>から商品をお探し下さい。</p>
       <% else %>

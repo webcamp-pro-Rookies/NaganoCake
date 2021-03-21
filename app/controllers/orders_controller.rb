@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
-    session[:paipu] = "paipu"
+    session[:order].clear
     redirect_to thanks_orders_path, {thanks: "true"}
   end
 

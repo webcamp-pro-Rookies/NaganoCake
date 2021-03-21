@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <th class="bg-light">請求金額</th>
-          <td class="text-right">¥<%= (@order.shipping_cost + total_payment(current_customer.cart_items)).to_s(:delimited) %></td>
+          <td class="text-right">¥<%= (total_payment(current_customer.cart_items)).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>

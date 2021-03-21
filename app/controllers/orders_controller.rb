@@ -78,11 +78,11 @@ class OrdersController < ApplicationController
     CartItem.where(customer_id: current_customer.id).destroy_all
     session[:order].clear
     # render :thanks
-    redirect_to thanks_orders_path(message: "thank you for purchasing it")
+    redirect_to thanks_orders_path(message: "thank_you_for_purchasing_it")
   end
 
   def thanks
-    unless params[:message] == ""
+    unless params[:message] == "thank_you_for_purchasing_it"
     redirect_to customers_path
     end
   end

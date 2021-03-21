@@ -16,8 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def log
-    @cart_items = current_customer.cart_items
-    @order = Order.where(customer_id: current_customer.id).last
+    redirect_to new_order_path
   end
 
   def new
@@ -36,17 +35,21 @@ class OrdersController < ApplicationController
     @order.update(customer_id: current_customer.id, total_payment: pay_amount + shipping_cost, shipping_cost: shipping_cost)
 
     if params[:order][:address_selection] == "my_home"
-      @order.update(address: current_customer.address, name: current_customer.last_name, postal_code: current_customer.postal_code)
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name
+      @order.postal_code = current_customer.postal_code
     end
 
     if params[:order][:address_selection] == "addresses"
       address = Address.find(params[:order][:address_id])
-      @order.update(address: address.address, name: address.name, postal_code: address.postal_code)
+      @order.address = address.address
+      @order.name = address.name
+      @order.postal_code = address.postal_code
     end
 
-    if @order.save
+    if @order.valid?
       @cart_items = current_customer.cart_items
-      redirect_to log_orders_path(order: @order)
+      render 'log'
     else
       @customer = current_customer
       @addresses = Address.where(customer: current_customer)
@@ -71,30 +74,32 @@ class OrdersController < ApplicationController
   end
 
   def completed
-    @cart_items = current_customer.items # ユーザーのカートに入っている商品の一覧を所得する
-    @order = Order.find(params[:order][:order_id])
-
-    @cart_items.each do |cart_item| # デフォルト値適当、まだまだ改善の余地あり。
-    order_detail = OrderDetail.new(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
-    order_detail.save
+    @order = Order.create(order_params)
+    current_customer.items.each do |cart_item|
+    OrderDetail.create(item_id: cart_item.id, order_id: @order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
     end
 
-    redirect_to '/orders/thanks'
+    CartItem.where(customer_id: current_customer.id).destroy_all
+    render :thanks
   end
 
   def thanks
-    @cart_items = CartItem.where(customer_id: current_customer.id)
-    @cart_items.destroy_all
   end
 
   private
 
   def order_params
 	  params.require(:order).permit(
+	    :customer_id,
 	    :address,
+	    :total_payment,
 	    :payment_method,
 	    :name,
 	    :postal_code,
+	    :shipping_cost,
+	    :status,
+	    :created_at,
+	    :updated_at
 	    )
   end
 

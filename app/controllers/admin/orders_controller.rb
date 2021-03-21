@@ -40,7 +40,9 @@ class Admin::OrdersController < ApplicationController
 	end
 
 	private
+
 	def order_params
 		  params.require(:order).permit(:status)
 	end
+
 end

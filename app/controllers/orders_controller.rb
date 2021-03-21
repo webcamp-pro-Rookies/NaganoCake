@@ -16,7 +16,8 @@ class OrdersController < ApplicationController
   end
 
   def log
-    redirect_to new_order_path
+    @cart_items = current_customer.cart_items
+    @order = Order.new(session[:order])
   end
 
   def new
@@ -48,8 +49,8 @@ class OrdersController < ApplicationController
     end
 
     if @order.valid?
-      @cart_items = current_customer.cart_items
-      render log_orders_path
+      session[:order] = @order
+      redirect_to log_orders_path
     else
       @customer = current_customer
       @addresses = Address.where(customer: current_customer)
@@ -71,10 +72,13 @@ class OrdersController < ApplicationController
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
-    render :thanks
+    session[:paipu] = "paipu"
+    redirect_to thanks_orders_path, {thanks: "true"}
   end
 
   def thanks
+
+    # redirect_to
   end
 
   private

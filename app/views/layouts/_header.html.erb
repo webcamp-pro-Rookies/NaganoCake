@@ -7,7 +7,7 @@
       <div class="col-9">
         <ul class="nav justify-content-around">
           <% if customer_signed_in? %>
-            <li>
+            <li class="mt-2">
               ようこそ、<strong><%= current_customer.last_name %><%= current_customer.first_name %></strong>さん！
             </li>
             <li><%= link_to "マイページ", customers_path, class: "btn btn-outline-dark"  %></li>

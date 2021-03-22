@@ -128,7 +128,9 @@ RSpec.describe "CustomerSessions", type: :system do
     end
     
     it 'カート画面' do
-      visit cart_items_path
+      visit item_path(@item)
+      select '1', from: 'amount'
+      find('.btn.btn-success.ml-3').click
       click_link '情報入力に進む'
       expect(current_path).to eq new_order_path
     end

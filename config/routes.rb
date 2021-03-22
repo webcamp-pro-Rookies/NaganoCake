@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :customers,only: [:index,:show,:edit,:update]
     resources :items,only: [:index,:new,:create,:show,:edit,:update,]
     get 'top'=>'items#top'
+    get 'search'=>'items#search'
     resources :genres,only: [:index,:create,:edit,:update, :show, :destroy]
     resources :orders,only: [:index,:show,:update] do
       member do

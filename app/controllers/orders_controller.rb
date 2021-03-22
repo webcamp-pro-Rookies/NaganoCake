@@ -32,16 +32,16 @@ class OrdersController < ApplicationController
 
   def create
 
-    # session[:order].clear
+    # session[:order].clear if session[:order] == nil
     pay_amount = Order.total_amount_calculator(current_customer.cart_items)
     shipping_cost = 800
 
     @order = Order.new(order_params)
-    
+
     @order.customer_id = current_customer.id
     @order.total_payment = pay_amount + shipping_cost
     @order.shipping_cost = shipping_cost
-    
+
 
     if params[:order][:address_selection] == "my_home"
       @order.address = current_customer.address

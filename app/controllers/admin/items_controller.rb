@@ -8,7 +8,7 @@ class Admin::ItemsController < ApplicationController
 
   def search
     @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).per(8)
-    render "index"
+    render "admin/items/index"
   end
 
   def new

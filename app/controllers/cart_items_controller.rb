@@ -19,11 +19,11 @@ class CartItemsController < ApplicationController
   end
 
   def update
-
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(amount: params[:cart_item][:amount])
     @cart_item.save
     redirect_to cart_items_path
+  
   end
 
   def destroy

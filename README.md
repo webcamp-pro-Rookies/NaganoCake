@@ -10,18 +10,20 @@ DMM WEBCAMPのチーム開発で作成したアプリです。
 ## アプリケーション詳細設計書2
 ![アプリケーション詳細設計書2](https://user-images.githubusercontent.com/66477050/111991307-808be700-8b57-11eb-94e3-2fd5ee206650.jpg)
 
-'ruby 2.6.3
-rails 5.2.4'
+## 開発環境
+- 'ruby 2.6.3
+- rails 5.2.4'
 
-gem 'tzinfo-data'
-gem 'devise'
-gem "refile"
-gem "refile-mini_magick"
-gem 'kaminari'
-gem 'bootstrap'
-gem 'jquery-rails'
-gem 'font-awesome-sass'
-gem 'devise-i18n'
-gem 'devise-i18n-views'
-gem 'rails-i18n'
-gem 'devise-bootstrap-views'
+## インストールしたgem
+- gem 'tzinfo-data'
+- gem 'devise'
+- gem "refile"
+- gem "refile-mini_magick"
+- gem 'kaminari'
+- gem 'bootstrap'
+- gem 'jquery-rails'
+- gem 'font-awesome-sass'
+- gem 'devise-i18n'
+- gem 'devise-i18n-views'
+- gem 'rails-i18n'
+- gem 'devise-bootstrap-views'

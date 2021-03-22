@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   def index
     @orders = current_customer.orders
   end
@@ -17,10 +16,10 @@ class OrdersController < ApplicationController
 
   def log
     @cart_items = current_customer.cart_items
-    unless session[:order] == {}
-      @order = Order.new(session[:order])
-    else
+    if session[:order] == {}
       redirect_to new_order_path
+    else
+      @order = Order.new(session[:order])
     end
   end
 
@@ -32,16 +31,16 @@ class OrdersController < ApplicationController
 
   def create
 
-    # session[:order].clear
+    # session[:order].clear if session[:order] == nil
+
     pay_amount = Order.total_amount_calculator(current_customer.cart_items)
     shipping_cost = 800
 
     @order = Order.new(order_params)
-    
+
     @order.customer_id = current_customer.id
     @order.total_payment = pay_amount + shipping_cost
     @order.shipping_cost = shipping_cost
-    
 
     if params[:order][:address_selection] == "my_home"
       @order.address = current_customer.address
@@ -56,6 +55,13 @@ class OrdersController < ApplicationController
       @order.postal_code = address.postal_code
     end
 
+    if params[:order][:address_selection] == "new_address"
+      Address.create(customer_id: current_customer.id,
+                    address: @order.address,
+                    name: @order.name,
+                    postal_code: @order.postal_code)
+    end
+
     if @order.valid?
       session[:order] = @order
       redirect_to log_orders_path
@@ -64,9 +70,7 @@ class OrdersController < ApplicationController
       @addresses = Address.where(customer: current_customer)
       render :new
     end
-
   end
-
 
   def show
     @order = Order.find(params[:id])
@@ -76,7 +80,7 @@ class OrdersController < ApplicationController
   def completed
     order = Order.create(order_params)
     current_customer.items.each do |cart_item|
-    OrderDetail.create(item_id: cart_item.id, order_id: order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
+      OrderDetail.create(item_id: cart_item.id, order_id: order.id, amount: cart_item.cart_items[0].amount, making_status: 0, price: cart_item.price)
     end
 
     CartItem.where(customer_id: current_customer.id).destroy_all
@@ -86,25 +90,24 @@ class OrdersController < ApplicationController
 
   def thanks
     unless params[:message] == "thank_you_for_purchasing_it"
-    redirect_to customers_path
+      redirect_to customers_path
     end
   end
 
   private
 
   def order_params
-	  params.require(:order).permit(
-	    :customer_id,
-	    :address,
-	    :total_payment,
-	    :payment_method,
-	    :name,
-	    :postal_code,
-	    :shipping_cost,
-	    :status,
-	    :created_at,
-	    :updated_at
-	    )
+    params.require(:order).permit(
+      :customer_id,
+      :address,
+      :total_payment,
+      :payment_method,
+      :name,
+      :postal_code,
+      :shipping_cost,
+      :status,
+      :created_at,
+      :updated_at
+    )
   end
-
 end

@@ -1,5 +1,4 @@
 class AddressesController < ApplicationController
-
   def index
     @customer = Customer.find(current_customer.id)
     @addresses = @customer.addresses
@@ -42,7 +41,6 @@ class AddressesController < ApplicationController
       :name,
       :postal_code,
       :address
-      )
+    )
   end
-
 end

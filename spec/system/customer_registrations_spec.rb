@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "ECサイト", type: :system do
-  let(:customer) {create(:customer_test)}
+RSpec.describe "登録〜発送", type: :system do
+  let(:customer) { create(:customer_test) }
   # FactoryBotを持ってきてくれる
 
   # 税込の計算
@@ -18,9 +18,9 @@ RSpec.describe "ECサイト", type: :system do
   def total_payment(totals)
     price = 0
     totals.each do |total|
-      price  +=  sub_price(total)
+      price += sub_price(total)
     end
-    return price
+    price
   end
 
   # 請求額の計算
@@ -66,7 +66,6 @@ RSpec.describe "ECサイト", type: :system do
     end
   end
 
-
   describe '新規登録後' do
     before do
       visit admin_genres_path
@@ -80,13 +79,13 @@ RSpec.describe "ECサイト", type: :system do
         price: 400,
         is_active: true,
         image_id: 1
-        )
+      )
       @cart_items = CartItem.create(
         id: 1,
         customer_id: customer.id,
         item_id: @item.id,
         amount: 2
-        )
+      )
       @order = customer.orders.create(
         id: 1,
         customer_id: 1,
@@ -97,7 +96,7 @@ RSpec.describe "ECサイト", type: :system do
         postal_code: '0000000',
         shipping_cost: 800,
         status: 0,
-        )
+      )
       @order_detail = OrderDetail.create(
         id: 1,
         item_id: 1,
@@ -105,7 +104,7 @@ RSpec.describe "ECサイト", type: :system do
         amount: 2,
         making_status: 0,
         price: 1660
-        )
+      )
 
       visit new_customer_session_path
       fill_in 'customer_email', with: customer.email
@@ -132,7 +131,6 @@ RSpec.describe "ECサイト", type: :system do
       click_link 'NaganoCAKE'
       expect(current_path).to eq root_path
     end
-
 
     context '商品画面' do
       it '該当商品の詳細ページへの遷移' do
@@ -176,7 +174,7 @@ RSpec.describe "ECサイト", type: :system do
       it '合計表示が正しく更新される' do
         select '2', from: 'cart_item_amount'
         click_button '変更'
-        expect(page).to have_content(@cart_items.amount*2)
+        expect(page).to have_content(@cart_items.amount * 2)
       end
 
       it '情報入力画面へ遷移' do
@@ -219,7 +217,6 @@ RSpec.describe "ECサイト", type: :system do
         visit log_orders_path
       end
 
-
       it '選択した商品、合計金額、配送方法などが表示されている' do
         expect(page).to have_content(@item.name)
         expect(page).to have_content(@order.payment_method.to_i)
@@ -252,7 +249,6 @@ RSpec.describe "ECサイト", type: :system do
     end
 
     context '注文履歴詳細画面' do
-
       it '注文詳細画面へ遷移' do
         visit orders_path
         click_on '注文詳細'
@@ -274,6 +270,5 @@ RSpec.describe "ECサイト", type: :system do
         expect(page).to have_content('入金待ち')
       end
     end
-
   end
 end

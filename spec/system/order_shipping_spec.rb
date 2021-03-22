@@ -1,7 +1,8 @@
 require 'rails_helper'
 RSpec.describe "制作～発送", type: :system do
   admin = Admin.create(email: 'admin@example.com', password: 'password')
-    let!(:customer) {Customer.create(
+  let!(:customer) do
+    Customer.create(
       id: 1,
       email: 'test@example.com',
       password: 'password',
@@ -12,9 +13,10 @@ RSpec.describe "制作～発送", type: :system do
       postal_code: '1234567',
       telephone_number: '12345678912',
       address: '渋谷',
-      )
-    }
-    let!(:order) {customer.orders.build(
+    )
+  end
+  let!(:order) do
+    customer.orders.build(
       customer_id: 1,
       shipping_cost: 800,
       payment_method: 1,
@@ -23,7 +25,9 @@ RSpec.describe "制作～発送", type: :system do
       name: '田中',
       address: '東京都千代田区',
       postal_code: '1111111'
-      )}
+    )
+  end
+
   context 'ログイン画面' do
     it 'ヘッダーから遷移' do
       visit root_path
@@ -31,9 +35,9 @@ RSpec.describe "制作～発送", type: :system do
       expect(current_path).to eq new_admin_session_path
     end
     it 'ログイン画面が表示されること' do
-    visit new_admin_session_path
-    expect(page).to have_content('メールアドレス')
-    expect(page).to have_content('パスワード')
+      visit new_admin_session_path
+      expect(page).to have_content('メールアドレス')
+      expect(page).to have_content('パスワード')
     end
   end
 
@@ -45,7 +49,7 @@ RSpec.describe "制作～発送", type: :system do
       click_button '管理者Login'
       expect(page).to have_content('ログインしました')
     end
-        it "ログイン後注文一覧に遷移" do
+    it "ログイン後注文一覧に遷移" do
       visit new_admin_session_path
       fill_in 'admin_email', with: admin.email
       fill_in 'admin_password', with: admin.password
@@ -56,40 +60,44 @@ RSpec.describe "制作～発送", type: :system do
 
   describe 'ログイン後' do
     before do
-      #customer = FactoryBot.create(:customer_test)
-        @order = customer.orders.create(
-          customer_id: 1,
-          shipping_cost: 800,
-          payment_method: 1,
-          total_payment: 2000,
-          status: 3,
-          name: '田中',
-          address: '東京都千代田区',
-          postal_code: '1111111')
-        @genre = Genre.create(
-          id: 1,
-          name: "ケーキ")
-        @item = Item.create(
-          id: 1,
-          genre_id: 1,
-          name: '絵のケーキ',
-          introduction: 'ケーキ',
-          price: 440,
-          is_active: true,
-          image_id: 1)
-        @order_details = OrderDetail.create(
-          id:1,
-          item_id: 1,
-          order_id: 1,
-          amount: 1,
-          making_status: 0,
-          price: 400,
-          )
+      # customer = FactoryBot.create(:customer_test)
+      @order = customer.orders.create(
+        customer_id: 1,
+        shipping_cost: 800,
+        payment_method: 1,
+        total_payment: 2000,
+        status: 3,
+        name: '田中',
+        address: '東京都千代田区',
+        postal_code: '1111111'
+      )
+      @genre = Genre.create(
+        id: 1,
+        name: "ケーキ"
+      )
+      @item = Item.create(
+        id: 1,
+        genre_id: 1,
+        name: '絵のケーキ',
+        introduction: 'ケーキ',
+        price: 440,
+        is_active: true,
+        image_id: 1
+      )
+      @order_details = OrderDetail.create(
+        id: 1,
+        item_id: 1,
+        order_id: 1,
+        amount: 1,
+        making_status: 0,
+        price: 400,
+      )
       visit new_admin_session_path
       fill_in 'admin_email', with: admin.email
       fill_in 'admin_password', with: admin.password
       click_button '管理者Login'
     end
+
     context '注文詳細画面のテスト' do
       it "注文詳細画面への遷移" do
         visit admin_orders_path
@@ -139,20 +147,21 @@ RSpec.describe "制作～発送", type: :system do
         click_button 'ログイン'
         visit customers_path
       end
+
       it 'トップ画面への遷移' do
         visit '/'
         expect(current_path).to eq '/'
       end
       it 'ログイン後のヘッダー表示が正しい' do
-        expect(page).to have_content ('マイページ')
-        expect(page).to have_content ('商品一覧')
-        expect(page).to have_content ('カート')
-        expect(page).to have_content ('ログアウト')
+        expect(page).to have_content 'マイページ'
+        expect(page).to have_content '商品一覧'
+        expect(page).to have_content 'カート'
+        expect(page).to have_content 'ログアウト'
       end
       it 'マイページへ遷移する' do
         visit customers_path
         click_link('マイページ')
-        expect(current_path).to eq (customers_path)
+        expect(current_path).to eq customers_path
       end
       it '注文一覧画面へ遷移する' do
         visit customers_path

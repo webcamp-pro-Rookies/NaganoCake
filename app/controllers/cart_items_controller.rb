@@ -1,13 +1,12 @@
 class CartItemsController < ApplicationController
-  #before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
-  #user.idとpuroduct.idを持ったデータを保存したい
+  # before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
+  # user.idとpuroduct.idを持ったデータを保存したい
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def create
-
     if @already_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:item_id]) # 既にカードに追加済みの商品には更新処理
       @already_cart_item.update(amount: params[:amount])
       redirect_to cart_items_path
@@ -15,15 +14,14 @@ class CartItemsController < ApplicationController
       @new_art_item = CartItem.create(customer_id: current_customer.id, item_id: params[:item_id], amount: params[:amount]) # 新規カート追加の商品は新規追加処理
       redirect_to cart_items_path
     end
-
   end
 
   def update
-
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(amount: params[:cart_item][:amount])
     @cart_item.save
     redirect_to cart_items_path
+  
   end
 
   def destroy
@@ -40,8 +38,7 @@ class CartItemsController < ApplicationController
 
   private
 
-    def cart_item_params
-      params.require(:cart_item).permit(:amount)
-    end
-
+  def cart_item_params
+    params.require(:cart_item).permit(:amount)
+  end
 end

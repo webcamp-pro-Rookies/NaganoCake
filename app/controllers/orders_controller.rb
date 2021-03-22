@@ -30,7 +30,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # session[:order].clear
+
+    # session[:order].clear if session[:order] == nil
+
     pay_amount = Order.total_amount_calculator(current_customer.cart_items)
     shipping_cost = 800
 

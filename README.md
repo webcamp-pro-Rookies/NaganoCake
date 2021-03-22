@@ -9,3 +9,6 @@ DMM WEBCAMPのチーム開発で作成したアプリです。
 
 ## アプリケーション詳細設計書2
 ![アプリケーション詳細設計書2](https://user-images.githubusercontent.com/66477050/111988885-6e5c7980-8b54-11eb-83e0-b26c822b0012.jpg)
+
+'ruby 2.6.3
+rails 5.2.4'

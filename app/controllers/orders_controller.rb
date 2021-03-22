@@ -56,10 +56,9 @@ class OrdersController < ApplicationController
     end
 
     if params[:order][:address_selection] == "new_address"
-      Address.create(customer_id: current_customer.id,
-                    address: @order.address,
-                    name: @order.name,
-                    postal_code: @order.postal_code)
+      if [] == Address.where(customer_id: current_customer.id, address: @order.address, name: @order.name, postal_code: @order.postal_code)
+        Address.create(customer_id: current_customer.id, address: @order.address, name: @order.name, postal_code: @order.postal_code)
+      end
     end
 
     if @order.valid?

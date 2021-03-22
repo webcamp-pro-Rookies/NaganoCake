@@ -17,12 +17,11 @@ Customer.create!(
                 )
 
 Genre.create!(name: "ケーキ")
-Genre.create!(name: "パンダケーキ")
-Genre.create!(name: "チーズケーキ")
-Genre.create!(name: "モンブラン")
-Genre.create!(name: "ミルクレープ")
+Genre.create!(name: "プリン")
+Genre.create!(name: "焼き菓子")
+Genre.create!(name: "キャンディ")
 
-  50.times{|num|
+  2.times{|num|
   Item.create!(
               genre_id: 1,
               #image_id: atattch.open("#{Rails.root}/db/fixtures/img1.jpg"),
@@ -32,35 +31,108 @@ Genre.create!(name: "ミルクレープ")
               is_active: true,
               )
   Item.create!(
-              genre_id: 2,
+              genre_id: 1,
               # image_id: open("./app/assets/images/パンダ.jpg"),
               name: "パンダケーキ",
               introduction: "白黒のパンダケーキ",
+              price: "350",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 1,
+              # image_id: open("./app/assets/images/チーズケーキ.jpg"),
+              name: "チーズケーキ",
+              introduction: "一番うまいチーズケーキ",
+              price: "600",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 1,
+              # image_id: open("./app/assets/images/チーズケーキ.jpg"),
+              name: "モンブラン",
+              introduction: "クリの風味たっぷり",
+              price: "450",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 2,
+              # image_id: open("./app/assets/images/モンブラン.jpg"),
+              name: "プリン",
+              introduction: "王道のプリン",
               price: "400",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 2,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "焼きプリン",
+              introduction: "表面を焦がし美味しく仕上げました",
+              price: "300",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 2,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "とろけるプリン",
+              introduction: "生クリームをふんだんに使用した贅沢プリン",
+              price: "450",
               is_active: true,
               )
   Item.create!(
               genre_id: 3,
-              # image_id: open("./app/assets/images/チーズケーキ.jpg"),
-              name: "チーズケーキ",
-              introduction: "一番うまいチーズケーキ",
-              price: "400",
-              is_active: false,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "長野マフィン",
+              introduction: "リーズナブルな価格でお子様に人気です",
+              price: "150",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 3,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "豆乳クッキー",
+              introduction: "ヘルシーでダイエット中でもおすすめです",
+              price: "350",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 3,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "フロランタン",
+              introduction: "4種類のナッツを使ったフロランタン",
+              price: "350",
+              is_active: true,
               )
   Item.create!(
               genre_id: 4,
-              # image_id: open("./app/assets/images/モンブラン.jpg"),
-              name: "モンブラン",
-              introduction: "うまいモンブラン",
-              price: "400",
-              is_active: false,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "ペロキャン",
+              introduction: "漫画のようなペロペロキャンディ",
+              price: "200",
+              is_active: true,
               )
   Item.create!(
-              genre_id: 5,
+              genre_id: 4,
               # image_id: open("./app/assets/images/ミルクレープ.jpg"),
-              name: "ミルクレープ",
-              introduction: "何層も重なっているミルクレープ",
+              name: "ポップキャンディ",
+              introduction: "おしゃれなキャンディ",
               price: "400",
               is_active: true,
               )
+  Item.create!(
+              genre_id: 4,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "コロコロキャンディ",
+              introduction: "コロコロかわいいキャンディ",
+              price: "500",
+              is_active: true,
+              )
+  Item.create!(
+              genre_id: 4,
+              # image_id: open("./app/assets/images/ミルクレープ.jpg"),
+              name: "サクマドロップス",
+              introduction: "なんで蛍すぐ死んでまうん？",
+              price: "1000",
+              is_active: true,
+              )
+
   }

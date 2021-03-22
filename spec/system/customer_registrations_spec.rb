@@ -210,6 +210,7 @@ RSpec.describe "ECサイト", type: :system do
         visit log_orders_path
       end
 
+
       it '選択した商品、合計金額、配送方法などが表示されている' do
         expect(page).to have_content(@item.name)
         expect(page).to have_content(@order.payment_method.to_i)

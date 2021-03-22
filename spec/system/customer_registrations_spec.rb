@@ -4,8 +4,28 @@ RSpec.describe "ECサイト", type: :system do
   let(:customer) {create(:customer_test)}
   # FactoryBotを持ってきてくれる
 
+  # 税込の計算
   def tax_price(price)
     (price * 1.1).floor
+  end
+
+  # 小計の計算
+  def sub_price(sub)
+    (tax_price(sub.item.price) * sub.amount)
+  end
+
+  # 合計金額の計算
+  def total_payment(totals)
+    price = 0
+    totals.each do |total|
+      price  +=  sub_price(total)
+    end
+    return price
+  end
+
+  # 請求額の計算
+  def billing(order)
+    total_payment(current_cart) + order.shipping_cost.to_i
   end
 
   context 'トップページ' do
@@ -57,23 +77,31 @@ RSpec.describe "ECサイト", type: :system do
         genre_id: 1,
         name: '絵のケーキ',
         introduction: 'ケーキ',
-        price: 440,
+        price: 400,
         is_active: true,
         image_id: 1
         )
-      @cart_item = CartItem.create(
+      @cart_items = CartItem.create(
+        id: 1,
         customer_id: customer.id,
         item_id: @item.id,
-        amount: 1
+        amount: 2
         )
-
+      @order = customer.orders.create(
+        id: 1,
+        customer_id: 1,
+        address: '東京都　新宿　2丁目',
+        total_payment: 880,
+        payment_method: 0,
+        name: '田中太郎',
+        postal_code: '0000000',
+        shipping_cost: 800,
+        status: 0,
+        )
       visit new_customer_session_path
       fill_in 'customer_email', with: customer.email
       fill_in 'customer_password', with: customer.password
       click_button 'ログイン'
-      visit item_path(@item)
-        select '1', from: 'amount'
-        click_on 'カートに入れる'
       visit customers_path
     end
 
@@ -131,15 +159,15 @@ RSpec.describe "ECサイト", type: :system do
 
       it 'カートの中身が正しく表示されている' do
         expect(page).to have_content(@item.name)
-        expect(page).to have_content(tax_price(@cart_item.item.price))
-        expect(page).to have_content(@cart_item.amount)
+        expect(page).to have_content(tax_price(@cart_items.item.price))
+        expect(page).to have_content(@cart_items.amount)
         expect(page).to have_content(@item.name)
       end
 
       it '合計表示が正しく更新される' do
         select '2', from: 'cart_item_amount'
         click_button '変更'
-        expect(page).to have_content(@cart_item.amount*2)
+        expect(page).to have_content(@cart_items.amount*2)
       end
 
       it '情報入力画面へ遷移' do
@@ -172,9 +200,30 @@ RSpec.describe "ECサイト", type: :system do
 
     context '注文確認画面' do
       before do
+        visit new_order_path
+        choose 'order_payment_method_銀行振込'
+        choose 'order_address_selection_new_address'
+        fill_in 'order_postal_code', with: '0000000'
+        fill_in 'order_address', with: '東京都渋谷区'
+        fill_in 'order_name', with: '田中太郎'
+        click_button '確認画面へ進む'
         visit log_orders_path
       end
+
+
+      it '選択した商品、合計金額、配送方法などが表示されている' do
+        expect(page).to have_content(@item.name)
+        expect(page).to have_content(@order.payment_method.to_i)
+        expect(page).to have_content('東京都渋谷区')
+        expect(page).to have_content(total_payment(customer.cart_items))
+      end
+
+      it 'サンクスページへ遷移' do
+        click_button '注文を確定する'
+        expect(current_path).to eq thanks_path
+      end
     end
+
 
   end
 end

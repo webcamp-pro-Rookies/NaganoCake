@@ -174,21 +174,21 @@ RSpec.describe "CustomerSessions", type: :system do
         expect(current_path).to eq root_path
       end
       
-      # it '購入時に登録した住所が表示される' do
-      #   visit item_path(@item)
-      #   select '1', from: 'amount'
-      #   find('.btn.btn-success.ml-3').click
-      #   click_link '情報入力に進む'
-      #   choose 'order_address_selection_new_address'
-      #   fill_in 'order_postal_code', with: '1237890'
-      #   fill_in 'order_address', with: '東京都渋谷区'
-      #   fill_in 'order_name', with: '松井秀喜'
-      #   find('.btn.btn-primary.text-center').click
-      #   click_link '注文を確定する'
-      #   click_link 'マイページ'
-      #   find('.shipping-btn.mr-2.btn.btn-primary.form-control').click
-      #   expect(page).to have_content('松井秀樹')
-      # end
+      it '購入時に登録した住所が表示される' do
+        visit item_path(@item)
+        select '1', from: 'amount'
+        find('.btn.btn-success.ml-3').click
+        click_link '情報入力に進む'
+        choose 'order_address_selection_new_address'
+        fill_in 'order_postal_code', with: '1237890'
+        fill_in 'order_address', with: '東京都渋谷区'
+        fill_in 'order_name', with: '松井秀喜'
+        find('.btn.btn-primary.text-center').click
+        click_link '注文を確定する'
+        click_link 'マイページ'
+        find('.shipping-btn.mr-2.btn.btn-primary.form-control').click
+        expect(page).to have_content('松井秀喜')
+      end
     end
     
     context '退会処理のテスト' do

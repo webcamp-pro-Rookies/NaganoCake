@@ -1,7 +1,7 @@
 module DeviseHelper
   def bootstrap_devise_error_messages!
     return "" if resource.errors.empty?
-    
+
     html = ""
     resource.errors.full_messages.each do |error_message|
       html += <<-EOF

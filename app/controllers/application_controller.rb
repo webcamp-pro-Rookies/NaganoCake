@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #current_user != current_admin
-  before_action :current_admin ||:authenticate_customer!, except: [:top, :about]
-
+  # current_user != current_admin
+  before_action :current_admin || :authenticate_customer!, except: [:top, :about]
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [
@@ -38,8 +37,7 @@ class ApplicationController < ActionController::Base
   #   # Cart情報を返却
   #   current_cart
   # end
-   #------------------------------
-
+  #------------------------------
 
   def after_sign_in_path_for(recource)
     if current_admin

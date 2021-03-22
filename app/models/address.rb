@@ -1,5 +1,4 @@
 class Address < ApplicationRecord
-
   belongs_to :customer
 
   validates :customer_id, presence: true
@@ -8,7 +7,6 @@ class Address < ApplicationRecord
   validates :address, presence: true
 
   def order_address
-    self.postal_code + self.address + self.name
+    postal_code + address + name
   end
-
 end

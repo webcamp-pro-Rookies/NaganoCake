@@ -130,7 +130,7 @@ Genre.create!(name: "キャンディ")
               genre_id: 4,
               # image_id: open("./app/assets/images/ミルクレープ.jpg"),
               name: "サクマドロップス",
-              introduction: "なんで蛍すぐ死んでまうん？",
+              introduction: "なんで蛍すぐ死んでしまうん？",
               price: "1000",
               is_active: true,
               )

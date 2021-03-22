@@ -7,10 +7,10 @@
     <p style="font-size: 24px; margin-bottom: 50px;"><%= @item.introduction %></p>
     <spap style="font-size: 24px; font-weight: bold;">￥<%= tax_price(@item.price) %></span>
     <spap style="font-size: 18px; ">(税込)</span>
-      <% if @item.is_active %>
+      <% if @item.is_active == true %>
         <p class="text-success mb-5 mb-1">販売中</p>
       <% else %>
-        <p class="text-danger mb-5 mb-1">準備中</p>
+        <p class="text-danger mb-5 mb-1">売切</p>
       <% end %>
       <% if customer_signed_in? %>
 

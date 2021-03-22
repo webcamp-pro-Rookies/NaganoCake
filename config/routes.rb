@@ -24,8 +24,11 @@ Rails.application.routes.draw do
 
 
 #----------customer--------------
-  resource :customers, only: [:show, :new, :create, :edit, :update, :destroy]
-
+  resource :customers, only: [:show, :new, :create, :edit, :update, :destroy] do
+    member do
+      get :quit
+    end
+  end
 
 
 #----------caddresses--------------
@@ -35,7 +38,6 @@ resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   resources :customers, only: [:destroy, :quit]  do
     member do
-      get :quit
       patch :out
     end
   end

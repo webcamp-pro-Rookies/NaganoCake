@@ -176,8 +176,5 @@ RSpec.describe "ECサイト", type: :system do
       end
     end
 
-
-
-
   end
 end

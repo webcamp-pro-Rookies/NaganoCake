@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ECサイト", type: :system do
+RSpec.describe "登録〜発送", type: :system do
   let(:customer) { create(:customer_test) }
   # FactoryBotを持ってきてくれる
 

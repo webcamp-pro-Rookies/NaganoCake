@@ -7,8 +7,8 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-       flash[:notice] = "ジャンルを追加しました"
-       redirect_to admin_genres_path
+      flash[:notice] = "ジャンルを追加しました"
+      redirect_to admin_genres_path
     else
       flash[:alert] = "ジャンル名を入力してください"
       redirect_back(fallback_location: root_path)
@@ -20,8 +20,8 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
-    #unless user == admin_user
-    #redirect_to どこかの_path
+    # unless user == admin_user
+    # redirect_to どこかの_path
   end
 
   def update
@@ -41,5 +41,4 @@ class Admin::GenresController < ApplicationController
   def genre_params
     params.require(:genre).permit(:name)
   end
-
 end

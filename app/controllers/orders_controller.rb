@@ -55,6 +55,13 @@ class OrdersController < ApplicationController
       @order.postal_code = address.postal_code
     end
 
+    if params[:order][:address_selection] == "new_address"
+      Address.create(customer_id: current_customer.id,
+                    address: @order.address,
+                    name: @order.name,
+                    postal_code: @order.postal_code)
+    end
+
     if @order.valid?
       session[:order] = @order
       redirect_to log_orders_path

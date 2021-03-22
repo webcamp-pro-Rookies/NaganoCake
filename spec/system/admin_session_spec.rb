@@ -64,6 +64,17 @@ RSpec.describe "管理者ログイン", type: :system do
       @item = Item.create(id: 1, name: 'ショートケーキ', genre_id: 1, introduction: '美味しいです', price: 500, is_active: true)
     end
 
+    context '管理者トップ画面のテスト' do
+      it '会員一覧画面へ遷移' do
+        visit admin_orders_path
+        click_link '会員一覧'
+        expect(current_path).to eq admin_customers_path
+      end
+    end
+
+
+
+
     context 'ジャンルのテスト' do
       it 'ジャンル一覧へ遷移する' do
         click_link 'ジャンル一覧'
@@ -130,6 +141,48 @@ RSpec.describe "管理者ログイン", type: :system do
       end
 
       it 'ログアウト後管理者ログインに遷移すること' do
+        click_link '管理者ログアウト'
+        expect(current_path).to eq new_admin_session_path
+      end
+    end
+
+    let(:customer) { create(:customer_test) }
+
+    context '会員一覧画面のテスト' do
+      before do
+        visit new_customer_session_path
+        fill_in 'customer_email', with: customer.email
+        fill_in 'customer_password', with: customer.password
+        click_button 'ログイン'
+        visit admin_customers_path
+      end
+
+      it '会員詳細画面へ遷移' do
+        click_link '田中太郎'
+        expect(current_path).to eq admin_customer_path(customer)
+      end
+
+      it '退会したユーザが「退会済み」' do
+        visit quit_customers_path
+        click_link '退会する'
+        visit admin_customers_path
+        expect(page).to have_content('退会済')
+      end
+    end
+
+    context '会員詳細画面のテスト' do
+      before do
+        visit edit_admin_customer_path(customer)
+        fill_in 'customer_address', with: '渋谷'
+        click_button '変更内容を保存'
+        visit admin_customer_path(customer)
+      end
+
+      it '変更した住所が表示' do
+        expect(page).to have_content('渋谷')
+      end
+
+      it 'ログイン画面が表示' do
         click_link '管理者ログアウト'
         expect(current_path).to eq new_admin_session_path
       end

@@ -8,7 +8,7 @@ DMM WEBCAMPのチーム開発で作成したアプリです。
 ![アプリケーション詳細設計書1](https://user-images.githubusercontent.com/66477050/111988873-6b618900-8b54-11eb-8ce1-89e0b3cce124.jpg)
 
 ## アプリケーション詳細設計書2
-![アプリケーション詳細設計書2](https://user-images.githubusercontent.com/66477050/111988885-6e5c7980-8b54-11eb-83e0-b26c822b0012.jpg)
+![アプリケーション詳細設計書2 1](https://user-images.githubusercontent.com/66477050/111991054-386cc480-8b57-11eb-99ce-fe49f1f16bfb.jpg)
 
 'ruby 2.6.3
 rails 5.2.4'

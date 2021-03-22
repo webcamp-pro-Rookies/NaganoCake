@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
- before_action :authenticate_customer!,except: [:top,:about,:index,:show]
+  before_action :authenticate_customer!, except: [:top, :about, :index, :show]
   def top
     @items = Item.where(is_active: true).page(params[:page]).per(4)
   end
@@ -13,13 +13,10 @@ class ItemsController < ApplicationController
     render "index"
   end
 
-
-
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
-
 
   def log
   end
@@ -29,10 +26,7 @@ class ItemsController < ApplicationController
 
   private
 
-    def item_params
-      params.require(:item).permit(:name, :introduction, :price, :image, :is_active, :genre_id)
-    end
-
-
-
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price, :image, :is_active, :genre_id)
+  end
 end

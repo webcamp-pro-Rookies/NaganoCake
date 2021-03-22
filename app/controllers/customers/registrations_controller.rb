@@ -61,16 +61,13 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_update_path_for(resource)
-
-
     # customer_path(resource) # 2021/03/21日に↓の記述に書き直しました。
     '/customers'
   end
 
-    protected
+  protected
 
   def update_resource(resource, params)
     resource.update_without_current_password(params)
   end
-
 end

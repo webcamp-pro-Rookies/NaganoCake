@@ -12,3 +12,16 @@ DMM WEBCAMPのチーム開発で作成したアプリです。
 
 'ruby 2.6.3
 rails 5.2.4'
+
+gem 'tzinfo-data'
+gem 'devise'
+gem "refile"
+gem "refile-mini_magick"
+gem 'kaminari'
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'font-awesome-sass'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'rails-i18n'
+gem 'devise-bootstrap-views'

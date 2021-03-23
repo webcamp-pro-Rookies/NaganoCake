@@ -1,4 +1,6 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @genres = Genre.all.page(params[:page]).per(10)
     @genre_new = Genre.new
@@ -20,8 +22,6 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
-    # unless user == admin_user
-    # redirect_to どこかの_path
   end
 
   def update

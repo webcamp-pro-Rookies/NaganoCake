@@ -55,7 +55,6 @@ RSpec.describe "CustomerSessions", type: :system do
         fill_in 'customer_first_name', with: '耕作'
         fill_in 'customer_last_name_kana', with: 'ヤマダ'
         fill_in 'customer_first_name_kana', with: 'コウサク'
-        fill_in 'customer_email', with: 'yamada@example.comza'
         fill_in 'customer_telephone_number', with: '22222222222'
         fill_in 'customer_postal_code', with: '1111111'
         fill_in 'customer_address', with: '新宿2丁目'
@@ -64,7 +63,6 @@ RSpec.describe "CustomerSessions", type: :system do
         expect(page).to have_content('耕作')
         expect(page).to have_content('ヤマダ')
         expect(page).to have_content('コウサク')
-        expect(page).to have_content('yamada@example.com')
         expect(page).to have_content('22222222222')
         expect(page).to have_content('1111111')
         expect(page).to have_content('新宿2丁目')

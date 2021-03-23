@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_customer!, unless: :admin_signed_in?
   
   def show
     @customer = current_customer

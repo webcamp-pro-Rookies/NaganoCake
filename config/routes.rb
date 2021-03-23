@@ -48,9 +48,6 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:index, :create, :update, :destroy]
   get 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy'
 
-  # post '/add_item' => 'cart_items#add_item'
-  # post '/update_item' => 'cart_items#update_item'
-  # delete '/delete_item' => 'cart_items#delete_item'
   get '/all_item' => 'cart_items#all_item'
   delete '/all_item' => 'cart_items#all_item'
   #--------------------------------
@@ -64,8 +61,4 @@ Rails.application.routes.draw do
     end
   end
   #--------------------------------
-
-  # #----------genres--------------
-  #   resources :genres, only: [:index, :create, :show, :edit, :update, :destroy]
-  # #--------------------------------
 end

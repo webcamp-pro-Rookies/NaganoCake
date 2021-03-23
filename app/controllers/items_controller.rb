@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_customer!, except: [:top, :about, :index, :show]
+  
   def top
     @items = Item.where(is_active: true).page(params[:page]).per(4)
   end

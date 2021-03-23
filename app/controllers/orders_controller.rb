@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_customer!, except: [:top, :about, :show, :index], unless: :admin_signed_in?
+  before_action :authenticate_customer!, except: [:top, :about, :show, :index]
 
   def index
     @orders = current_customer.orders

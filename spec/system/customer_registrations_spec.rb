@@ -68,9 +68,10 @@ RSpec.describe "登録〜発送", type: :system do
 
   describe '新規登録後' do
     before do
-      visit admin_genres_path
-      fill_in 'genre_name', with: 'ケーキ'
-      click_on '新規追加'
+      # visit admin_genres_path
+      # fill_in 'genre_name', with: 'ケーキ'
+      # click_on '新規追加'
+      @genre = Genre.create(id: 1, name: 'ケーキ')
       @item = Item.create(
         id: 1,
         genre_id: 1,

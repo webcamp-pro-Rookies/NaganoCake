@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_customer!, unless: :admin_signed_in?
   
   def top
     @items = Item.where(is_active: true).page(params[:page]).per(4)

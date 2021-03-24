@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :authenticate_customer!, unless: :admin_signed_in?
+  before_action :authenticate_customer!# , unless: :admin_signed_in?
 
   def index
     @customer = Customer.find(current_customer.id)

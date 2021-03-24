@@ -65,3 +65,26 @@
 .pagination {
   justify-content: center;
 }
+
+.page-link {
+  color: #000;
+}
+
+.footer-fixed {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #f8f9fa;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-text {
+  padding-top: 10px;
+}

@@ -27,6 +27,11 @@ DMM WEBCAMPのチーム開発で作成したアプリです。
 - gem 'devise-i18n-views'
 - gem 'rails-i18n'
 - gem 'devise-bootstrap-views'
+- gem 'capybara'
+- gem 'rspec-rails'
+- gem 'factory_bot_rails'
+- gem 'faker'
+- gem 'rubocop-airbnb'
 
 ## 開発チーム
 ### ROOKIES

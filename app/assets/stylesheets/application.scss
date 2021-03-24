@@ -31,35 +31,49 @@
   background-color: tomato;
 }
 
-.top{
+.logo-text {
+  font-family: 'Kaushan Script', cursive;
+  &:hover {
+    opacity: .7;  
+  }
+}
+
+.top {
   margin: 0 auto;
+  border-radius: 20px;
   background-image:url("adpDSC_2759-750x500.jpg");
-  background-color:rgba(255,255,255,0.5);
+  background-color:rgba(255,255,255,0.6);
   background-blend-mode:lighten;
   height:500px;
   width:750px;
   margin-top: 20px;
 }
 
-.top-text{
-  margin-top: 50px ;
+.top-text {
+  padding-top: 50px;
+  margin-top: 30px ;
   text-align: center;
   line-height: 100px;
   font-size: 30px;
 }
-.about{
-  margin: 0 auto;
+.about {
+  margin: 20px auto;
+  border-radius: 20px;
   background-image:url("adpDSC_2759-750x500.jpg");
   background-blend-mode:lighten;
   height:500px;
   width:750px;
 }
 
-.about-text{
-  margin-top: 5px ;
+.about-text {
+  margin-top: 30px;
   text-align: center;
   line-height: 30px;
   font-size: 25px;
+}
+
+.nav-link:hover {
+  opacity: .5;
 }
 
 .pagination {
@@ -80,11 +94,12 @@
 footer {
   width: 100%;
   text-align: center;
-  background-color: #f8f9fa;
+  background-color: #ffdab9;
   position: absolute;
   bottom: 0;
 }
 
 .footer-text {
   padding-top: 10px;
+  color: rgba(0, 0, 0, 0.5);
 }
